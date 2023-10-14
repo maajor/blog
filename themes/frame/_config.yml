@@ -12,7 +12,7 @@ logo_image:
 menu:
   Home: /
   Blog: /archives/
-  Gallery: /categories/gallery/
+  About: /about/
 
 # stylesheets loaded in the <head>
 stylesheets:
@@ -29,13 +29,11 @@ date_format: MMM D, YYYY
 
 # profile
 profile:
-  title: Hi, this is Frame. 
-  body: A minimal, elegant hexo theme.
-  image: /profile_cover.png
 
   links:
-    Home: /
     Blogs: /archives/
+    Github: https://github.com/maajor
+    ArtStation: https://www.artstation.com/maajor
 
 # footer
 footer:

@@ -1,21 +1,22 @@
 <div class="profile">
-    <div class="profile-image">
-        <% if (theme.profile.image) {%>
-            <img src="<%= url_for(theme.profile.image)%>" alt="featured_image">
-        <% } %>  
-    </div>
     <div class="post-content profile-content">
         <div class="profile-title">
-            <%=theme.profile.title%>
+            Hi! I am maajor
         </div>
         <div class="profile-body">
-            <%=theme.profile.body%>
+            I am building online editor && developing in-house art pipeline at <a
+                href="https://taitopia.design">Taitopia Renderer</a>
+            <br><br>I know nothing about GameDev, Computer Graphics, Machine Learning, Functional Programming,
+            Typescript/React, C#/Unity and Python/Vex/Houdini
+
         </div>
-        <% Object.keys(theme.profile.links).forEach(key => { %>
+        <% Object.keys(theme.profile.links).forEach(key=> { %>
             <div class="profile-link">
-                <a href="<%= url_for(theme.profile.links[key])%>"><%=key%></a> 
-            </div>           
-        <% }); %>
+                <a href="<%= url_for(theme.profile.links[key])%>">
+                    <%=key%>
+                </a>
+            </div>
+            <% }); %>
     </div>
-    
+
 </div>
