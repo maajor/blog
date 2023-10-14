@@ -3,6 +3,8 @@ title: The Girl With a Voxel Earring，Behind the Scene | 幕后
 date: 2022-04-24 00:00:00
 ---
 
+[Github Codebase](https://github.com/maajor/maajor-voxel-challenge)
+
 背景是公司内部的一个比赛：Taichi 99 行代码体素挑战。使用代码创建体素艺术。笔者提交的作品获得了头名，比较有意思，因此讲讲这个作品。
 
 [Competition Artwork Gallery · Issue #1 · taichi-dev/voxel-challenge (github.com)](https://github.com/taichi-dev/voxel-challenge/issues/1)
@@ -17,13 +19,13 @@ date: 2022-04-24 00:00:00
 
 ![reference.jpg](/images/reference.jpg)
 
-**How**
+# How
 
 所以具体怎么做的？
 
 具体如下
 
-1. 使用MagicaCSG创建
+## 使用MagicaCSG创建
 
 如果你不知道MagicaCSG是啥，戳这里：[MagicaVoxel (ephtracy.github.io)](https://ephtracy.github.io/index.html?page=magicacsg) 一个轻量级CSG编辑器。
 
@@ -54,7 +56,7 @@ date: 2022-04-24 00:00:00
   ...
 ```
 
-1. 在Taichi中实现基本型
+## 在Taichi中实现基本型
 
 这里极大收到了IQ的文章启发：[Inigo Quilez :: computer graphics, mathematics, shaders, fractals, demoscene and more](https://iquilezles.org/articles/distfunctions/)，使用SDF表示几何体。
 
@@ -82,7 +84,7 @@ def tri(r1, h, r2, round_unused, cone, vertex, p):
 
 ![reproduce.jpg](/images/reproduce.jpg)
 
-1. 生成Taichi代码。
+## 生成Taichi代码
 
 所以其实mscg文件中每一个primitive应该对应taichi代码的一行。
 
@@ -126,7 +128,7 @@ def initialize_voxels():
     .......
 ```
 
-1. Why
+# Why
 
 体素挑战有很多种参加方式：写代码，程序化艺术，分型，etc
 
@@ -145,19 +147,10 @@ def initialize_voxels():
 
 ![csg.png](/images/csg.jpg)
 
-1. 结论
+# 结论
 
 笔者确实很快完成了这个项目，大概只花了一天。
 
 虽然功能不是很全，没有SDF融合，并且一些效果无法实现，比如变形，噪声等。在MagicaCSG中无法预览。
 
 但是基本完成了Proof of Concept： 使用数字内容创作工具可以快速高质量完成体素挑战。
-
-降低创作门槛，解放创造力。这是笔者所在公司太极图形的使命，太极开物云平台努力践行这一梦想。
-
-最后是招人广告：
-
-- 软件开发工程师，对DCC工具开发感兴趣，熟悉Unity或者UE即可。
-- 技术美术，对DCC工具开发感兴趣，熟悉程序化即可，请附作品集。
-
-公司地点在北京中关村或者上海张江科技园，深圳办公室在筹备中也会考虑。

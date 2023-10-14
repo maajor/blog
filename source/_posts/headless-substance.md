@@ -3,6 +3,8 @@ title: Headless Substance | 无头Substance材质生成
 date: 2021-03-31 00:00:00
 ---
 
+![screenshot001.png](/images/screenshot001.jpg)
+
 Substance套件作为当下游戏美术资产制作中，贴图制作这一环节的主流工具是相当成功的。其优点
 
 - 其一是方便美术在3D视角下绘制贴图，
@@ -29,9 +31,9 @@ Substance套件作为当下游戏美术资产制作中，贴图制作这一环�
 
 其实订阅一下就行，在substance官网上订阅一个pro/indie版本，就能看到SAT的下载链接。好在SAT本身是不需要license审查的。
 
-1. 技术实现
+# 1. 技术实现
 
-1.1 Dockerfile
+## 1.1 Dockerfile
 
 首先笔者假定读者有一定Docker的基础知识，这里就不介绍了。
 
@@ -64,7 +66,7 @@ ENV DISPLAY=:1
 Xvfb :1 -screen 0 1024x768x16
 ```
 
-1.2 SAT
+## 1.2 SAT
 
 参考官方文档[https://docs.substance3d.com/sat](https://docs.substance3d.com/sat)
 
@@ -81,7 +83,7 @@ Xvfb :1 -screen 0 1024x768x16
 
 值得注意的一点是，sbsbaker除了支持单个通道烘焙的函数调用（比如sbsbaker_position_from_mesh）外，还有一个sbsbaker_run的函数，可以一次烘焙很多贴图。它接受一个json配置文件。而这个json配置文件是可以从substance designer中导出的。笔者也用的是这个方式，运行时拼装一个json配置文件，然后运行sbsbaker_run
 
-1.3 Server
+## 1.3 Server
 
 这个服务有几个特点
 
@@ -136,7 +138,7 @@ docker-compose up sat
 
 [https://github.com/maajor/docker-sat](https://github.com/maajor/docker-sat)
 
-1.4 Client
+## 1.4 Client
 
 客户端需要一个websocket库，笔者这里使用的是websocket-client这个库，它还算简单，而且支持到python2.7
 
@@ -177,7 +179,7 @@ with open(item_path, "rb") as f:
 
 具体代码参考笔者Github  [https://github.com/maajor/docker-sat/blob/main/client/satclient.py](https://github.com/maajor/docker-sat/blob/main/client/satclient.py)
 
-1. 实验
+# 2. 实验
 
 在Substance中做自动处理贴图的主要方式就是用position，normal，ao，curvature，id之类的图，来生成与创建mask，以及混合贴图。下面两个案例即是如此
 
@@ -236,7 +238,7 @@ if __name__ == '__main__':
 
 ![screenshot000.png](/images/screenshot000.jpg)
 
-1. 总结
+# 3. 总结
 
 本文探讨了一种使用Substance处理贴图的流程。在流程层面，substance是微服务化的。生产中可以怎么方便怎么来，比如集成到Houdini PDG，直接从引擎中调用等等。微服务化的主要好处是方便部署和扩容，可以上云。在制作层面，主要是利用ID/几何信息，使用程序化纹理生成mask的方式制作贴图，可以用在任意已经有高模的资产的情况下。一个案例是给houdini程序化模型上材质。
 
@@ -244,7 +246,7 @@ if __name__ == '__main__':
 
 本文仅代表个人研究，自己编写的服务器和SAT使用过程中有一些bug，仅供探讨，在生产环境中使用出现问题笔者概不负责:)
 
-附录：案例研究
+# 附录：案例研究
 
 sat_batchtools_gpu_free
 
@@ -260,46 +262,34 @@ sat_batchtools_gpu_free
 2. 有一个CLI入口可以执行各种sat的功能
 
 sat-scon
-
 这个很有意思做了一个资产自动构建的项目，用sat生成缩略图，可以理解成一个buildmachine
-
 [AllegorithmicSAS/sat-scons: A sample showing how using the Substance Automation Toolkit together with the scons build system to do incremental content builds. (github.com)](https://github.com/AllegorithmicSAS/sat-scons)
 
 substance designer batch tool
-
 读者如果看substance designer的安装目录下面有一个sbscooker，其实跟SAT的sbs cooker是一样的。只不过缺少sbsbaker
-
 [Substance Designer: Batch Tools | jason brackman's (wordpress.com)](https://jasonbrackman.wordpress.com/2015/03/03/substance-designer-batch-tools/)
 
 substance uber baker
-
 [Substance Uber Baker (orbolt.com)](https://www.orbolt.com/asset/ophi::sbs_uber_baker::1.0)
-
 其实就是在houdini里调用sat的一个接口节点
 
 substance in houdini
-
 sidefx官方gamedevelopmenttool的工具，在COP中可以调用sbsar文档来处理贴图
-
 好像不依赖substance还不错，只不过有时候会崩溃
-
 江流大佬做的是在houdini里面调用SAT的api
-
 [https://zhuanlan.zhihu.com/p/107424364](https://zhuanlan.zhihu.com/p/107424364)
 
 [HQueue + TOPs +Substance Automation Tool kitでテクスチャをベイクする！ – Born Digital サポート](https://support.borndigital.co.jp/hc/ja/articles/360000275482-HQueue-TOPs-Substance-Automation-Tool-kit%E3%81%A7%E3%83%86%E3%82%AF%E3%82%B9%E3%83%81%E3%83%A3%E3%82%92%E3%83%99%E3%82%A4%E3%82%AF%E3%81%99%E3%82%8B-)
-
 用houdini的农场来调用SAT，蛮像影视工作室的方案，渲染农场可不是谁都有的
 
 [Substance Automation Toolkitを利用してHDRP向けLOD0テクスチャをLOD1、LOD2に転写するツールを作成した | 測度ゼロの抹茶チョコ (matcha-choco010.net)](https://matcha-choco010.net/2020/01/17/hdrp-lod-texture-baker/)
-
 基本是在讲怎么用SAT的API
 
 [Substance Automation Toolkitによる簡単自動化 - もんしょの巣穴ブログ Ver2.0 (hatenablog.com)](http://monsho.hatenablog.com/entry/2019/03/07/170120)
 
 ![af84508553c056c4c996ff5633efc29b.png](/images/af84508553c056c4c996ff5633efc29b.jpg)
 
-1 下载
+## 下载
 
 [AllegorithmicSAS/sat_batchtools_gpu_free: A Docker alternative to use batchtools without GPUs. (github.com)](https://github.com/AllegorithmicSAS/sat_batchtools_gpu_free)
 
@@ -308,7 +298,6 @@ sidefx官方gamedevelopmenttool的工具，在COP中可以调用sbsar文档来�
 [Substance Designer: Batch Tools | jason brackman's (wordpress.com)](https://jasonbrackman.wordpress.com/2015/03/03/substance-designer-batch-tools/)
 
 houdini sbs baker
-
 [Substance Uber Baker (orbolt.com)](https://www.orbolt.com/asset/ophi::sbs_uber_baker::1.0)
 
 [HQueue + TOPs +Substance Automation Tool kitでテクスチャをベイクする！ – Born Digital サポート](https://support.borndigital.co.jp/hc/ja/articles/360000275482-HQueue-TOPs-Substance-Automation-Tool-kit%E3%81%A7%E3%83%86%E3%82%AF%E3%82%B9%E3%83%81%E3%83%A3%E3%82%92%E3%83%99%E3%82%A4%E3%82%AF%E3%81%99%E3%82%8B-)
@@ -316,5 +305,4 @@ houdini sbs baker
 [Substance Automation Toolkitを利用してHDRP向けLOD0テクスチャをLOD1、LOD2に転写するツールを作成した | 測度ゼロの抹茶チョコ (matcha-choco010.net)](https://matcha-choco010.net/2020/01/17/hdrp-lod-texture-baker/)
 
 [Substance Automation Toolkitによる簡単自動化 - もんしょの巣穴ブログ Ver2.0 (hatenablog.com)](http://monsho.hatenablog.com/entry/2019/03/07/170120)
-
 procedural pipeline framework? python pipeline nodes
