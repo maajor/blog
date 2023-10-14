@@ -3,6 +3,8 @@ title: BxDF Truth to Realtime with Mitsuba. A case study of Fur BSSRDF | BxDF从
 date: 2020-05-09 00:00:00
 ---
 
+![image_0003.jpg](/images/image_0003.jpg)
+
 在写GAMES101大作业时,在Mitsuba里实现BxDF, 遇到的很大一个问题是, 怎么知道渲染结果是'物理正确'的? 
 
 我们凭什么相信渲染器或者游戏引擎的渲染结果，是“物理正确”的？如果不是物理正确的，限于模型和计算性能的限制，什么损失了？

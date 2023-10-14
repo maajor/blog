@@ -3,6 +3,11 @@ title: Terrain Cliff Problem | 地形峭壁问题
 date: 2018-05-12 00:00:00
 ---
 
+
+
+![HighresScreenshot00002.png](/images/HighresScreenshot00002.jpg)
+
+
 1. 拆侧坡，用侧坡为基础生成侧坡的几何体，triplaner，代表：FarCry5
 2. 贴面，更进一步用启发式算法来贴面平铺，代表：hauntless
 3. 拆侧破，展uv，需要几个要点：
@@ -164,5 +169,3 @@ anglesum /= (@numpt - 1);
 这样就基本矫正了UV
 
 ![HighresScreenshot00004.png](/images/HighresScreenshot00004.jpg)
-
-![HighresScreenshot00002.png](/images/HighresScreenshot00002.jpg)

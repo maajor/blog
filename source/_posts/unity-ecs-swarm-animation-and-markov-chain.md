@@ -3,9 +3,11 @@ title: Unity ECS, Swarm Animation and Markov Chain| ECS集群动画与马尔可�
 date: 2018-11-24 00:00:00
 ---
 
-![gif_animation_007.gif](image/gif_animation_007.gif)
+[Github Codebase](https://github.com/maajor/OSMTrafficSim)
 
-![gif_animation_005.gif](image/gif_animation_005.gif)
+![gif_animation_007.gif](/images/gif_animation_007.gif)
+
+![gif_animation_005.gif](/images/gif_animation_005.gif)
 
 交通模拟的项目，要添加大量的行人，自然想到的肯定要用animation instancing。其主要思路是把骨骼动画烘焙成贴图，skinning状态是per instance的，在vertex shader中读取animation texture做skinning运算。笔者这里有几点不同。
 
@@ -39,7 +41,7 @@ UnityAustinTechnicalPresentation提供了一个ECS的集群动画案例，虽然
 
 下图是houdini中一个原始动画的效果预览
 
-![bandicam_2018-11-24_00-20-37-016.gif](image/bandicam_2018-11-24_00-20-37-016.gif)
+![bandicam_2018-11-24_00-20-37-016.gif](/images/bandicam_2018-11-24_00-20-37-016.gif)
 
 # 动画状态转换
 
