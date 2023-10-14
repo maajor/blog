@@ -44,7 +44,7 @@ def process_images(img_dir, output_dir):
 
 def main():
     source_dir = 'source'
-    img_dir = os.path.join(source_dir, 'images')
+    img_dir = os.path.join(source_dir, 'newimgs')
     output_dir = os.path.join(source_dir, 'resized_images')
     
     process_images(img_dir, output_dir)
