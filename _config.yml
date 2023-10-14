@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 码工图形
 subtitle: ''
 description: ''
-keywords:
-author: John Doe
+keywords: blog
+author: maajor
 language: en
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: http://ma-yidong.com
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -103,3 +103,9 @@ theme: frame
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+## sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml

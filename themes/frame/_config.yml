@@ -23,7 +23,7 @@ scripts:
 - /js/frame.js
 
 # favicon
-favicon: /favicon.ico
+favicon: /favicon.jpg
 
 date_format: MMM D, YYYY
 
