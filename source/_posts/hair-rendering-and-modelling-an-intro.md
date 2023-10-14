@@ -4,7 +4,7 @@ date: 2019-03-31 00:00:00
 ---
 # 20190331 Hair Modelling and Rendering
 
-![Hair2_2.png](/images/Hair2_2.png)
+![Hair2_2.png](/images/Hair2_2.jpg)
 
 1 渲染
 
@@ -14,13 +14,13 @@ date: 2019-03-31 00:00:00
 
 在游戏中使用这个模型还要追溯到GDC2004的Hair Rendering and Shading这个Talk，主讲者Thorsten Scheuermann来自AMD。PPT中比较详细地描述了kajiyakay模型和一些hacking技巧
 
-![Image.png](/images/Image.png)
+![Image.png](/images/Image.jpg)
 
 最重要的一点是用Tangent计算高光。
 
 另外用一张径向噪波来偏移tangent，获得高光的一些变化。并且参考Marschner的观察，加了第二层高光。
 
-![f6576fa35da5b37e78e16b39e4243884.png](/images/f6576fa35da5b37e78e16b39e4243884.png)
+![f6576fa35da5b37e78e16b39e4243884.png](/images/f6576fa35da5b37e78e16b39e4243884.jpg)
 
 PPT中还讲到了排序的问题，提出了多个pass，先alpha-test写入z，再渲染blend的操作。
 
@@ -38,7 +38,7 @@ Physically Based Hair Shading in Unreal
 
 把头发的微观模型抽象成了一节一节的圆柱。
 
-![f9422471472620eed7ebeeab4ca3ca67.png](/images/f9422471472620eed7ebeeab4ca3ca67.png)
+![f9422471472620eed7ebeeab4ca3ca67.png](/images/f9422471472620eed7ebeeab4ca3ca67.jpg)
 
 提取了三个Path 逐一分析：R直接反射，TT两次投射，TRT投射内部反射投射
 
@@ -50,11 +50,11 @@ Physically Based Hair Shading in Unreal
 
 A项可以用菲涅尔参数计算出来。
 
-![d69503db42e19b0e38c9904719bd5830.png](/images/d69503db42e19b0e38c9904719bd5830.png)
+![d69503db42e19b0e38c9904719bd5830.png](/images/d69503db42e19b0e38c9904719bd5830.jpg)
 
 具体计算时，M项简化成了一个高斯分布函数
 
-![fbeae26dd784336c0c320dc5105e467b.png](/images/fbeae26dd784336c0c320dc5105e467b.png)
+![fbeae26dd784336c0c320dc5105e467b.png](/images/fbeae26dd784336c0c320dc5105e467b.jpg)
 
 带了一个角度的shift，这个作者用了一组magic number，大概是这个参数的模拟和测量比较近似吧。
 
@@ -62,7 +62,7 @@ N项解了一个方程....还挺复杂的
 
 另外还建模了离心性，有些头发不是圆柱的而是椭圆的，会造成折射率的变化
 
-![447c448140f489f6511b969fee9d3ba0.png](/images/447c448140f489f6511b969fee9d3ba0.png)
+![447c448140f489f6511b969fee9d3ba0.png](/images/447c448140f489f6511b969fee9d3ba0.jpg)
 
 代码可见，笔者在Unity中的实现，受限于引擎本身，可能少了一些feature.
 
@@ -78,17 +78,17 @@ Epic在实现的时候首先参考了d'Eon的实现，这个是Weta的做法，�
 
 但是太复杂了，还是使用了Marschner最开始提到的的高斯分布，
 
-![54ca0b391479be6752ee74e0b1f11b45.png](/images/54ca0b391479be6752ee74e0b1f11b45.png)
+![54ca0b391479be6752ee74e0b1f11b45.png](/images/54ca0b391479be6752ee74e0b1f11b45.jpg)
 
 径向散射R项直接用了Weta的做法
 
-![03d82f8f65fc2ab4d8509b9a1586e04d.png](/images/03d82f8f65fc2ab4d8509b9a1586e04d.png)
+![03d82f8f65fc2ab4d8509b9a1586e04d.png](/images/03d82f8f65fc2ab4d8509b9a1586e04d.jpg)
 
 对于其它的很多项，离线渲染的方程都太过复杂了！！
 
 作者的做法是：用简单函数拟合！比如径向散射TT做了个函数的拟合
 
-![3fae4518b1a161051f3008dd23071ba9.png](/images/3fae4518b1a161051f3008dd23071ba9.png)
+![3fae4518b1a161051f3008dd23071ba9.png](/images/3fae4518b1a161051f3008dd23071ba9.jpg)
 
 径向TRT也是一样的。
 
@@ -104,7 +104,7 @@ UE大部分的代码都实现了，唯独没有实现eccentricity，这在Marchn
 
 [Yan 2015]这个论文把微观模型搞得更复杂了一点
 
-![710be112a449a2a5078856938cd6f2f5.png](/images/710be112a449a2a5078856938cd6f2f5.png)
+![710be112a449a2a5078856938cd6f2f5.png](/images/710be112a449a2a5078856938cd6f2f5.jpg)
 
 毛发中间有一个medulla硬核，所以路径积分应该会是R,TrT,TttT,TtrtT,TttRttT很多很多。。。
 
@@ -136,13 +136,13 @@ Disney在Hyperion里做了点改进，就是N项不用复杂积分了，直接pa
 
 [https://www.cgmasteracademy.com/courses/48-hair-creation-for-games#section-instructors](https://www.cgmasteracademy.com/courses/48-hair-creation-for-games#section-instructors)
 
-![4177fb2acf53459737768e0234cbf119.png](/images/4177fb2acf53459737768e0234cbf119.png)
+![4177fb2acf53459737768e0234cbf119.png](/images/4177fb2acf53459737768e0234cbf119.jpg)
 
 2.2 贴图
 
 在游戏里的传统做法还是做头发的贴图Atlas，预先做集中strand，然后把guide烘出来的头发uv映射上去，每一个组对应一块uv
 
-![ab118a6ea923272a2d44e6ded96d07cd.png](/images/ab118a6ea923272a2d44e6ded96d07cd.png)
+![ab118a6ea923272a2d44e6ded96d07cd.png](/images/ab118a6ea923272a2d44e6ded96d07cd.jpg)
 
 笔者这里用SubstanceDesigner烘焙的，一个id，一个深度，一个root，一个flowmap。
 
@@ -168,9 +168,9 @@ Ornatrix可以直接导出时候用tangent作为法线，所以比较好烘。
 
 也比较神了虽然不是游戏里直接能用的模型，但至少还是可以减少很多手工建模的工作量的。
 
-![Hair2_4.png](/images/Hair2_4.png)
+![Hair2_4.png](/images/Hair2_4.jpg)
 
-![Hair2_3.png](/images/Hair2_3.png)
+![Hair2_3.png](/images/Hair2_3.jpg)
 
 Kajiya, James T., and Timothy L. Kay. "Rendering fur with three dimensional textures." ACM Siggraph Computer Graphics. Vol. 23. No. 3. ACM, 1989.
 

@@ -101,7 +101,7 @@ websocket相比于HTTP
 
 [WebSocket support in Azure Application Gateway | Microsoft Docs](https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-websocket)
 
-![667783a9eaa1986602aded1f509150cd.png](/images/667783a9eaa1986602aded1f509150cd.png)
+![667783a9eaa1986602aded1f509150cd.png](/images/667783a9eaa1986602aded1f509150cd.jpg)
 
 题外话是通信协议的另一种选择是gRPC，不过依赖有点多而我们希望甚至DCC里也能调用，所以先算了。
 
@@ -185,25 +185,25 @@ with open(item_path, "rb") as f:
 
 不局限于程序化生成的模型，任何已有高模（手工雕刻，扫描），都可以用类似的方法处理使之成为游戏内资产。
 
-![screenshot000.png](/images/screenshot000.png)
+![screenshot000.png](/images/screenshot000.jpg)
 
 建模的部分不细说，主要参考Siggraph Asia2018上, Akira Saito的讲座Procedural Hard Surface Design
 
-![f00e156aff29c8e556a2c16f300e3d1d.png](/images/f00e156aff29c8e556a2c16f300e3d1d.png)
+![f00e156aff29c8e556a2c16f300e3d1d.png](/images/f00e156aff29c8e556a2c16f300e3d1d.jpg)
 
 具体步骤就跟Saito桑讲的一样，没有太多原理上复杂的东西。
 
-![steps.png](/images/steps.png)
+![steps.png](/images/steps.jpg)
 
 而后在贴图部分，需要烘焙AO， ID， Normal三张图，在SD中做处理，主要操作就是用ID混合一些材质，导出一个sbsar的文件
 
-![5d9bc2548e126872858e1fbb08ec73c8.png](/images/5d9bc2548e126872858e1fbb08ec73c8.png)
+![5d9bc2548e126872858e1fbb08ec73c8.png](/images/5d9bc2548e126872858e1fbb08ec73c8.jpg)
 
 在叠加上烘焙出来的法线，AO
 
-![screenshot001.png](/images/screenshot001.png)
+![screenshot001.png](/images/screenshot001.jpg)
 
-![screenshot002.png](/images/screenshot002.png)
+![screenshot002.png](/images/screenshot002.jpg)
 
 用来生成贴图的只是一小段代码。这里高模低模是Houdini存储出来的。
 
@@ -234,7 +234,7 @@ if __name__ == '__main__':
 
 最后就是这一套车子
 
-![screenshot000.png](/images/screenshot000.png)
+![screenshot000.png](/images/screenshot000.jpg)
 
 1. 总结
 
@@ -297,7 +297,7 @@ sidefx官方gamedevelopmenttool的工具，在COP中可以调用sbsar文档来�
 
 [Substance Automation Toolkitによる簡単自動化 - もんしょの巣穴ブログ Ver2.0 (hatenablog.com)](http://monsho.hatenablog.com/entry/2019/03/07/170120)
 
-![af84508553c056c4c996ff5633efc29b.png](/images/af84508553c056c4c996ff5633efc29b.png)
+![af84508553c056c4c996ff5633efc29b.png](/images/af84508553c056c4c996ff5633efc29b.jpg)
 
 1 下载
 

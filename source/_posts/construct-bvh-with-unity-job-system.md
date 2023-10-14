@@ -200,7 +200,7 @@ output
 
 第一步找到split可能出现的范围，第二步binary search找split，第三步输出
 
-![17c78a564d5fcd1455ebd1825a028ebf.png](/images/17c78a564d5fcd1455ebd1825a028ebf.png)
+![17c78a564d5fcd1455ebd1825a028ebf.png](/images/17c78a564d5fcd1455ebd1825a028ebf.jpg)
 
 其实也好实现，照抄伪码就行。这步是很神的。先binary往前找最远的range，再binary往回找最近的range。
 
@@ -260,7 +260,7 @@ int2 determineRange(int i)
 
 论文里第四节有讲，             //[https://devblogs.nvidia.com/parallelforall/wp-content/uploads/2012/11/karras2012hpg_paper.pdf](https://devblogs.nvidia.com/parallelforall/wp-content/uploads/2012/11/karras2012hpg_paper.pdf)
 
-![974f044acc93c74ae1bab6eb1f76c8fb.png](/images/974f044acc93c74ae1bab6eb1f76c8fb.png)
+![974f044acc93c74ae1bab6eb1f76c8fb.png](/images/974f044acc93c74ae1bab6eb1f76c8fb.jpg)
 
 一样的话用index算一下。
 

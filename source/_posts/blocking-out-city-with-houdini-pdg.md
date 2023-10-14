@@ -7,7 +7,7 @@ Houdini PDG是17.5版本新增的一个任务管理模式，方便最终结果�
 
 笔者当前使用的17.5.258版本，鉴于这个功能刚刚出现，目前似乎是还有些bug，其后的版本可能会修复的。
 
-![cap.PNG](/images/cap.PNG)
+![cap.PNG](/images/cap.jpg)
 
 到目前为止(~2019.6，确实没看到什么houdini engine + pdg的教程，只有Kenny Lammer的一套PDG for Indie Game Dev。
 
@@ -40,11 +40,11 @@ Houdini PDG是17.5版本新增的一个任务管理模式，方便最终结果�
 
 一个HDA可能有1~9999个input
 
-![dd56df5382c920b42349c0c58cd96060.png](/images/dd56df5382c920b42349c0c58cd96060.png)
+![dd56df5382c920b42349c0c58cd96060.png](/images/dd56df5382c920b42349c0c58cd96060.jpg)
 
 一个HDA Processor只有一个Input，但是可以有多个work item（绿色的点）
 
-![30a4c49c0cd9f7a0e6cc4963137ca61b.png](/images/30a4c49c0cd9f7a0e6cc4963137ca61b.png)
+![30a4c49c0cd9f7a0e6cc4963137ca61b.png](/images/30a4c49c0cd9f7a0e6cc4963137ca61b.jpg)
 
 一个work item执行一次HDA，因此如果一个HDA需要3个input，那么每个work item都需要3个input
 
@@ -56,7 +56,7 @@ Houdini PDG是17.5版本新增的一个任务管理模式，方便最终结果�
 
 如果只有2个input，partition by index的模式中secondary input打成all就行，但是3个input就挂了。
 
-![83b6f9f839d4bf78fd0cf263a5ed8d99.png](/images/83b6f9f839d4bf78fd0cf263a5ed8d99.png)
+![83b6f9f839d4bf78fd0cf263a5ed8d99.png](/images/83b6f9f839d4bf78fd0cf263a5ed8d99.jpg)
 
 比如这里，最下面的HDA Processor需要连三个input，上面三个input分别有4，1，1个work item。
 
@@ -106,7 +106,7 @@ for value in node_map.values():
 
 使用方法是top中的节点自定义加一个string类型的henginedata，填show就是unity能看到，填show,autoload就是能看到且能自动加载。HEU会加载时自动读到这个参数的。
 
-![bc0710b3c4616b06e0f994a4395b1668.png](/images/bc0710b3c4616b06e0f994a4395b1668.png)
+![bc0710b3c4616b06e0f994a4395b1668.png](/images/bc0710b3c4616b06e0f994a4395b1668.jpg)
 
 至于有关项目的一些原理：
 
@@ -122,7 +122,7 @@ for value in node_map.values():
 2. seed points，一些产生道路的点，一般不用太多
 3. Grid guide，用于生成方格网络的引导线
 
-![road.png](/images/road.png)
+![road.png](/images/road.jpg)
 
 地块：
 
@@ -130,7 +130,7 @@ for value in node_map.values():
 
 [http://ma-yidong.com/2018/08/29/procedural-parcel-modelling-in-houdini/](http://ma-yidong.com/2018/08/29/procedural-parcel-modelling-in-houdini/)
 
-![urban.PNG](/images/urban.PNG)
+![urban.PNG](/images/urban.jpg)
 
 小别墅
 
@@ -138,7 +138,7 @@ for value in node_map.values():
 
 ![Sequence_16_1.gif](/images/Sequence_16_1.gif)
 
-![house.PNG](/images/house.PNG)
+![house.PNG](/images/house.jpg)
 
 Disclaimer:
 

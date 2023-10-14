@@ -7,15 +7,15 @@ date: 2018-05-12 00:00:00
 2. 贴面，更进一步用启发式算法来贴面平铺，代表：hauntless
 3. 拆侧破，展uv，需要几个要点：
 
-![e3f978445870d3a6f505656581ebf99d.png](/images/e3f978445870d3a6f505656581ebf99d.png)
+![e3f978445870d3a6f505656581ebf99d.png](/images/e3f978445870d3a6f505656581ebf99d.jpg)
 
 1 分块：用GameDevtool的AutoUV的Cluster比较好
 
-![ScreenClip.png](/images/ScreenClip.png)
+![ScreenClip.png](/images/ScreenClip.jpg)
 
 2 分拆孤岛，收缩扩张就好了
 
-![ScreenClip-1.png](/images/ScreenClip-1.png)
+![ScreenClip-1.png](/images/ScreenClip-1.jpg)
 
 收缩用了一个loop
 
@@ -68,7 +68,7 @@ else{
 }
 ```
 
-![ScreenClip-3.png](/images/ScreenClip-3.png)
+![ScreenClip-3.png](/images/ScreenClip-3.jpg)
 
 扩张用了一个loop
 ```
@@ -93,7 +93,7 @@ if(minclass > -0.5){
 
 这样UV就能拆成小片了
 
-![ScreenClip-2.png](/images/ScreenClip-2.png)
+![ScreenClip-2.png](/images/ScreenClip-2.jpg)
 
 3 矫正UV
 
@@ -159,10 +159,10 @@ anglesum /= (@numpt - 1);
 @anglesum = anglesum * 360 / (2 * 3.14159);
 ```
 
-![ScreenClip-4.png](/images/ScreenClip-4.png)
+![ScreenClip-4.png](/images/ScreenClip-4.jpg)
 
 这样就基本矫正了UV
 
-![HighresScreenshot00004.png](/images/HighresScreenshot00004.png)
+![HighresScreenshot00004.png](/images/HighresScreenshot00004.jpg)
 
-![HighresScreenshot00002.png](/images/HighresScreenshot00002.png)
+![HighresScreenshot00002.png](/images/HighresScreenshot00002.jpg)

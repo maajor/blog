@@ -17,7 +17,7 @@ date: 2020-12-27 00:00:00
 
 光场将物体表示为一个全光函数，这是一个7维的函数，包含空间位置（x, y, z）、光线方向（Θ, Φ）、波长（λ）和时间（t）
 
-![3b00d4be9f0cefb120a52b4eeadc0031.png](/images/3b00d4be9f0cefb120a52b4eeadc0031.png)
+![3b00d4be9f0cefb120a52b4eeadc0031.png](/images/3b00d4be9f0cefb120a52b4eeadc0031.jpg)
 
 当然在游戏中，七个维度的表述，数据量太大了，以下案例中大多做了简化。
 
@@ -43,13 +43,13 @@ date: 2020-12-27 00:00:00
 
 之后对于任意方向的光照，我们用光照方向来插值之前我们6个方向的光照效果。
 
-![d2deae006924e33dbadc399a7e2ae868.png](/images/d2deae006924e33dbadc399a7e2ae868.png)
+![d2deae006924e33dbadc399a7e2ae868.png](/images/d2deae006924e33dbadc399a7e2ae868.jpg)
 
-![37182d4222da914c19026a1119577c5f.png](/images/37182d4222da914c19026a1119577c5f.png)
+![37182d4222da914c19026a1119577c5f.png](/images/37182d4222da914c19026a1119577c5f.jpg)
 
 本质还一个序列帧公告板了，只不过这样做的主要好处就是，烟的特效受光照了！而且很cheap。
 
-![bcb4275542682eb68505d1d383350c94.png](/images/bcb4275542682eb68505d1d383350c94.png)
+![bcb4275542682eb68505d1d383350c94.png](/images/bcb4275542682eb68505d1d383350c94.jpg)
 
 相比于一般不透明物体，通过法线就能算diffuse，烟和云由于复杂的散射和投射，用基于物理并没有太好的方法，只能对光做步进积分raymarching
 
@@ -57,7 +57,7 @@ date: 2020-12-27 00:00:00
 
 这其实再回顾一下崩坏3云的做法，比六向光照图好像更加hacky，pipeline也没讲，每张mask不知道是不是美术自己画出来的。
 
-![e38e103af9a28d4026998eeca804df42.png](/images/e38e103af9a28d4026998eeca804df42.png)
+![e38e103af9a28d4026998eeca804df42.png](/images/e38e103af9a28d4026998eeca804df42.jpg)
 
 接下来笔者联想起一个GI的Case，如何存储GI中Diffuse Irradiance的信息？
 
@@ -65,7 +65,7 @@ date: 2020-12-27 00:00:00
 
 [https://steamcdn-a.akamaihd.net/apps/valve/2006/SIGGRAPH06_Course_ShadingInValvesSourceEngine.pdf](https://steamcdn-a.akamaihd.net/apps/valve/2006/SIGGRAPH06_Course_ShadingInValvesSourceEngine.pdf)
 
-![41cd8c068a1da0217b35a60885552bb8.png](/images/41cd8c068a1da0217b35a60885552bb8.png)
+![41cd8c068a1da0217b35a60885552bb8.png](/images/41cd8c068a1da0217b35a60885552bb8.jpg)
 
 后来人们改进了使用各种球基函数(spherical radial basis function)来存储这些Irradiance信息.
 
@@ -75,7 +75,7 @@ date: 2020-12-27 00:00:00
 
 比如下面这个图可视化了每阶球谐每个band长什么样子。
 
-![8039aaeae010f7ccf30ed3c617644b6b.png](/images/8039aaeae010f7ccf30ed3c617644b6b.png)
+![8039aaeae010f7ccf30ed3c617644b6b.png](/images/8039aaeae010f7ccf30ed3c617644b6b.jpg)
 
 这里不再具体描述。
 
@@ -93,7 +93,7 @@ date: 2020-12-27 00:00:00
 
 没太多复杂的，在ZB里随便拉个体块，然后放进Houdini变成云，多光线角度渲染一下就行了
 
-![cloud_source.png](/images/cloud_source.png)
+![cloud_source.png](/images/cloud_source.jpg)
 
 笔者这里渲染了540张512x512的不同光照角度的图。
 
@@ -140,29 +140,29 @@ color = dot(coeffs_dir, coeffs_total)
 
 至于结果，用二阶球谐构造完，和训练集的一个对比：
 
-![compares.png](/images/compares.png)
+![compares.png](/images/compares.jpg)
 
 于是也可以把每个band的参数可视化一下
 
 注意，笔者这里做了归一化，实际上二阶的系数放大了很多倍。看清明暗。可以看到一阶就像六向光照图嘛。
 
-![sh_levels.png](/images/sh_levels.png)
+![sh_levels.png](/images/sh_levels.jpg)
 
 对于每一个像素，可以把训练集每个点和球谐拟合曲面一起画出来，
 
 还好，训练集的点整体频率不算高，所以低阶球谐就能拟合出来。
 
-![sh_plot.png](/images/sh_plot.png)
+![sh_plot.png](/images/sh_plot.jpg)
 
 最后，对比一下不同阶球谐的重建误差。单位是平均每像素颜色差，范围0-255。二阶球谐的误差大概在平均6个颜色值。
 
-![loss.png](/images/loss.png)
+![loss.png](/images/loss.jpg)
 
 3 引擎重建
 
 上文讲到笔者重建了2阶球谐存了512x512x9个系数。这样正好存成三张贴图，当然要之前做一次归一化。
 
-![sh_texture.png](/images/sh_texture.png)
+![sh_texture.png](/images/sh_texture.jpg)
 
 我们可以用它和六向光照图做一个对比：
 
@@ -172,7 +172,7 @@ color = dot(coeffs_dir, coeffs_total)
 
 实际上放入引擎的时候，笔者感觉云太静态了，所以还是顺便弄一个flowmap吧。具体就是houdini里给云随便做一个curl noise烘成颜色。
 
-![f8a4c6ac455516403f1c0de988a7364c.png](/images/f8a4c6ac455516403f1c0de988a7364c.png)
+![f8a4c6ac455516403f1c0de988a7364c.png](/images/f8a4c6ac455516403f1c0de988a7364c.jpg)
 
 以及用一个ramp来做颜色。
 
@@ -200,7 +200,7 @@ color = dot(coeffs_dir, coeffs_total)
 
 这是一种从多角度记录物体材质信息并用于远景公告板的方法，这样从不同角度读取不同帧，就能还原这个角度看到的物体。
 
-![e644992cb2c42973b4f860765bedfa3f.png](/images/e644992cb2c42973b4f860765bedfa3f.png)
+![e644992cb2c42973b4f860765bedfa3f.png](/images/e644992cb2c42973b4f860765bedfa3f.jpg)
 
 比如Fornite这个树存了6x6个角度。
 
@@ -216,7 +216,7 @@ color = dot(coeffs_dir, coeffs_total)
 
 [https://www.sidefx.com/tutorials/game-tools-imposter-textures/](https://www.sidefx.com/tutorials/game-tools-imposter-textures/)
 
-![071af6c2993fdb05b049041d51a77c2a.png](/images/071af6c2993fdb05b049041d51a77c2a.png)
+![071af6c2993fdb05b049041d51a77c2a.png](/images/071af6c2993fdb05b049041d51a77c2a.jpg)
 
 重新回顾这个方法，感觉和光场方法的思路非常之像，只记录不同视角的效。
 
@@ -252,11 +252,11 @@ color = dot(coeffs_dir, coeffs_total)
 
 笔者就用了猪头模型，用SideFX Labs的imposter texture渲一个公告板
 
-![dbba7eb7ba5e5a06f26fc4e9f12f0a1b.png](/images/dbba7eb7ba5e5a06f26fc4e9f12f0a1b.png)
+![dbba7eb7ba5e5a06f26fc4e9f12f0a1b.png](/images/dbba7eb7ba5e5a06f26fc4e9f12f0a1b.jpg)
 
 得到一个16x16的法线图
 
-![2484a9ad6639801d670a36202520c758.png](/images/2484a9ad6639801d670a36202520c758.png)
+![2484a9ad6639801d670a36202520c758.png](/images/2484a9ad6639801d670a36202520c758.jpg)
 
 这样训练集256张128x128的图。
 
@@ -266,11 +266,11 @@ color = dot(coeffs_dir, coeffs_total)
 
 重影很厉害。
 
-![compare_3dimposter_sh.png](/images/compare_3dimposter_sh.png)
+![compare_3dimposter_sh.png](/images/compare_3dimposter_sh.jpg)
 
 提高阶数，好像越高阶越好，而且就算10阶每像素还是接近20的误差，这就没啥意义了。
 
-![loss_3dimposter_sh.png](/images/loss_3dimposter_sh.png)
+![loss_3dimposter_sh.png](/images/loss_3dimposter_sh.jpg)
 
 用神经网络的方法，我们参考NeRF的方法，也是直接使用全连接网络。
 

@@ -42,7 +42,7 @@ Houdini Skinning Converter
 
 其核心就是想最小化一个目标函数，求解出权重和骨骼的坐标。
 
-![6625305f18dff5601502aa741d09e45d.png](/images/6625305f18dff5601502aa741d09e45d.png)
+![6625305f18dff5601502aa741d09e45d.png](/images/6625305f18dff5601502aa741d09e45d.jpg)
 
 目标函数2a中，Rtj是骨骼j在t帧的旋转，Tij是骨骼j在t帧的位移，pi是顶点i的初始位置，wij是骨骼j对顶点i的权重，vti是顶点i在t帧的坐标。
 
@@ -54,7 +54,7 @@ Houdini Skinning Converter
 
 2e为旋转条件，即Rtj这个矩阵是正交
 
-![d103bfe72596bbf62464719b17cd6c28.png](/images/d103bfe72596bbf62464719b17cd6c28.png)
+![d103bfe72596bbf62464719b17cd6c28.png](/images/d103bfe72596bbf62464719b17cd6c28.jpg)
 
 那么算法分三步
 
@@ -70,7 +70,7 @@ Houdini Skinning Converter
 
 更新权重时候固定骨骼位置，所以这就简化成了一个计算一组W，使得骨骼变换后的顶点到原始顶点距离最小。
 
-![23dafdf3d2bba27a34e71da161779208.png](/images/23dafdf3d2bba27a34e71da161779208.png)
+![23dafdf3d2bba27a34e71da161779208.png](/images/23dafdf3d2bba27a34e71da161779208.jpg)
 
 所以这就是一个带限制条件的线性回归最小二乘问题啊！
 
@@ -84,7 +84,7 @@ Houdini Skinning Converter
 
 这里qi反正它跟其它骨骼相关，在这里是个常数。要解的就是后面那项，对这根骨骼的R和T
 
-![591a7c6485a8ca16baa5ea0057b049a6.png](/images/591a7c6485a8ca16baa5ea0057b049a6.png)
+![591a7c6485a8ca16baa5ea0057b049a6.png](/images/591a7c6485a8ca16baa5ea0057b049a6.jpg)
 
 作者说这很像一个Weighted Absolute Orientation问题。受Kabsch算法启发，先把顶点移到重心，然后求解一个最优旋转R，再计算最优位移T。
 
@@ -130,11 +130,11 @@ C++的实现，比上面python那个快很多，而且效果准确。
 
 之后从Houdini里导出Alembic，导进Maya里用ssdr4maya转一下，200帧200根骨骼，大概要一个多小时。
 
-![03a796148b2cab66142e74845f2bd6ad.png](/images/03a796148b2cab66142e74845f2bd6ad.png)
+![03a796148b2cab66142e74845f2bd6ad.png](/images/03a796148b2cab66142e74845f2bd6ad.jpg)
 
 保留了不少布褶
 
-![9c2ca6afe68302b30120816761929beb.png](/images/9c2ca6afe68302b30120816761929beb.png)
+![9c2ca6afe68302b30120816761929beb.png](/images/9c2ca6afe68302b30120816761929beb.jpg)
 
 对比一下原始模拟
 
@@ -142,6 +142,6 @@ C++的实现，比上面python那个快很多，而且效果准确。
 
 不过动画的压缩有点问题，有些帧顶点跳了，暂不清楚如何解决。
 
-![43ac9ccc93013732e308e94bd3332125.png](/images/43ac9ccc93013732e308e94bd3332125.png)
+![43ac9ccc93013732e308e94bd3332125.png](/images/43ac9ccc93013732e308e94bd3332125.jpg)
 
 Le, Binh Huy, and Zhigang Deng. "Smooth skinning decomposition with rigid bones." _ACM Transactions on Graphics (TOG)_ 31.6 (2012): 199.

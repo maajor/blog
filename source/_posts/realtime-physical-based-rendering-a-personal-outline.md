@@ -23,7 +23,7 @@ Lo = Le + Li * Fd, 
 
 翻译成人话。看到的光（图Lo) = 物体表面发射的光 + 物体表面受到的光(图Li)*物体反射光的能力(图Fd, 常称为BRDF)
 
-![path_brdf.png](/images/path_brdf.png)
+![path_brdf.png](/images/path_brdf.jpg)
 
 这就很好办了，我们只要知道了光源Li（物体表面的受光情况），以及材质Fd（反射光的能力如何，BRDF），就能渲染了！
 
@@ -33,7 +33,7 @@ Lo = Le + Li * Fd, 
 
 我们对于进入材质的光路逐一分析
 
-![path_medium.png](/images/path_medium.png)
+![path_medium.png](/images/path_medium.jpg)
 
 给它们起个名字：
 
@@ -62,7 +62,7 @@ Lo = Le + Li * Fd, 
 
 那么最简单的情况，只考虑不透明材质。那么光路就很好办，只有**Diffuse vs Specular�**�两项。
 
-![d34595f576e6eb6eb93448f7ec469f72.png](/images/d34595f576e6eb6eb93448f7ec469f72.png)
+![d34595f576e6eb6eb93448f7ec469f72.png](/images/d34595f576e6eb6eb93448f7ec469f72.jpg)
 
 人们发现，可以在模型中把金属和非金属结合起来，用一个统一的模型描述它。这样有金属度的参数我们就能统一不透明物体的公式。
 
@@ -73,9 +73,9 @@ Lo = Le + Li * Fd, 
 - 为了描述Specular,  人们为了描述表面粗糙度，设计了微表面模型Microfacet来定义法线和高光的分布，这也就有了GGX, Cook-Torrance之类。后来还有multiscatter的考虑等等。
 - 为了描述Diffuse, 设计导出了Lambert, Oren-Nayer之类模型。以及最近热门的multiscatter的考虑。
 
-![4689d0cf19d789b6f4bcf47b2c6fea0c.png](/images/4689d0cf19d789b6f4bcf47b2c6fea0c.png)
+![4689d0cf19d789b6f4bcf47b2c6fea0c.png](/images/4689d0cf19d789b6f4bcf47b2c6fea0c.jpg)
 
-![51f25c3814088d4e1878cb372d89c2c8.png](/images/51f25c3814088d4e1878cb372d89c2c8.png)
+![51f25c3814088d4e1878cb372d89c2c8.png](/images/51f25c3814088d4e1878cb372d89c2c8.jpg)
 
 对于其它的物体，没有统一模型，有很多特殊情况。就又衍生出了不同的模型来描述，比如：
 
@@ -85,7 +85,7 @@ Lo = Le + Li * Fd, 
 - 车漆，有两层Specular，人们发明了一些多层高光的模型。
 - 毛玻璃，主要是TS，比如一般就用模糊背景的方式模拟。
 
-![5945b921be31722a1dc5a9cad1151403.png](/images/5945b921be31722a1dc5a9cad1151403.png)
+![5945b921be31722a1dc5a9cad1151403.png](/images/5945b921be31722a1dc5a9cad1151403.jpg)
 
 材质（BRDF）这方面一直在演进。虽然最早2012年Disney BRDF引发的风潮开始已经8年过去了。
 
@@ -97,7 +97,7 @@ Lo = Le + Li * Fd, 
 
 我们分析一下物体表面受光的情况，表示出所有光路的可能性，做一个分解。
 
-![path_large.png](/images/path_large.png)
+![path_large.png](/images/path_large.jpg)
 
 简化起见，我们暂且把太阳和云定义为光源。（后面我们可以拓展到云是受光物，只有太阳作为光源），记为L。
 
@@ -159,7 +159,7 @@ Lo = Le + Li * Fd, 
 
 - 比如对于环境光Specular，可能会有全局的IBL，局部的IBL，屏幕空间反射等很多组成部分。怎样保证三者都使用的情况下，整体还是能量守恒的？
 
-![Image.png](/images/Image.png)
+![Image.png](/images/Image.jpg)
 
 这部分更关系到引擎的实现，这不是美术人员能够控制的。这相比于写一个材质，是一个更大更复杂的工程。
 
@@ -167,7 +167,7 @@ Lo = Le + Li * Fd, 
 
 1. 介质与光路
 
-![path_small.png](/images/path_small.png)
+![path_small.png](/images/path_small.jpg)
 
 物质只是介质的一种简单抽象：石头，木头，塑料这些物质，我们可以把他抽象为一个表面，因为它只有Diffuse和Specular，
 
@@ -179,7 +179,7 @@ Lo = Le + Li * Fd, 
 
 这里人们就发明了各种相函数，Mie, Reyleigh, Henyey-Greenstein描述不同物质。当然这是微观角度。在更宏观一点可以把相函数的统计分布归纳为BRDF。
 
-![836ba6f913c24a01fa58da25b289c294.png](/images/836ba6f913c24a01fa58da25b289c294.png)
+![836ba6f913c24a01fa58da25b289c294.png](/images/836ba6f913c24a01fa58da25b289c294.jpg)
 
 由于散射的路径非常多很复杂，而实时又不能做蒙特卡洛积分模拟，就有了各种简化和近似的处理方法：
 
@@ -209,11 +209,11 @@ Lo = Le + Li * Fd, 
 
 它们应当是什么，都应该有测量依据的，不能随便指认。
 
-![1e9a8e26cebd00e6ee334cbc919b49dc.png](/images/1e9a8e26cebd00e6ee334cbc919b49dc.png)
+![1e9a8e26cebd00e6ee334cbc919b49dc.png](/images/1e9a8e26cebd00e6ee334cbc919b49dc.jpg)
 
 最后，相机的参数同样需要通过物理定义。我们将光的能量全用物理单位表示了，但是如何感知光线，这个过程是不是物理的？
 
-![03749b8e10b737014982d4c7f66fc201.png](/images/03749b8e10b737014982d4c7f66fc201.png)
+![03749b8e10b737014982d4c7f66fc201.png](/images/03749b8e10b737014982d4c7f66fc201.jpg)
 
 比如，什么曝光什么快门可以取得和人眼近似的结果？怎么用EV来表示曝光？
 

@@ -59,7 +59,7 @@ houdini-16.5.634-linux_x86_64_gcc4.8.tar.gz
 
 然后命令行启动houdini，打开python shell应该是2.7.15
 
-![20f4c867248ce1eebc572741e281388b.png](/images/20f4c867248ce1eebc572741e281388b.png)
+![20f4c867248ce1eebc572741e281388b.png](/images/20f4c867248ce1eebc572741e281388b.jpg)
 
 如果在windows的话大概是2.7.5
 
@@ -163,7 +163,7 @@ print(sess.run(c))
 
 然后terminal就会打出log了！
 
-![83fd03565177409fad8345935d1614c4.png](/images/83fd03565177409fad8345935d1614c4.png)
+![83fd03565177409fad8345935d1614c4.png](/images/83fd03565177409fad8345935d1614c4.jpg)
 
 5. 安装pytorch
 
@@ -201,6 +201,6 @@ from torch.backends import cudnn
 
 print(cudnn.is_acceptable(xx))
 
-![9078a724a6e6efa2ad5f82e1e669549a.png](/images/9078a724a6e6efa2ad5f82e1e669549a.png)
+![9078a724a6e6efa2ad5f82e1e669549a.png](/images/9078a724a6e6efa2ad5f82e1e669549a.jpg)
 
 terminal返回结果！成功！

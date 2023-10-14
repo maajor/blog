@@ -14,7 +14,7 @@ date: 2019-06-22 00:00:00
 
 最早是2001年Kaneko给出了Parallax的定义，论文提出使用偏移UV的方式采样贴图，UV的偏移值是正比于采样处的高度的。这种方法后来被称为Offset-Limiting。这种偏移UV的方式比较简单，而且开销很低，对于高度图变化比较平缓的情况比较适用。比如在眼球的shader中，用于虹膜的渲染。
 
-![f842458e4b7a278ab211b6d8d1f9b597.png](/images/f842458e4b7a278ab211b6d8d1f9b597.png)
+![f842458e4b7a278ab211b6d8d1f9b597.png](/images/f842458e4b7a278ab211b6d8d1f9b597.jpg)
 
 但是Offset-Limiting只是对UV偏移的一个简单拟合，并不是很精确。后来的文章主要在精确求解UV的偏移量。
 
@@ -24,13 +24,13 @@ date: 2019-06-22 00:00:00
 
 对Steep Parallax Mapping的改进是Tatarchuk提出的Parallax Occulusion Mapping, 同样是raymarching固定步长采样高度图，不过最后一步会进行一个插值，这样结果更精确。注意这个Tatarchuk就是Natalya Tatarchuk，娜姐，目前在Unity做Graphic Director。写POM的时候还是ATI的工程师，后来在Bungie工作过。
 
-![8123be1c132f36285b5ac10897254912.png](/images/8123be1c132f36285b5ac10897254912.png)
+![8123be1c132f36285b5ac10897254912.png](/images/8123be1c132f36285b5ac10897254912.jpg)
 
 我们都知道，对于求解的问题，二分查找比线性查找时间复杂度是小的。
 
 因此POLICARPO提出了Relief Mapping。开始是线性步长查找，不过步长可以更大。当第一次相交后，再进行二分查找。这样在同样步数的情况下查找更为精确。
 
-![a829707f5f5e03ca6af93f5828026009.png](/images/a829707f5f5e03ca6af93f5828026009.png)
+![a829707f5f5e03ca6af93f5828026009.png](/images/a829707f5f5e03ca6af93f5828026009.jpg)
 
 后面还有一些微小的改进，不过已经无关紧要了。POM/Relief对大多数情况已经足够了。
 
@@ -38,13 +38,13 @@ date: 2019-06-22 00:00:00
 
 比如DONNELLYW提出用有符号距离场SDF做Raymarching，更加精确，模型也很简洁，缺点是贴图比较大。
 
-![dff77823973e2e8b466e3d0b57e4415b.png](/images/dff77823973e2e8b466e3d0b57e4415b.png)
+![dff77823973e2e8b466e3d0b57e4415b.png](/images/dff77823973e2e8b466e3d0b57e4415b.jpg)
 
 比如WANG提出VDM，从不同视角存了高度图，相当于一个五维的置换贴图。
 
 比如Policarpo提出的Cone Step Mapping，预处理生成一张ConeMap就可以减少RayMarching求解的步数。
 
-![fcdaa37becc9b768e1074d9c5cf2cb3d.png](/images/fcdaa37becc9b768e1074d9c5cf2cb3d.png)
+![fcdaa37becc9b768e1074d9c5cf2cb3d.png](/images/fcdaa37becc9b768e1074d9c5cf2cb3d.jpg)
 
 继续回到话题，POM/Relief遇到的一个问题是轮廓无法正确渲染，因此有人提出了一些优化
 
@@ -52,17 +52,17 @@ Oliviera提出我们用二次曲面拟合模型的局部，切线空间计算时
 
 这对于简单的可以用二次曲面拟合的，并且UV和曲率方向一致的曲面比较容易，比如球面，圆柱面。但是对于一般曲面容易出现问题。
 
-![fccf2a36f9a80a528d6cf14d27d139e0.png](/images/fccf2a36f9a80a528d6cf14d27d139e0.png)
+![fccf2a36f9a80a528d6cf14d27d139e0.png](/images/fccf2a36f9a80a528d6cf14d27d139e0.jpg)
 
 有这种变形高度图的，自然也有变形视线的。但是问题是需要这就需要每一步重新计算切线空间的视线方向，也就必须要把ObjectSpace的法线和切线烘成贴图，每步重新计算TBN。开销就更大了。
 
-![44423d69d2289b644d5aae35bf748bef.png](/images/44423d69d2289b644d5aae35bf748bef.png)
+![44423d69d2289b644d5aae35bf748bef.png](/images/44423d69d2289b644d5aae35bf748bef.jpg)
 
 以及Hirche提出了后来衍生为被称为Shell Mapping的技术，沿线框方向挤出一个面(Prism)，在这个棱锥里面进行raytracing。这种后来又衍生为Prism Parallax Mapping
 
-![cd732ab0cc7239bd093e2c06967fdb72.png](/images/cd732ab0cc7239bd093e2c06967fdb72.png)
+![cd732ab0cc7239bd093e2c06967fdb72.png](/images/cd732ab0cc7239bd093e2c06967fdb72.jpg)
 
-![bc3fe6e7ff564917107b4227a00565b1.png](/images/bc3fe6e7ff564917107b4227a00565b1.png)
+![bc3fe6e7ff564917107b4227a00565b1.png](/images/bc3fe6e7ff564917107b4227a00565b1.jpg)
 
 当然这样面数开销比较大，要用上Geometry Shader，但好处是通用性比较强。
 

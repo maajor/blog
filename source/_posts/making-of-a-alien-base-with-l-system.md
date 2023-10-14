@@ -69,7 +69,7 @@ Houdini帮助里就用L-system生成房间平面的案例
 
 下面这个拓展了那个案例
 
-![Image.png](/images/Image.png)
+![Image.png](/images/Image.jpg)
 
 [https://lesterbanks.com/2018/09/procedural-modules-houdini/](https://lesterbanks.com/2018/09/procedural-modules-houdini/)
 
@@ -147,20 +147,20 @@ print fo
 
 之后用一个BP重建就好了
 
-![Image-1.png](/images/Image-1.png)
+![Image-1.png](/images/Image-1.jpg)
 
 [lsys-base.hip](./file/lsys-base.hip)
 
-![HighresScreenshot00002.png](/images/HighresScreenshot00002.png)
+![HighresScreenshot00002.png](/images/HighresScreenshot00002.jpg)
 
-![052f5365bb3d5ebc953baa3687bc3fb7.png](/images/052f5365bb3d5ebc953baa3687bc3fb7.png)
+![052f5365bb3d5ebc953baa3687bc3fb7.png](/images/052f5365bb3d5ebc953baa3687bc3fb7.jpg)
 
-![6f3aba8467ae53c87647543a863bfaa7.png](/images/6f3aba8467ae53c87647543a863bfaa7.png)
+![6f3aba8467ae53c87647543a863bfaa7.png](/images/6f3aba8467ae53c87647543a863bfaa7.jpg)
 
-![0478e037b4fa12586f41879fa6fca326.png](/images/0478e037b4fa12586f41879fa6fca326.png)
+![0478e037b4fa12586f41879fa6fca326.png](/images/0478e037b4fa12586f41879fa6fca326.jpg)
 
-![a754e699a6c1a9974c5d5831dcdb4230.png](/images/a754e699a6c1a9974c5d5831dcdb4230.png)
+![a754e699a6c1a9974c5d5831dcdb4230.png](/images/a754e699a6c1a9974c5d5831dcdb4230.jpg)
 
-![eade0bea38a7a7bb9c61cfc19c407c40.png](/images/eade0bea38a7a7bb9c61cfc19c407c40.png)
+![eade0bea38a7a7bb9c61cfc19c407c40.png](/images/eade0bea38a7a7bb9c61cfc19c407c40.jpg)
 
 %!(EXTRA markdown.ResourceType=, string=, string=)

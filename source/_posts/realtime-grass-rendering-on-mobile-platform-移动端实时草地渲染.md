@@ -19,29 +19,29 @@ Rendering Grass in Real Time with Dynamic Lighting
 
 1. 分成三级LOD，
 
-![6e1ef5acfe92a1f6228101ad4a5d3e06.png](/images/6e1ef5acfe92a1f6228101ad4a5d3e06.png)
+![6e1ef5acfe92a1f6228101ad4a5d3e06.png](/images/6e1ef5acfe92a1f6228101ad4a5d3e06.jpg)
 
 近距离就是几何体
 
-![dc9af215d6c231d146be868af41516a1.png](/images/dc9af215d6c231d146be868af41516a1.png)
+![dc9af215d6c231d146be868af41516a1.png](/images/dc9af215d6c231d146be868af41516a1.jpg)
 
 8个面，alpha-test的贴图
 
 中距离是插片，用了一个bidirectional texture funtion，定义了五个灯光和两个视角方向的贴图，中间的插值spherical barycentric
 
-![850165ed53e7de7360f51a7b7535d96f.png](/images/850165ed53e7de7360f51a7b7535d96f.png)
+![850165ed53e7de7360f51a7b7535d96f.png](/images/850165ed53e7de7360f51a7b7535d96f.jpg)
 
 远距离就是贴地
 
 1. 密度管理用了一张density map
 
-![6408f7af430285bafba46d5649210ee1.png](/images/6408f7af430285bafba46d5649210ee1.png)
+![6408f7af430285bafba46d5649210ee1.png](/images/6408f7af430285bafba46d5649210ee1.jpg)
 
-![383652835b5066f6ed530a27008e3a43.png](/images/383652835b5066f6ed530a27008e3a43.png)
+![383652835b5066f6ed530a27008e3a43.png](/images/383652835b5066f6ed530a27008e3a43.jpg)
 
 1. 近距离shadowmap太费了，所以预先烘焙了一张occluder，每个草旁边一个圆柱体，用光线去采样
 
-![cf19fd0c54b78f52524df0cd245d5c2d.png](/images/cf19fd0c54b78f52524df0cd245d5c2d.png)
+![cf19fd0c54b78f52524df0cd245d5c2d.png](/images/cf19fd0c54b78f52524df0cd245d5c2d.jpg)
 
 思路上可以借鉴的：
 
@@ -78,31 +78,31 @@ Rendering Countless Blades of Waving Grass
 
 2014年的游戏，PS3/XBox 360平台。
 
-![a9e155a405d07fb4ef0ef7b318e6fac3.png](/images/a9e155a405d07fb4ef0ef7b318e6fac3.png)
+![a9e155a405d07fb4ef0ef7b318e6fac3.png](/images/a9e155a405d07fb4ef0ef7b318e6fac3.jpg)
 
 主要要点如下：
 
 1. 美术制作densitymap，rgb记录颜色，alpha记录高度。整个地图一张2k
 
-![bd4bad50e3e1b8ea4d55b1ce617d610d.png](/images/bd4bad50e3e1b8ea4d55b1ce617d610d.png)
+![bd4bad50e3e1b8ea4d55b1ce617d610d.png](/images/bd4bad50e3e1b8ea4d55b1ce617d610d.jpg)
 
 1. 主相机上方架一个垂直向下正交的相机拍地面，渲RenderTexture，用这张RT，Compute Shader取每个像素作为草的底坐标。当然会做一些随机，根据相机视野做一下裁剪。还会生成LOD。
 
-![252731da3a3b7d180a5f06cb4c3f6e6a.png](/images/252731da3a3b7d180a5f06cb4c3f6e6a.png)
+![252731da3a3b7d180a5f06cb4c3f6e6a.png](/images/252731da3a3b7d180a5f06cb4c3f6e6a.jpg)
 
-![bd0e4b68ffbed1bb5ed5d1bf647a2446.png](/images/bd0e4b68ffbed1bb5ed5d1bf647a2446.png)
+![bd0e4b68ffbed1bb5ed5d1bf647a2446.png](/images/bd0e4b68ffbed1bb5ed5d1bf647a2446.jpg)
 
-![023be0ddc2d9b362bf66deea73c8337d.png](/images/023be0ddc2d9b362bf66deea73c8337d.png)
+![023be0ddc2d9b362bf66deea73c8337d.png](/images/023be0ddc2d9b362bf66deea73c8337d.jpg)
 
 1. Compute Shader输出草信息的struct到一个AppendStructuredBuffer。这个buffer交给shader，用instanceID取信息。一个trick是drawindirect时候，避免高instance低顶点数，CPU里调相当于unity的DrawProcedurallyIndirect渲染
 2. 草的几何信息是hardcode进vertexshader的.
 
-![d413f8c1dc7063b748d739edc3078f5c.png](/images/d413f8c1dc7063b748d739edc3078f5c.png)
+![d413f8c1dc7063b748d739edc3078f5c.png](/images/d413f8c1dc7063b748d739edc3078f5c.jpg)
 
 1. screen-space shadow去采样投影，一个instance一个投影
 2. 车轮轧过应该草高度会降低，变形方法是：渲一个F32高度图，每帧更新车轮位置，然后放进生成阶段，compute shader里计算高度
 
-![bcd828e2d996ab3b7bf05a3838a65946.png](/images/bcd828e2d996ab3b7bf05a3838a65946.png)
+![bcd828e2d996ab3b7bf05a3838a65946.png](/images/bcd828e2d996ab3b7bf05a3838a65946.jpg)
 
 优点：
 

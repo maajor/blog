@@ -8,9 +8,9 @@ Sea of Thieves中提到了他们的云的渲染方法，非常的trick和cheap�
 
 首先我们回顾一下体渲染的公式
 
-![14cf7d6ced9f7f1e432fa059355c838c.png](image/14cf7d6ced9f7f1e432fa059355c838c.png)
+![14cf7d6ced9f7f1e432fa059355c838c.png](image/14cf7d6ced9f7f1e432fa059355c838c.jpg)
 
-![Image.png](image/Image.png)
+![Image.png](image/Image.jpg)
 
 这个式子有两项，
 
@@ -22,11 +22,11 @@ p点是视线上第一个不透明物体，c是相机，v是视线
 
 其中透射项与灭绝系数（Extinction coefficient）,以及路径的长度有关，这个叫Lambert\-Beer定律
 
-![d85a13667ce7a66cfbfad942e33b9d27.png](image/d85a13667ce7a66cfbfad942e33b9d27.png)
+![d85a13667ce7a66cfbfad942e33b9d27.png](image/d85a13667ce7a66cfbfad942e33b9d27.jpg)
 
 第二项里的散射光
 
-![Image-1.png](image/Image-1.png)
+![Image-1.png](image/Image-1.jpg)
 
 P是光照在散射环境下的相函数，Rayleigh/Mie散射讲的就是这个。
 
@@ -60,7 +60,7 @@ Sea of Thieves首先把第一项，背景颜色项简化了。只用一个透明
 
 预计算时，首先从每个顶点做整个球面方向的随机射线，按在模型内部移动的距离加权平均求出平均的射线方向，然后求出射线方向的最大距离。
 
-![46eb6670909ca912fdb9c6ecff9450b8.png](image/46eb6670909ca912fdb9c6ecff9450b8.png)
+![46eb6670909ca912fdb9c6ecff9450b8.png](image/46eb6670909ca912fdb9c6ecff9450b8.jpg)
 
 VEX：
 
@@ -126,7 +126,7 @@ float NdOc= dot(normal, occlusion);
 float distance = (pow(NdOc/2+0.5, 3) * density- 0.01);
 ```
 
-![e460530e875a8c056fc29da110b246b8.png](image/e460530e875a8c056fc29da110b246b8.png)
+![e460530e875a8c056fc29da110b246b8.png](image/e460530e875a8c056fc29da110b246b8.jpg)
 
 如上图，椭球是某个点lobe，虚线是云的形状
 
@@ -140,7 +140,7 @@ float transmittance = exp(-distance*extinct);
 
 这里我们可以拓展一下，如果不用一个lobe，而用球谐的方式，或者球谐三维点阵的方式，可以表示近似处云内部所有位置的遮挡项？那也是raymarching一次就好了。
 
-![4581a8f18e60d343621ad85e70abafcc.png](image/4581a8f18e60d343621ad85e70abafcc.png)
+![4581a8f18e60d343621ad85e70abafcc.png](image/4581a8f18e60d343621ad85e70abafcc.jpg)
 
 在houdini里可以做一个快速的验证：
 
@@ -178,15 +178,15 @@ color *= rcp(factorAll);
 
 这样按远处的轮廓会清晰一些。
 
-![35c2564feb52915ee6ddd738466622c7.png](image/35c2564feb52915ee6ddd738466622c7.png)
+![35c2564feb52915ee6ddd738466622c7.png](image/35c2564feb52915ee6ddd738466622c7.jpg)
 
 之后对深度做一次boxblur，然后用噪波进行变形
 
-![4f4e05f8ca7d153d456debdb7dc88782.png](image/4f4e05f8ca7d153d456debdb7dc88782.png)
+![4f4e05f8ca7d153d456debdb7dc88782.png](image/4f4e05f8ca7d153d456debdb7dc88782.jpg)
 
 噪波也是按深度进行混合，用这个噪波笔者做了flowmap混合，原作说做swirl，不太清楚是怎么做的
 
-![Image-2.png](image/Image-2.png)
+![Image-2.png](image/Image-2.jpg)
 
 ```
 buf = new CommandBuffer();
@@ -255,6 +255,6 @@ cam.AddCommandBuffer(CameraEvent.AfterForwardAlpha, buf_after);
 
 用l\-system分布球。转成vdb再转成mesh
 
-![02f41bb435745fdbb3332703304b707b.png](image/02f41bb435745fdbb3332703304b707b.png)
+![02f41bb435745fdbb3332703304b707b.png](image/02f41bb435745fdbb3332703304b707b.jpg)
 
 ![image_0000.jpg](image/image_0000.jpg)

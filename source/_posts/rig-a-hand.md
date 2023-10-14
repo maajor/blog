@@ -21,7 +21,7 @@ date: 2020-09-20 00:00:00
 
 比如这个例子中给出的布线方向就不错。虽然手背上这样布线有点浮夸。
 
-![Image.png](/images/Image.png)
+![Image.png](/images/Image.jpg)
 
 [https://topologyguides.com/human-hand](https://topologyguides.com/human-hand)
 
@@ -29,17 +29,17 @@ date: 2020-09-20 00:00:00
 
 笔者自建
 
-![ab76f5ebe69d061aff0af89e8cd978dc.png](/images/ab76f5ebe69d061aff0af89e8cd978dc.png)
+![ab76f5ebe69d061aff0af89e8cd978dc.png](/images/ab76f5ebe69d061aff0af89e8cd978dc.jpg)
 
 2 直接绑定
 
-![50fa1ecdf7546be9eec0b272fd84b0c4.png](/images/50fa1ecdf7546be9eec0b272fd84b0c4.png)
+![50fa1ecdf7546be9eec0b272fd84b0c4.png](/images/50fa1ecdf7546be9eec0b272fd84b0c4.jpg)
 
 手就是五个手指，骨骼没什么复杂的。
 
 基本操作：可以用DCC自带的套件比如HumanIK，Biped。自己也可以自己建一套骨骼，注意轴向和旋转顺序就行。
 
-![3525e974525d09c3d1ff5f78d0ea4819.png](/images/3525e974525d09c3d1ff5f78d0ea4819.png)
+![3525e974525d09c3d1ff5f78d0ea4819.png](/images/3525e974525d09c3d1ff5f78d0ea4819.jpg)
 
 /
 
@@ -47,7 +47,7 @@ date: 2020-09-20 00:00:00
 
 笔者随便建了一套骨骼
 
-![fd1ec08b6da2b13f3d90191d5fa78a45.png](/images/fd1ec08b6da2b13f3d90191d5fa78a45.png)
+![fd1ec08b6da2b13f3d90191d5fa78a45.png](/images/fd1ec08b6da2b13f3d90191d5fa78a45.jpg)
 
 不过这样有几个问题
 
@@ -66,7 +66,7 @@ date: 2020-09-20 00:00:00
 
 我们可以使用基于案例的方法，即，给定某个姿态下的模型变形效果；让变形在目标姿势时，趋近预先给定的变形效果。
 
-![3f89ba99a44d63aba1da3e1cb2676478.png](/images/3f89ba99a44d63aba1da3e1cb2676478.png)
+![3f89ba99a44d63aba1da3e1cb2676478.png](/images/3f89ba99a44d63aba1da3e1cb2676478.jpg)
 
 [http://www.skinning-org.alecjacobson.com/example-based.pdf](http://www.skinning-org.alecjacobson.com/example-based.pdf)
 
@@ -76,7 +76,7 @@ date: 2020-09-20 00:00:00
 
 第二行 经典LBS
 
-![e7aa9cbc5edfdf029a0a77602375a0e4.png](/images/e7aa9cbc5edfdf029a0a77602375a0e4.png)
+![e7aa9cbc5edfdf029a0a77602375a0e4.png](/images/e7aa9cbc5edfdf029a0a77602375a0e4.jpg)
 
 [http://www.skinning-org.alecjacobson.com/example-based.pdf](http://www.skinning-org.alecjacobson.com/example-based.pdf)
 
@@ -86,11 +86,11 @@ date: 2020-09-20 00:00:00
 
 比如这里，笔者自己写了一个工具，可以给一些次级骨骼添加约束，让它在主骨骼不同姿势下，变形到需要的位置。
 
-![da99e1e76ccaf79ef17c246cd054ce4d.png](/images/da99e1e76ccaf79ef17c246cd054ce4d.png)
+![da99e1e76ccaf79ef17c246cd054ce4d.png](/images/da99e1e76ccaf79ef17c246cd054ce4d.jpg)
 
 实现上是写了一个maya节点，做约束的解算。对于输入的姿势，使用RBF进行插值。
 
-![d873ff7fbe787b8165ce05042ff4e2bc.png](/images/d873ff7fbe787b8165ce05042ff4e2bc.png)
+![d873ff7fbe787b8165ce05042ff4e2bc.png](/images/d873ff7fbe787b8165ce05042ff4e2bc.jpg)
 
 效果上，会让掌指关节和掌丘凸起。
 
@@ -98,15 +98,15 @@ date: 2020-09-20 00:00:00
 
 这之后再加Winkle Map之类的方法，让皱纹细节随关节变形。
 
-![57b040368702261d1109aca1d4281185.png](/images/57b040368702261d1109aca1d4281185.png)
+![57b040368702261d1109aca1d4281185.png](/images/57b040368702261d1109aca1d4281185.jpg)
 
 这一般画个mask写个shader就行比较简单。
 
-![6cbbff489d83cb45d3d6d9e2953e02e7.png](/images/6cbbff489d83cb45d3d6d9e2953e02e7.png)
+![6cbbff489d83cb45d3d6d9e2953e02e7.png](/images/6cbbff489d83cb45d3d6d9e2953e02e7.jpg)
 
 除此外，为了方面Animator工作，还需要设定绑定系统控制器，建立IK和FK的控制器。
 
-![622f81abb06326ff3b23b5c4ec4c98dc.png](/images/622f81abb06326ff3b23b5c4ec4c98dc.png)
+![622f81abb06326ff3b23b5c4ec4c98dc.png](/images/622f81abb06326ff3b23b5c4ec4c98dc.jpg)
 
 本世代（PS4）游戏中基础的做法也就这样。
 
@@ -116,7 +116,7 @@ date: 2020-09-20 00:00:00
 
 最好是直接就有3D扫描的模型数据了，这样我们可以直接用扫描的模型作为“范例”
 
-![c2498c4ab41790d5c70b09bdaa80b89f.png](/images/c2498c4ab41790d5c70b09bdaa80b89f.png)
+![c2498c4ab41790d5c70b09bdaa80b89f.png](/images/c2498c4ab41790d5c70b09bdaa80b89f.jpg)
 
 比如在 Modeling deformable human hands from medical images 这篇文论中，提出了Weighted Pose Space Deformation的方法。它求解每个pose对应的“范例”的权重，来做不同姿势下不同范例的混合。这样它只扫了几十个模型就够了。
 
@@ -156,11 +156,11 @@ date: 2020-09-20 00:00:00
 
 [https://www.3dscanstore.com/bundle-3d-models/ultimate-female-hand-pack-1](https://www.3dscanstore.com/bundle-3d-models/ultimate-female-hand-pack-1)
 
-![b140cad21d7bbd84fbb76b72827921d6.png](/images/b140cad21d7bbd84fbb76b72827921d6.png)
+![b140cad21d7bbd84fbb76b72827921d6.png](/images/b140cad21d7bbd84fbb76b72827921d6.jpg)
 
 笔者用Wrap3套用的手模型，只有11个不太够
 
-![2b2ecabbb55d22741226daa4ae35b0e6.png](/images/2b2ecabbb55d22741226daa4ae35b0e6.png)
+![2b2ecabbb55d22741226daa4ae35b0e6.png](/images/2b2ecabbb55d22741226daa4ae35b0e6.jpg)
 
 一个不成功的示例，有了基姿态后就可以用滑杆控制姿势的混合。但是基姿势太少了，也分解不出来。
 
@@ -176,7 +176,7 @@ Embodied Hands: Modeling and Capturing Hands and Bodies Together
 
 扫描了两千多个模型
 
-![6966804f3df90a2c7f05b8a7b212f26f.png](/images/6966804f3df90a2c7f05b8a7b212f26f.png)
+![6966804f3df90a2c7f05b8a7b212f26f.png](/images/6966804f3df90a2c7f05b8a7b212f26f.jpg)
 
 最终成果是一个数据模型，输入一个形状向量和一个姿势向量生成手的模型
 
@@ -184,13 +184,13 @@ Embodied Hands: Modeling and Capturing Hands and Bodies Together
 
 论文中从数据学习出了Pose Space Deformation得出的corrective blendshape。下图中，绿色的是带blendshape纠正的模型输出，粉色的是数据集，黄色的是corrective blendshape。
 
-![234e669c0b68d0428a3a0b50def3db94.png](/images/234e669c0b68d0428a3a0b50def3db94.png)
+![234e669c0b68d0428a3a0b50def3db94.png](/images/234e669c0b68d0428a3a0b50def3db94.jpg)
 
 至于姿态空间，一个PCA出来发现，6个自由度（基姿态）就能表示80%的姿态了
 
 下图是学习出来的前十个基姿态。
 
-![fd2bc1a82a41015f41fa5015beebdf63.png](/images/fd2bc1a82a41015f41fa5015beebdf63.png)
+![fd2bc1a82a41015f41fa5015beebdf63.png](/images/fd2bc1a82a41015f41fa5015beebdf63.jpg)
 
 讨论：
 

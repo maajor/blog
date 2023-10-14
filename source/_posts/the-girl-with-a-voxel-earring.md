@@ -33,7 +33,7 @@ date: 2022-04-24 00:00:00
 
 混合方式支持Uni, Sub, Rep三种
 
-![0672d0a410f64123a85ef685fead7454.png](/images/0672d0a410f64123a85ef685fead7454.png)
+![0672d0a410f64123a85ef685fead7454.png](/images/0672d0a410f64123a85ef685fead7454.jpg)
 
 然后将它导出mcsg一个文件。文件的定义只是Primitive的定义，类似如下：
 
@@ -143,7 +143,7 @@ def initialize_voxels():
 
 笔者认为，让图形计算惠及每一人的方法不只是写代码，更重要的是可交互创作工具。这样才能让**任何人，快速**产出**复杂**的效果。
 
-![csg.png](/images/csg.png)
+![csg.png](/images/csg.jpg)
 
 1. 结论
 

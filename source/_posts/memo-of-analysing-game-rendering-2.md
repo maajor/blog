@@ -11,21 +11,21 @@ Nsight，NV的Graphic Debugger
 
 然后vs里有capture current frame，就可以看了！
 
-![836fc0e1620effa27000e1decea30c8c.png](/images/836fc0e1620effa27000e1decea30c8c.png)
+![836fc0e1620effa27000e1decea30c8c.png](/images/836fc0e1620effa27000e1decea30c8c.jpg)
 
-![089210c778efde5435f4a61887680b1d.png](/images/089210c778efde5435f4a61887680b1d.png)
+![089210c778efde5435f4a61887680b1d.png](/images/089210c778efde5435f4a61887680b1d.jpg)
 
 草的倒伏有一张法线图！
 
-![47202630ee83dfe3190d378d67ee285b.png](/images/47202630ee83dfe3190d378d67ee285b.png)
+![47202630ee83dfe3190d378d67ee285b.png](/images/47202630ee83dfe3190d378d67ee285b.jpg)
 
 terrain的virtual texturing
 
-![6a8bb7b502fc00032453932ee9dc57f8.png](/images/6a8bb7b502fc00032453932ee9dc57f8.png)
+![6a8bb7b502fc00032453932ee9dc57f8.png](/images/6a8bb7b502fc00032453932ee9dc57f8.jpg)
 
 嗯草是一个patch一个patch画的
 
-![33812c5552eb70ac88b60f3608c33033.png](/images/33812c5552eb70ac88b60f3608c33033.png)
+![33812c5552eb70ac88b60f3608c33033.png](/images/33812c5552eb70ac88b60f3608c33033.jpg)
 
 塞尔达用CEMU运行的可以。
 
@@ -35,17 +35,17 @@ Steam的游戏需要选上 islauncher
 
 然后运行，找到需要的process
 
-![f6368a9f3211dd820ee24525fcedba4c.png](/images/f6368a9f3211dd820ee24525fcedba4c.png)
+![f6368a9f3211dd820ee24525fcedba4c.png](/images/f6368a9f3211dd820ee24525fcedba4c.jpg)
 
 steam的游戏可能会需要
 
 GameOverlayRender。dll啥
 
-![2920c1cda79f0473f0ab72987a61112f.png](/images/2920c1cda79f0473f0ab72987a61112f.png)
+![2920c1cda79f0473f0ab72987a61112f.png](/images/2920c1cda79f0473f0ab72987a61112f.jpg)
 
 依然能抓出来
 
-![65067fe7cd8a9587bb00b5377543e97a.png](/images/65067fe7cd8a9587bb00b5377543e97a.png)
+![65067fe7cd8a9587bb00b5377543e97a.png](/images/65067fe7cd8a9587bb00b5377543e97a.jpg)
 
 DX渲染的，模型都能抓出来，而且模型数据很全
 

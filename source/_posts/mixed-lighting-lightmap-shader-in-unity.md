@@ -171,7 +171,7 @@ return hal4(diffuse + specular, 1);
 
 这时lightmap是加进diffuse而不是乘进的，至于那个4.4的系数，是试验出来的，我也感到很诧异。 按理来说DecodeLightmap乘以2就可以了。这个不太清楚原理。
 
-![colo.png](/images/colo.png)
+![colo.png](/images/colo.jpg)
 
 ShadowMask烘焙，左为自己写的shader，右为Mobile/Diffuse
 

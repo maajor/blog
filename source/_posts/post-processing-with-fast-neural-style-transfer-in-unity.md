@@ -11,7 +11,7 @@ date: 2018-12-17 00:00:00
 
 基本上是基于[Perceptual Losses for Real-Time Style Transfer and Super-Resolution](https://arxiv.org/abs/1603.08155)这篇文章，
 
-![32bee379a3379a73f6fedf5d8b1d01d3.png](/images/32bee379a3379a73f6fedf5d8b1d01d3.png)
+![32bee379a3379a73f6fedf5d8b1d01d3.png](/images/32bee379a3379a73f6fedf5d8b1d01d3.jpg)
 
 与Gatsy最早的文章A Neural Algorithm of Artistic Style不同的是，本文提出用一个神经网络做生成器，训练时候loss函数与原来一样，区别在于更新的不是loss network的输入图片，而是生成器的权重。这样生成好的生成器就可以离线将图片生成为风格化图片
 
@@ -25,11 +25,11 @@ date: 2018-12-17 00:00:00
 
 甚至原文中transform net有3层conv，3层deconv和5层residual block
 
-![52efa83b482a3ba26305a958ec809006.png](/images/52efa83b482a3ba26305a958ec809006.png)
+![52efa83b482a3ba26305a958ec809006.png](/images/52efa83b482a3ba26305a958ec809006.jpg)
 
 不过本文这里为了加快离线运算，只用了3层conv，3层deconv和2层residual block，filter数量也减少了三倍
 
-![wave_crop_architecture.png](/images/wave_crop_architecture.png)
+![wave_crop_architecture.png](/images/wave_crop_architecture.jpg)
 
 最后512*512在GTX980上大概能到20FPS吧，仍然比较慢，而且效果还不是很好。只能说目前可能算力还达不到了。
 

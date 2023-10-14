@@ -40,7 +40,7 @@ date: 2020-08-25 00:00:00
 
 比如这个例子中，你如何相像它可以怎么节约贴图？每一寸都可以重用。
 
-![53f8b60e80d94914bacbe9c7d160ee73.png](/images/53f8b60e80d94914bacbe9c7d160ee73.png)
+![53f8b60e80d94914bacbe9c7d160ee73.png](/images/53f8b60e80d94914bacbe9c7d160ee73.jpg)
 
 图片来源： [https://software.intel.com/content/www/us/en/develop/articles/modular-concepts-for-game-and-virtual-reality-assets.html](https://software.intel.com/content/www/us/en/develop/articles/modular-concepts-for-game-and-virtual-reality-assets.html)
 
@@ -54,7 +54,7 @@ ID与色板
 
 我们把重用的模块做的粒度更低，用通用的tile来做贴图，非常适合风格化和平面化的渲染。
 
-![5706e641b25198e466f23f0699c5d5d6.png](/images/5706e641b25198e466f23f0699c5d5d6.png)
+![5706e641b25198e466f23f0699c5d5d6.png](/images/5706e641b25198e466f23f0699c5d5d6.jpg)
 
 [https://assetstore.unity.com/packages/tools/painting/click-to-color-72930?aid=1100lHSw&utm_source=aff](https://assetstore.unity.com/packages/tools/painting/click-to-color-72930?aid=1100lHSw&utm_source=aff)
 
@@ -68,7 +68,7 @@ ID与色板
 
 GIF中会存储一个色板，包含256种不同的颜色。之后图片中每一个像素都会索引到这个色板上的颜色。这样，一个像素不需要存一个RGB三个bytes，而只需要一个索引1byte，节约了存储空间
 
-![b829b75963f7f1070e49254c3ef1da28.png](/images/b829b75963f7f1070e49254c3ef1da28.png)
+![b829b75963f7f1070e49254c3ef1da28.png](/images/b829b75963f7f1070e49254c3ef1da28.jpg)
 
 [https://en.wikipedia.org/wiki/GIF](https://en.wikipedia.org/wiki/GIF)
 
@@ -80,7 +80,7 @@ GIF中会存储一个色板，包含256种不同的颜色。之后图片中每�
 
 由于精度带来的损失，在颜色渐变上很容易出现banding，即条带化。我们一般可以用dither的方法减少banding的感觉，但其实挺多情况下，即使精度损失的颜色效果依然较难察觉。
 
-![aa262ca70abffedf4b4aba42ccaaef5f.png](/images/aa262ca70abffedf4b4aba42ccaaef5f.png)
+![aa262ca70abffedf4b4aba42ccaaef5f.png](/images/aa262ca70abffedf4b4aba42ccaaef5f.jpg)
 
 [http://joostdevblog.blogspot.com/2015/11/](http://joostdevblog.blogspot.com/2015/11/)
 
@@ -96,7 +96,7 @@ GB1的A通道，甚至自己pack了一下，前5位给MatData用。
 
 一个很好的理解案例是线性回归：我们可以用一根直线近似表示一堆散点。这样虽然损失了精度（有些散点不在直线上），但是节约了存储空间，只需要两个数值：Ax+B就能代表原来很多散点。
 
-![57be5abf7610e9ba8c35b33817b3125e.png](/images/57be5abf7610e9ba8c35b33817b3125e.png)
+![57be5abf7610e9ba8c35b33817b3125e.png](/images/57be5abf7610e9ba8c35b33817b3125e.jpg)
 
 **Indexed Material**
 
@@ -116,7 +116,7 @@ GB1的A通道，甚至自己pack了一下，前5位给MatData用。
 
 不过缺点是，空间换了时间：这种做法会有dependency texture read，shader里不知道会慢多少倍，需要profile。
 
-![Image.png](/images/Image.png)
+![Image.png](/images/Image.jpg)
 
 **Texture PCA**
 
@@ -126,13 +126,13 @@ Bart这里就比较暴力了，直接用PCA分析PBR材质各个通道之间的�
 
 比如我们有一套PBR贴图，它总共有九个通道
 
-![825331a80d702b2be9303da0a99df13d.png](/images/825331a80d702b2be9303da0a99df13d.png)
+![825331a80d702b2be9303da0a99df13d.png](/images/825331a80d702b2be9303da0a99df13d.jpg)
 
 [https://bartwronski.com/2020/05/21/dimensionality-reduction-for-image-and-texture-set-compression/](https://bartwronski.com/2020/05/21/dimensionality-reduction-for-image-and-texture-set-compression/)
 
 我们跑一个SVD分解，一种经典的PCA降维方法，这样可以拿到9个基通道，但其实只有前五个表示了丰富的信息，后面都比较平。
 
-![2b897c23cf71a5de5aa188d8759a5fcb.png](/images/2b897c23cf71a5de5aa188d8759a5fcb.png)
+![2b897c23cf71a5de5aa188d8759a5fcb.png](/images/2b897c23cf71a5de5aa188d8759a5fcb.jpg)
 
 [https://bartwronski.com/2020/05/21/dimensionality-reduction-for-image-and-texture-set-compression/](https://bartwronski.com/2020/05/21/dimensionality-reduction-for-image-and-texture-set-compression/)
 
@@ -140,7 +140,7 @@ Bart这里就比较暴力了，直接用PCA分析PBR材质各个通道之间的�
 
 我们甚至可以把后面的三个基通道缩小到原来的二分之一，也不太影响最终结果。这样用原来1/3就可以表示原来所有信息。
 
-![2f32f712cbc13b17404eb21bed209a0a.png](/images/2f32f712cbc13b17404eb21bed209a0a.png)
+![2f32f712cbc13b17404eb21bed209a0a.png](/images/2f32f712cbc13b17404eb21bed209a0a.jpg)
 
 [https://bartwronski.com/2020/05/21/dimensionality-reduction-for-image-and-texture-set-compression/](https://bartwronski.com/2020/05/21/dimensionality-reduction-for-image-and-texture-set-compression/)
 
@@ -156,7 +156,7 @@ BCn是Block Compression的缩写，其基本假设是：贴图在邻近像素间
 
 具体来说，比如BC1，按4x4的block存储颜色，每个block用一个线段来拟合。回忆上文的线性回归用一条直线拟合一堆散点。
 
-![fb87eb4444632c726f7d6217baf00001.png](/images/fb87eb4444632c726f7d6217baf00001.png)
+![fb87eb4444632c726f7d6217baf00001.png](/images/fb87eb4444632c726f7d6217baf00001.jpg)
 
 [http://www.reedbeta.com/blog/understanding-bcn-texture-compression-formats/](http://www.reedbeta.com/blog/understanding-bcn-texture-compression-formats/)
 
@@ -168,11 +168,11 @@ BCn是Block Compression的缩写，其基本假设是：贴图在邻近像素间
 
 这样一个block 8bytes。相比于R8G8B8，压缩比是6. 
 
-![e2494fb395a4347243c3254e7394158d.png](/images/e2494fb395a4347243c3254e7394158d.png)
+![e2494fb395a4347243c3254e7394158d.png](/images/e2494fb395a4347243c3254e7394158d.jpg)
 
 [http://www.reedbeta.com/blog/understanding-bcn-texture-compression-formats/](http://www.reedbeta.com/blog/understanding-bcn-texture-compression-formats/)
 
-![e6fe01a018c4ad8a1a24b5f32cbf51f2.png](/images/e6fe01a018c4ad8a1a24b5f32cbf51f2.png)
+![e6fe01a018c4ad8a1a24b5f32cbf51f2.png](/images/e6fe01a018c4ad8a1a24b5f32cbf51f2.jpg)
 
 这样颜色均一的block效果比较好，但是变化丰富的block就差异比较大了。
 
@@ -208,7 +208,7 @@ Layered Material
 
 比如UE这个例子中设个顶点色混合的石头
 
-![3956fd147b77c3b1b0510a5d939c4d05.png](/images/3956fd147b77c3b1b0510a5d939c4d05.png)
+![3956fd147b77c3b1b0510a5d939c4d05.png](/images/3956fd147b77c3b1b0510a5d939c4d05.jpg)
 
 [https://docs.unrealengine.com/en-US/Engine/UI/LevelEditor/Modes/MeshPaintMode/VertexColor/MaterialSetup/HowTo/2TextureMaterial/index.html](https://docs.unrealengine.com/en-US/Engine/UI/LevelEditor/Modes/MeshPaintMode/VertexColor/MaterialSetup/HowTo/2TextureMaterial/index.html)
 
@@ -218,11 +218,11 @@ Decal
 
 比如Fallout3中这个案例
 
-![9f990b322a938b72e545aacc2b3a7797.png](/images/9f990b322a938b72e545aacc2b3a7797.png)
+![9f990b322a938b72e545aacc2b3a7797.png](/images/9f990b322a938b72e545aacc2b3a7797.jpg)
 
 其实石头的模型和贴图都很简单，但边缘上面贴了破损的decal
 
-![13c4c89b1f35741c67f8b695994d92a3.png](/images/13c4c89b1f35741c67f8b695994d92a3.png)
+![13c4c89b1f35741c67f8b695994d92a3.png](/images/13c4c89b1f35741c67f8b695994d92a3.jpg)
 
 [https://simonschreibt.de/gat/fallout-3-edges/](https://simonschreibt.de/gat/fallout-3-edges/)
 
@@ -234,7 +234,7 @@ JPG格式是一个经典的利用频域分解以后，在频域空间做量化�
 
 不过由于解码比较复杂，一般GPU硬件上不会使用这种方法，而一般还是BCn的方法。
 
-![f7b037badc7a460f211d928f1ef74d4d.png](/images/f7b037badc7a460f211d928f1ef74d4d.png)
+![f7b037badc7a460f211d928f1ef74d4d.png](/images/f7b037badc7a460f211d928f1ef74d4d.jpg)
 
 [https://cgjennings.ca/articles/jpeg-compression/](https://cgjennings.ca/articles/jpeg-compression/)
 

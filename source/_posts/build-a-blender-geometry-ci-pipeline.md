@@ -50,7 +50,7 @@ CI的一个典型pipeline是：
 
 一个典型的pipeline dashboard，可以看到每次build中每个步骤是否成功和耗时时间。
 
-![7caacf534051b6434049f23a6939978c.png](/images/7caacf534051b6434049f23a6939978c.png)
+![7caacf534051b6434049f23a6939978c.png](/images/7caacf534051b6434049f23a6939978c.jpg)
 
 CI工具做的事情也就是配置，执行，可视化这些pipeline。
 
@@ -84,7 +84,7 @@ Jenkins是一个java写的服务器，可以安装在本地或者服务器，然
 
 解决方法是修改目标目录的权限，改为完全控制，如下图
 
-![e96411c89b03bccdabc78eb99a2d1e70.png](/images/e96411c89b03bccdabc78eb99a2d1e70.png)
+![e96411c89b03bccdabc78eb99a2d1e70.png](/images/e96411c89b03bccdabc78eb99a2d1e70.jpg)
 
 [https://github.com/docker/for-win/issues/3385](https://github.com/docker/for-win/issues/3385)
 
@@ -102,7 +102,7 @@ Jenkinsfile会被翻译成jvm虚拟机的groovy语言执行。在其中可以做
 
 "Docker 是一个开源的应用容器引擎"，一般第一句介绍是这样的。
 
-![6ceae98669b506db2851cf6b343ee59b.png](/images/6ceae98669b506db2851cf6b343ee59b.png)
+![6ceae98669b506db2851cf6b343ee59b.png](/images/6ceae98669b506db2851cf6b343ee59b.jpg)
 
 通俗理解，docker是一个可以运行程序的环境，这个环境与外部隔离。就像一个虚拟机沙盒一样。比如在本机上安装了python3.6, docker里装了python3.8，那么docker里运行程序的时候，不会受到本机python3.6的影响。
 
@@ -275,7 +275,7 @@ bpy_script.main()
 
 第三步submit，提交
 
-![4acbd92dbcc0e4eaed8e7bf9375b2563.png](/images/4acbd92dbcc0e4eaed8e7bf9375b2563.png)
+![4acbd92dbcc0e4eaed8e7bf9375b2563.png](/images/4acbd92dbcc0e4eaed8e7bf9375b2563.jpg)
 
 那么我们写一个Jenkinsfile，作为pipeline配置
 
@@ -354,11 +354,11 @@ foreach ($t in $tests.name)
 
 在jenkins中创建一个pipeline项目，在pipeline tab中添加一个pipeline script from scm，然后scriptpath填写Jenkinsfile，保存，就可以执行了。
 
-![80d2992d1adf06572237115fed8eb08c.png](/images/80d2992d1adf06572237115fed8eb08c.png)
+![80d2992d1adf06572237115fed8eb08c.png](/images/80d2992d1adf06572237115fed8eb08c.jpg)
 
 直接自带一个dashboard可视化
 
-![aae78ed30c6260a6fb5b3270f575287f.png](/images/aae78ed30c6260a6fb5b3270f575287f.png)
+![aae78ed30c6260a6fb5b3270f575287f.png](/images/aae78ed30c6260a6fb5b3270f575287f.jpg)
 
 1. 讨论，什么是pipeline？
 

@@ -15,21 +15,21 @@ date: 2018-03-04 00:00:00
 
 Unity自己的Occulusion Culling用的是Umbra的中间件，也就是dPVS的技术。是Timo Aila提出的，当时是他在赫尔辛基大学的硕士毕业论文。后来他成立了Umbra，07年加入了NVIDIA Research. dPVS虽然叫PVS，但是和纯离线的原理有很大区别。它离线不计算所有可见性，而只是生成一个空间数据结构，一个BSP描述的节点信息，用于之后的空间位置查询。因此离线计算的速度快很多。但是在线会多计算不少东西，包括跟踪可见物体的标记点，提取轮廓生成HOM等。
 
-![dd5d44398eef7b20de62ffeb5257021f.png](/images/dd5d44398eef7b20de62ffeb5257021f.png)
+![dd5d44398eef7b20de62ffeb5257021f.png](/images/dd5d44398eef7b20de62ffeb5257021f.jpg)
 
 dPVS的提出在2000年，借鉴了hierarchical occlusion maps的技术。创新有两点：一是Occulusion Map的计算用提取轮廓的方法。二是剔除前做visible point tracking，cache一些可见物体，可见的就不参与计算了。
 
 其中visible point tracking如图，可见的就不再参与下面的遮挡计算了。
 
-![ee33dbbdd766e7df45d0dc1bcd06b000.png](/images/ee33dbbdd766e7df45d0dc1bcd06b000.png)
+![ee33dbbdd766e7df45d0dc1bcd06b000.png](/images/ee33dbbdd766e7df45d0dc1bcd06b000.jpg)
 
 提取轮廓线的计算比较精妙，比渲染所有三角获得轮廓的做法快不少。思想就是缓存轮廓边，有需要再更新。算法里会缓存轮廓边和轮廓边邻面所在平面到视点的距离，如果邻面平面到视点的两个距离都是正的，那肯定就是轮廓了。如果有一个变负了，再去找相邻的边有没有成为轮廓边。用法线点积运算计算。
 
-![81b882551833439838e3bff2ec404ae2.png](/images/81b882551833439838e3bff2ec404ae2.png)
+![81b882551833439838e3bff2ec404ae2.png](/images/81b882551833439838e3bff2ec404ae2.jpg)
 
 第一个pass找到轮廓边并光栅化后，用第二个pass填充区域。初始是左边1，右边-1；第二个pass一列列扫过去就行了，全都是位运算。
 
-![0e27086125de9bce00d2868879b9ed70.png](/images/0e27086125de9bce00d2868879b9ed70.png)
+![0e27086125de9bce00d2868879b9ed70.png](/images/0e27086125de9bce00d2868879b9ed70.jpg)
 
 看上去很酷炫，烘焙速度很快，unity自带。唯一的问题是在手游上CPU的性能开销还是可观的，一帧1-2ms不成问题，比原始PVS高一个数量级。另外不支持streaming，这样大场景的内存占用是不太能接受的。
 

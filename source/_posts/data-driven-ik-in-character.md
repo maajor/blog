@@ -51,7 +51,7 @@ Daniel Holden的一篇用PFNN作为角色控制器的论文。它的特殊之处
 
 当然，神经网络的输入还包括一些输入变量，比如关节速度，高度，方向等等。相函数是脚步的相位决定的。
 
-![pfnn.png](/images/pfnn.png)
+![pfnn.png](/images/pfnn.jpg)
 
 它相比于纯神经网络生成的动作，多一个相函数，考虑了双足脚运动相位的影响。
 
@@ -65,13 +65,13 @@ Siggraph 2004的文章 Style-Based Inverse Kinematics
 
 基本思想是使用SGMLVM的方法，用隐空间表示pose，学习出pose的分布密度函数。这样用一些动作集训练后分布后，再从其中采样，就可以获得合理的pose。以此为IK，求解约束条件下，隐空间中几率最高的pose，也就是ik了。
 
-![styleik.png](/images/styleik.png)
+![styleik.png](/images/styleik.jpg)
 
 4. Skin Decomposition
 
 想解决的问题是用骨骼模拟一系列顶点的运动。所以我们需要求解骨骼的权重，初始位置和动画位置，找到最佳拟合。
 
-![](https://app.yinxiang.com/shard/s5/res/4ff4ff39-98dd-4d0f-997f-067b892154af.png)
+![](https://app.yinxiang.com/shard/s5/res/4ff4ff39-98dd-4d0f-997f-067b892154af.jpg)
 
 回顾一下这个问题，它已经给了loss function的表述了，我们完全可以用机器学习梯度下降来解它嘛。
 
@@ -83,7 +83,7 @@ Siggraph 2004的文章 Style-Based Inverse Kinematics
 
 除去CV检测关节点的部分外，另外一个问题是，怎么从2D位置估计出骨骼的3D位置？
 
-![smplx.png](/images/smplx.png)
+![smplx.png](/images/smplx.jpg)
 
 关于这个问题，我们是有先验知识的。人体的关节姿态不是任意的，而一定是服从某种分布的。
 
@@ -103,19 +103,19 @@ SMPLX论文中，则是训练了一个变分自编码器(VAE)，称之为VPoser�
 
 最经典的IK方法。Jacobian方法可以直观理解为求解一阶导数，当我们求解出一个运动系统的偏导数后，就可以根据导数方向改变姿态接近目标，这也就是JacobianIK的原理
 
-![jacobian.png](/images/jacobian.png)
+![jacobian.png](/images/jacobian.jpg)
 
 这个示意图可以看出，它只是一个一阶导数的近似。不过对于实时运动来说，一般也就够了。
 
 2. CCD
 
-![CCD.png](/images/CCD.png)
+![CCD.png](/images/CCD.jpg)
 
 CCD是一种简单的迭代IK求解器，每次只改变一个关节的旋转逼近目标。
 
 3. FABRIK
 
-![fabrik.png](/images/fabrik.png)
+![fabrik.png](/images/fabrik.jpg)
 
 FABRIK是另一种简洁的IK求解器，不同于CCD，它更新的是节点的坐标，此外多了一份从根节点开始的pass，有正反两个pass更新坐标。
 

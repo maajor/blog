@@ -99,7 +99,7 @@ float4 TrigApproximate(float4 vData)
 }
 ```
 
-![05c2a5c16450ae9c74f6ea2e32d7c624.png](/images/05c2a5c16450ae9c74f6ea2e32d7c624.png)
+![05c2a5c16450ae9c74f6ea2e32d7c624.png](/images/05c2a5c16450ae9c74f6ea2e32d7c624.jpg)
 
 主要读SpeedTreeWind.cginc, SpeedTreeVertex.cginc就好了
 
@@ -107,7 +107,7 @@ float4 TrigApproximate(float4 vData)
 
 在vertex shader里hardcode了一条曲线，0对应物体被裁剪时候的缩放，1对应物体完全出现时候的缩放，这样物体出现时渐变的过程会是先变大到1.25倍再缩小的过程
 
-![1f51da6903c75a64357836154e569596.png](/images/1f51da6903c75a64357836154e569596.png)
+![1f51da6903c75a64357836154e569596.png](/images/1f51da6903c75a64357836154e569596.jpg)
 
 shader很简单，拟合一条曲线就好了，然后外部LOD组件传入一个状态切换的alpha值
 
@@ -118,13 +118,13 @@ float3 localPos = v.vertex.xyz * cull;
 
 1. Fornite的可破坏墙体
 
-![196c4fd810285f650061f96ad9fcb292.png](/images/196c4fd810285f650061f96ad9fcb292.png)
+![196c4fd810285f650061f96ad9fcb292.png](/images/196c4fd810285f650061f96ad9fcb292.jpg)
 
 Shader需要暴露一个参数驱动破坏过程，左侧时0，右侧是1.
 
 顶点或者贴图上存储的数据包括：
 
-![27d0e041555d85469ec7fbde9a79260f.png](/images/27d0e041555d85469ec7fbde9a79260f.png)
+![27d0e041555d85469ec7fbde9a79260f.png](/images/27d0e041555d85469ec7fbde9a79260f.jpg)
 
 每一个木片都需要存储pivot的位置，三个通道（local位置用v.vertex - pivot），这样才能单块木片整体移动
 

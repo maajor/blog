@@ -54,7 +54,7 @@ date: 2018-09-03 00:00:00
          }
 ```
 
-![7a52c4753c394e08efa56bd4d7215b89.png](/images/7a52c4753c394e08efa56bd4d7215b89.png)
+![7a52c4753c394e08efa56bd4d7215b89.png](/images/7a52c4753c394e08efa56bd4d7215b89.jpg)
 
 浅溪在DoPuddle里，会有泡沫和水波涟漪的计算，另外还会用法线重采样原有地形贴图造成折射效果
 
@@ -181,13 +181,13 @@ date: 2018-09-03 00:00:00
          }
 ```
 
-![57376b8167ee26c971c99e53b03fbadf.png](/images/57376b8167ee26c971c99e53b03fbadf.png)
+![57376b8167ee26c971c99e53b03fbadf.png](/images/57376b8167ee26c971c99e53b03fbadf.jpg)
 
 支持一个pass 256张贴图，使用TextureArray，在顶点上存Id。但是per pixel怎么读取id呢，一差值就傻了啊
 
 巧妙用了一个mask的方式
 
-![3bb98f29ccc39c18b8b20c80aaae86e6.png](/images/3bb98f29ccc39c18b8b20c80aaae86e6.png)
+![3bb98f29ccc39c18b8b20c80aaae86e6.png](/images/3bb98f29ccc39c18b8b20c80aaae86e6.jpg)
 
 每个顶点上存两个index，分别是这里混合的两层贴图的id，然后还会存一个顶点色。对于某一个三角形，三个vertex存的颜色分别是(1,0,0), (0,1,0), (0,0,1).
 
@@ -232,11 +232,11 @@ void surf(Input IN, inout SurfaceOutoutStandard o){
 
 神奇的事情发生在顶点插值计算的时候，vertexWeights的通道特性决定了index0的xyz分别是该pixel所在的三角面上三个vertex的id，于是用这个id正好和vertexWeights进行混合
 
-![f264c491d0b6b123479195c8fe076001.png](/images/f264c491d0b6b123479195c8fe076001.png)
+![f264c491d0b6b123479195c8fe076001.png](/images/f264c491d0b6b123479195c8fe076001.jpg)
 
-![2d2f5d67f0450cf0a5a0d15bdf2eb288.png](/images/2d2f5d67f0450cf0a5a0d15bdf2eb288.png)
+![2d2f5d67f0450cf0a5a0d15bdf2eb288.png](/images/2d2f5d67f0450cf0a5a0d15bdf2eb288.jpg)
 
-![5a76b3ce70027c10b836b647e1c53271.png](/images/5a76b3ce70027c10b836b647e1c53271.png)
+![5a76b3ce70027c10b836b647e1c53271.png](/images/5a76b3ce70027c10b836b647e1c53271.jpg)
 
 ```
 struct Input

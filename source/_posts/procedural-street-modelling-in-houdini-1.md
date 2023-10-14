@@ -12,7 +12,7 @@ date: 2018-08-17 00:00:00
 
 张量定义是
 
-![4df846a056c03c968644e3b9e5a77a78.png](/images/4df846a056c03c968644e3b9e5a77a78.png)
+![4df846a056c03c968644e3b9e5a77a78.png](/images/4df846a056c03c968644e3b9e5a77a78.jpg)
 
 它可以有两个互相垂直的本征向量，这个特性很好，很多路网交叉口是垂直的。
 
@@ -22,21 +22,21 @@ date: 2018-08-17 00:00:00
 
 以下为houdini的实现
 
-![2ac6f21de591d03020beda60e26cfb12.png](/images/2ac6f21de591d03020beda60e26cfb12.png)
+![2ac6f21de591d03020beda60e26cfb12.png](/images/2ac6f21de591d03020beda60e26cfb12.jpg)
 
-![a6e348c745ca48f59913c8430bafac9e.png](/images/a6e348c745ca48f59913c8430bafac9e.png)
+![a6e348c745ca48f59913c8430bafac9e.png](/images/a6e348c745ca48f59913c8430bafac9e.jpg)
 
-![96c7b2591e923ab06a3e73db2819d145.png](/images/96c7b2591e923ab06a3e73db2819d145.png)
+![96c7b2591e923ab06a3e73db2819d145.png](/images/96c7b2591e923ab06a3e73db2819d145.jpg)
 
 多种张量场可以叠加混合起来
 
 以下为houdini的实现
 
-![228482bb1c5f9a2858cce33c84f3b240.png](/images/228482bb1c5f9a2858cce33c84f3b240.png)
+![228482bb1c5f9a2858cce33c84f3b240.png](/images/228482bb1c5f9a2858cce33c84f3b240.jpg)
 
 之后呢这些张量场还可以加噪声。。。
 
-![b2369f1e516ae887eeb9ac366fa13294.png](/images/b2369f1e516ae887eeb9ac366fa13294.png)
+![b2369f1e516ae887eeb9ac366fa13294.png](/images/b2369f1e516ae887eeb9ac366fa13294.jpg)
 
 2 主干路生成
 

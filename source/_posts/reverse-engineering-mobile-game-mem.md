@@ -53,10 +53,10 @@ terrain1000m一块，1w面，splat贴图
 
 可以扒模型不过没有uv
 
-![cap1.PNG](/images/cap1.PNG)
+![cap1.PNG](/images/cap1.jpg)
 
-![cap2.PNG](/images/cap2.PNG)
+![cap2.PNG](/images/cap2.jpg)
 
-![cap3.PNG](/images/cap3.PNG)
+![cap3.PNG](/images/cap3.jpg)
 
-![cap4.PNG](/images/cap4.PNG)
+![cap4.PNG](/images/cap4.jpg)

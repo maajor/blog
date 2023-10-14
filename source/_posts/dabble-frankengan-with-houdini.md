@@ -20,7 +20,7 @@ FrankenGAN: Guided Detail Synthesis for Building Mass-Models Using Style-Synchon
 
 后端是pytorch：[https://github.com/twak/bikegan](https://github.com/twak/bikegan "https://github.com/twak/bikegan")，完成GAN生成的任务
 
-![b24dc7e21ca31997ffd7d8a373b1f4c3.png](/images/b24dc7e21ca31997ffd7d8a373b1f4c3.png)
+![b24dc7e21ca31997ffd7d8a373b1f4c3.png](/images/b24dc7e21ca31997ffd7d8a373b1f4c3.jpg)
 
 作者将添加细节这个操作分成了很多步，每一步都训练了一个bicycleGAN完成任务
 
@@ -32,17 +32,17 @@ FrankenGAN: Guided Detail Synthesis for Building Mass-Models Using Style-Synchon
 
 生成label这一步有一个特殊操作，为了让输入的图片有尺度信息，输入多加了一个channel，是立面上每一点到立面边缘的距离
 
-![7ccf25abfd720cb727275b67d2063806.png](/images/7ccf25abfd720cb727275b67d2063806.png)
+![7ccf25abfd720cb727275b67d2063806.png](/images/7ccf25abfd720cb727275b67d2063806.jpg)
 
 这一步在bikegan中是自动生成的
 
-![5608aa62942278dee2c6377f7e049075.png](/images/5608aa62942278dee2c6377f7e049075.png)
+![5608aa62942278dee2c6377f7e049075.png](/images/5608aa62942278dee2c6377f7e049075.jpg)
 
 具体来说这九个GAN做了空白->标注，标注->图片的任务
 
 当然了，GAN标注的label并不那么可靠，还是需要一定的正则化
 
-![446a29363dae70b58afeb3443673aca4.png](/images/446a29363dae70b58afeb3443673aca4.png)
+![446a29363dae70b58afeb3443673aca4.png](/images/446a29363dae70b58afeb3443673aca4.jpg)
 
 立面的训练用了CMP数据集，大概3000张标注图片。屋顶用了600张，窗框用了1400张，都是人肉标注的。
 
@@ -50,7 +50,7 @@ FrankenGAN: Guided Detail Synthesis for Building Mass-Models Using Style-Synchon
 
 最终的效果：
 
-![a8334f40ced7ef03217d123874d9a7a2.png](/images/a8334f40ced7ef03217d123874d9a7a2.png)
+![a8334f40ced7ef03217d123874d9a7a2.png](/images/a8334f40ced7ef03217d123874d9a7a2.jpg)
 
 看上去效果还不错。
 
@@ -166,7 +166,7 @@ terminal运行能生成结果就是完成了。
 
 建一个operator，选python，类型是composite filter
 
-![5987914522b531bbd82c9d2407b0400e.png](/images/5987914522b531bbd82c9d2407b0400e.png)
+![5987914522b531bbd82c9d2407b0400e.png](/images/5987914522b531bbd82c9d2407b0400e.jpg)
 
 代码里只需要重写一些Cook函数就行
 
@@ -202,18 +202,18 @@ def cook(cop_node, plane, resolution):
 
 这里因为chop的上一个节点是Geometry节点，所以直接去找输入的一个参数就能找到那个sop
 
-![b69fd6aa2fd7b4ef17e3bb2eb6798085.png](/images/b69fd6aa2fd7b4ef17e3bb2eb6798085.png)
+![b69fd6aa2fd7b4ef17e3bb2eb6798085.png](/images/b69fd6aa2fd7b4ef17e3bb2eb6798085.jpg)
 
 其实核心就是这样。
 
 之后做的无非就是一些收尾，比如把这个颜色映射到面片的頂点色上，窗户抠出来正则化
 
-![b599d8f269f1e0f5863a5044ca1c81bc.png](/images/b599d8f269f1e0f5863a5044ca1c81bc.png)
+![b599d8f269f1e0f5863a5044ca1c81bc.png](/images/b599d8f269f1e0f5863a5044ca1c81bc.jpg)
 
-![78c10c93e5195c70b164c52a2b9eeb3c.png](/images/78c10c93e5195c70b164c52a2b9eeb3c.png)
+![78c10c93e5195c70b164c52a2b9eeb3c.png](/images/78c10c93e5195c70b164c52a2b9eeb3c.jpg)
 
 好咯基本就是这样，笔者找了一块地，下载OSM，用它的地块试了一下。
 
 立面凑活能看吧。
 
-![39250ff0ad3b6a2f018891cbd293f911.png](/images/39250ff0ad3b6a2f018891cbd293f911.png)
+![39250ff0ad3b6a2f018891cbd293f911.png](/images/39250ff0ad3b6a2f018891cbd293f911.jpg)

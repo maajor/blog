@@ -13,13 +13,13 @@ date: 2018-10-21 00:00:00
 
 ![untitled1.jpg](/images/untitled1.jpg)
 
-![array.png](/images/array.png)
+![array.png](/images/array.jpg)
 
-![components.PNG](/images/components.PNG)
+![components.PNG](/images/components.jpg)
 
-![BaseColor.png](/images/BaseColor.png)
+![BaseColor.png](/images/BaseColor.jpg)
 
-![nodes.PNG](/images/nodes.PNG)
+![nodes.PNG](/images/nodes.jpg)
 
 以下是制作过程中的思考，很多还没有成熟解决方案，只是列出一点自己的感受。
 

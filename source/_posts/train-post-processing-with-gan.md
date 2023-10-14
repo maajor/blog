@@ -14,7 +14,7 @@ date: 2018-12-06 00:00:00
 
 本文这里是希望能否让通用性的神经网络以实时性能运行起来？
 
-![30_0.png](/images/30_0.png)
+![30_0.png](/images/30_0.jpg)
 
 可以看演示的效果，在网络比较浅的情况下，30fps完全可以保证，不过可以接近目标效果的色调，但是很难重现其笔触。
 
@@ -37,7 +37,7 @@ date: 2018-12-06 00:00:00
 
 下图是其基本原理，风格图片与生成图片的激活层的格拉姆矩阵即L-style，目标图片与生成图片某个激活层的方差，即L-content，目的是用L-style + L-content作为目标函数梯度下降求解
 
-![257fb30d346124b57de602d02bdcf3f5.png](/images/257fb30d346124b57de602d02bdcf3f5.png)
+![257fb30d346124b57de602d02bdcf3f5.png](/images/257fb30d346124b57de602d02bdcf3f5.jpg)
 
 **Pix2Pix**
 
@@ -55,7 +55,7 @@ keijiro把Pix2Pix的sketch2cat模型搬到了Unity，可以实时画猫
 
 另外一个Pix2PixCity的项目，程序式生成城市简模，利用pix2pix街景的训练模型生成城市的视频
 
-![](https://github.com/DerTarchin/Pix2Pix-Generative-Cities/raw/master/images/flicker1.png)
+![](https://github.com/DerTarchin/Pix2Pix-Generative-Cities/raw/master/images/flicker1.jpg)
 
 **CycleGan/DualGan/DiscoGan**
 
@@ -73,11 +73,11 @@ keijiro把Pix2Pix的sketch2cat模型搬到了Unity，可以实时画猫
 
 模型的训练直接使用了KerasGAN中pix2pix的源码，不同的是原始pix2pix的Generator非常复杂，为了提高运行时性能，训练时减少了网络的深度，比如这样一个网络在运行时是基本没问题的，但是效果只能说勉强可以接受。
 
-![model_architecture.png](/images/model_architecture.png)
+![model_architecture.png](/images/model_architecture.jpg)
 
 训练数据生成时考虑了深度通道，因此与keras-GAN上不太一样，笔者这里一个成对数据长成
 
-![image_0006.png](/images/image_0006.png)
+![image_0006.png](/images/image_0006.jpg)
 
 运行时为了减少依赖，完全采用ComputeShader实现神经网络卷积等运算。参考了keijiro的实现，比如卷积运算，强调memory coalesce的思想，每个threadgroup读取数据到cache中，同步数据后再下一步运算
 

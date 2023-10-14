@@ -23,7 +23,7 @@ date: 2018-08-29 00:00:00
 
 原始街区
 
-![a4cbf54f81fc9f7b952f1ce1e9c43ccf.png](/images/a4cbf54f81fc9f7b952f1ce1e9c43ccf.png)
+![a4cbf54f81fc9f7b952f1ce1e9c43ccf.png](/images/a4cbf54f81fc9f7b952f1ce1e9c43ccf.jpg)
 
 分这么几步：
 
@@ -33,23 +33,23 @@ date: 2018-08-29 00:00:00
 
 好在houdini自带一个polyexpand2d的节点可以直接生成skeleton
 
-![5c4515ac539abac9567ab83b36a1b49c.png](/images/5c4515ac539abac9567ab83b36a1b49c.png)
+![5c4515ac539abac9567ab83b36a1b49c.png](/images/5c4515ac539abac9567ab83b36a1b49c.jpg)
 
 然后把同一条边上的组合在一起，在论文里叫A-Strip，这时很像一个屋顶，原文4.2.1节
 
-![ec954dff46eea61e9b8737450b56d001.png](/images/ec954dff46eea61e9b8737450b56d001.png)
+![ec954dff46eea61e9b8737450b56d001.png](/images/ec954dff46eea61e9b8737450b56d001.jpg)
 
 之后把很多斜角做掉，这一步在论文里叫B-Strip，4.2.2节
 
-![01768e9a177532af8e4356f049a9ca09.png](/images/01768e9a177532af8e4356f049a9ca09.png)
+![01768e9a177532af8e4356f049a9ca09.png](/images/01768e9a177532af8e4356f049a9ca09.jpg)
 
 那之后就是划分了，沿面街的线按一定距离等分，见原文4.2.3节
 
-![7951b7ef439993819142bd822c86f029.png](/images/7951b7ef439993819142bd822c86f029.png)
+![7951b7ef439993819142bd822c86f029.png](/images/7951b7ef439993819142bd822c86f029.jpg)
 
 最后划分完的结果！
 
-![abeff27336cf3dafecc2b0b70e598178.png](/images/abeff27336cf3dafecc2b0b70e598178.png)
+![abeff27336cf3dafecc2b0b70e598178.png](/images/abeff27336cf3dafecc2b0b70e598178.jpg)
 
 平铺式
 
@@ -57,19 +57,19 @@ date: 2018-08-29 00:00:00
 
 对于每一块，houdini的bound节点直接可以找oriented bounding box，沿中线划分一下就好了。
 
-![7e641b186d4caacdffefd834b240b50d.png](/images/7e641b186d4caacdffefd834b240b50d.png)
+![7e641b186d4caacdffefd834b240b50d.png](/images/7e641b186d4caacdffefd834b240b50d.jpg)
 
 对这种不规则的地块划分完其实比较诡异。。。。还是稍方正或者长条形的效果比较好
 
-![309c8d8499964d2c58fc480a6076c714.png](/images/309c8d8499964d2c58fc480a6076c714.png)
+![309c8d8499964d2c58fc480a6076c714.png](/images/309c8d8499964d2c58fc480a6076c714.jpg)
 
-![192468d07479a80b90ccaeef7ffb22bb.png](/images/192468d07479a80b90ccaeef7ffb22bb.png)
+![192468d07479a80b90ccaeef7ffb22bb.png](/images/192468d07479a80b90ccaeef7ffb22bb.jpg)
 
 一个大佬的C#实现
 
 [http://martindevans.me/game-development/2015/12/27/Procedural-Generation-For-Dummies-Lots/](http://martindevans.me/game-development/2015/12/27/Procedural-Generation-For-Dummies-Lots/)
 
-![road-Redshift.png](/images/road-Redshift.png)
+![road-Redshift.png](/images/road-Redshift.jpg)
 
 Parish Y. I H. Procedural Modeling of Cities[J]. Computer Graphics, 2001.
 
