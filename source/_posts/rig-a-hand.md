@@ -7,7 +7,7 @@ date: 2020-09-20 00:00:00
 
 [https://github.com/maajor/bone-kit](https://github.com/maajor/bone-kit)
 
-1 模型
+# 1 模型
 
 需要注意布线 
 
@@ -31,7 +31,7 @@ date: 2020-09-20 00:00:00
 
 ![ab76f5ebe69d061aff0af89e8cd978dc.png](/images/ab76f5ebe69d061aff0af89e8cd978dc.jpg)
 
-2 直接绑定
+# 2 直接绑定
 
 ![50fa1ecdf7546be9eec0b272fd84b0c4.png](/images/50fa1ecdf7546be9eec0b272fd84b0c4.jpg)
 
@@ -62,7 +62,7 @@ date: 2020-09-20 00:00:00
 
 [hand.blend](./file/hand.blend)
 
-2 Example Based, Manual Approach | 基于案例，手工方法
+# 3 Example Based, Manual Approach | 基于案例，手工方法
 
 我们可以使用基于案例的方法，即，给定某个姿态下的模型变形效果；让变形在目标姿势时，趋近预先给定的变形效果。
 
@@ -112,7 +112,7 @@ date: 2020-09-20 00:00:00
 
 [http://www.skinning-org.alecjacobson.com/example-based.pdf](http://www.skinning-org.alecjacobson.com/example-based.pdf)
 
-3 Example Based, Data Driven | 基于范例，数据驱动
+# 4 Example Based, Data Driven | 基于范例，数据驱动
 
 最好是直接就有3D扫描的模型数据了，这样我们可以直接用扫描的模型作为“范例”
 
@@ -192,7 +192,7 @@ Embodied Hands: Modeling and Capturing Hands and Bodies Together
 
 ![fd2bc1a82a41015f41fa5015beebdf63.png](/images/fd2bc1a82a41015f41fa5015beebdf63.jpg)
 
-讨论：
+# 讨论
 
 以上，整理了绑定一个模型，个人了解的用到的技术，以及一些成功或不成功的实验。直到今天二十年过去了，Pose Space Deformation的思想仍然很重要。
 
@@ -200,7 +200,7 @@ Embodied Hands: Modeling and Capturing Hands and Bodies Together
 
 下时代的写实游戏，有可能更多会用到数据驱动的方法，比如SMPL这类基于数据的身体参数模型。而对于风格化的游戏，使用数据驱动的方法也并非不可行，无非只是用人类Artist来制作范例嘛。主要得益于机器学习工具的普及，大家都来pytorch。
 
-参考资料：
+# 参考资料
 
 Modelling a Human Hand
 

@@ -17,7 +17,7 @@ BVH是有并行算法的，也就便于利用Unity JobSystem多线程构造。
 
 基本的流程：1. 构造ZOrder 2. 排序 3 构造子节点 4 构造内部节点 5 更新AABB
 
-1 ZOrder Curve & Morton Code
+# 1. ZOrder Curve & Morton Code
 
 是一种将多维数据降为一维的方法，降为一维的好处是便于排序，便于存储。用这种方法将场景物体排序后再并行构造BVH会比较方便
 
@@ -82,7 +82,7 @@ ECSPhysics里是有计算MortonCode的方法的，Tree Construction on the GPU�
         }
 ```
 
-1. 排序
+# 2. 排序
 
 ECSPhysics代码里用Radix单线程排的序，Profile看这也是性能瓶颈之一，一核有难七核围观
 
@@ -182,11 +182,11 @@ var bitonicMergeJob = new BitonicMergeJob()
 
 Profile看确实比原来的单线程快一些，但可能有线程调用和开销，也不是很理想。
 
-1. 构造子节点
+# 3. 构造子节点
 
 没有什么技术含量，这里就不放代码了
 
-1. 构造内部节点
+# 4. 构造内部节点
 
 karras原文里放了伪码，Tree Construction on the GPU里面也放了C++的代码。但是determineRange(i)，这个函数代码没给出来。
 
@@ -281,7 +281,7 @@ private int clz_safe(int idx, int idy)
         }
 ```
 
-1. 更新AABB
+# 5. 更新AABB
 
 bottom-up更新，第一个到的节点退出。这里理应有一锁，避免datarace。实际应用中不太会写，目前这样偶尔会出错但一般问题不大。
 

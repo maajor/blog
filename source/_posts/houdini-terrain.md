@@ -2,11 +2,10 @@
 title: Houdini Terrain | Houdini 地形生成
 date: 2017-01-25 00:00:00
 ---
-# 20170125 Houdini地形生成
 
 讲道理呢，World Machine的地形用Houdini都是可以做出来的。不过还是有些局限，尝试了一下。
 
-1. 噪声地形
+# 1. 噪声地形
 
 主要就是两类：Voronoi 和 Perlin
 
@@ -64,7 +63,7 @@ float cal = turb(sp, roughness, lacunarity, octaves) * height_scale;
 
 perlin 和 voronoi叠加就基本可以得到目标地形的原型了。
 
-1. 变形
+# 2. 变形
 
 World Machine里很多节点，其实用Houdini 一个Ramp Chanel就解决了，比较像GH的Graph Mapper，不过更自由。
 
@@ -87,7 +86,7 @@ v@P.y = mapback;
 ```
 到此，基本意味着World Machine在溶解之前的功能，用Houdini都可以代替。
 
-1. 侵蚀
+# 3. 侵蚀
 
 这部分就比较复杂了，World Machine提供了四种：Hydraulic, Thermal, Snow, Coastal Erosion.
 
@@ -135,7 +134,7 @@ World Machine的作者并没有说过他用的什么算法，不过在WM论坛�
 
 WM很快，难道用了GPU计算？作者似乎也没提过，只是猜测了。
 
-1. 总结
+# 4. 总结
 
 用Houdini代替WorldMachine有几个优点：
 
@@ -149,6 +148,8 @@ WM很快，难道用了GPU计算？作者似乎也没提过，只是猜测了。
 1. 侵蚀算法还需要提升，可能有不少工作要做
 2. VEX速度太慢，需要用GPU计算。
 3. 其它侵蚀算法的引入。
+
+# Reference
 
 Fast Hydraulic Erosion Simulation and Visualization on GPU - Mei - 2007
 

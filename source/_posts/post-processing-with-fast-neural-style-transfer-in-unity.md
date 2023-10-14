@@ -3,11 +3,14 @@ title: Post Processing with Fast Neural Style Transfer in Unity | Unity中快速
 date: 2018-12-17 00:00:00
 ---
 
-1 NNPP with FNST 快速神经风格迁移后处理
+[Github Codebase](https://github.com/maajor/NeuralNetworkPostProcessing)
+![](https://github.com/maajor/NeuralNetworkPostProcessing/blob/master/Imgs/img_large.jpg)
+
+# 1 NNPP with FNST 快速神经风格迁移后处理
 
 承接上文用GAN训练后处理，其实那篇也算是一种风格迁移吧，只不过风格损失函数在NST中定义为最大均值差，在GAN中定义为一个熵，用discriminator表示。
 
-2 Fast Neural Style Transfer
+# 2 Fast Neural Style Transfer
 
 基本上是基于[Perceptual Losses for Real-Time Style Transfer and Super-Resolution](https://arxiv.org/abs/1603.08155)这篇文章，
 
@@ -19,7 +22,7 @@ date: 2018-12-17 00:00:00
 
 和pix2pix很像了，pix2pix的generator就是FNST的transform net，pix2pix的discriminator就是FNST的loss network。区别只是loss的计算方式，FNST是最大均值差，pix2pix中discriminator就是一个熵的计算器
 
-3 实现
+# 3 实现
 
 和上文很相似，不过这里tranformnet/generator相对更复杂一点
 

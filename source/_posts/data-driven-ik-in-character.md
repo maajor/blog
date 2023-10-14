@@ -2,7 +2,11 @@
 title: Data-Driven IK in Character| 角色中的数据驱动反向动力学
 date: 2020-05-24 00:00:00
 ---
-# 20200517 Data-Driven IK
+
+[Github Codebase](https://github.com/maajor/latent-pose)
+<video width="640" height="480" controls>
+  <source src="/images/demo.mp4" type="video/mp4">
+</video>
 
 读论文写代码有感，当我们从隐空间的角度看待动画，很多动画的机器学习算法的原理就比较好理解。以及IK，传统的方法可以看成是机器学习方法的近似和简化。
 
@@ -17,9 +21,10 @@ date: 2020-05-24 00:00:00
 
 于是这就转化成一个机器学习问题了：怎样表示出数据的结构？如何用低维（下文称为隐变量空间）来表示数据？用低维数据之后会有什么应用？
 
+# 1. 背景技术
 首先我们看几个技术
 
-1. Motion Matching
+## 1.1. Motion Matching
 
 我们把动画表示为隐空间，同时这些隐空间维度就是用户输入。这样运行时我们可以通过隐空间中搜索最优解获得下一个动画片段。
 
@@ -45,7 +50,7 @@ date: 2020-05-24 00:00:00
 
 3. 动画选择上，Motion Matching根据输入参数自动搜索。传统方法需要预先定义状态机，定义动画跳转方式。
 
-2. PFNN
+## 1.2. PFNN
 
 Daniel Holden的一篇用PFNN作为角色控制器的论文。它的特殊之处在于，生成动画（骨骼数据）的神经网络的权重有一个相函数影响。
 
@@ -59,7 +64,7 @@ Daniel Holden的一篇用PFNN作为角色控制器的论文。它的特殊之处
 
 用隐空间的角度来理解，双足相位加上类似motionmationg的运动维度，就是这个隐空间的维度了。
 
-3. Style IK
+## 1.3. Style IK
 
 Siggraph 2004的文章 Style-Based Inverse Kinematics
 
@@ -67,7 +72,7 @@ Siggraph 2004的文章 Style-Based Inverse Kinematics
 
 ![styleik.png](/images/styleik.jpg)
 
-4. Skin Decomposition
+## 1.4. Skin Decomposition
 
 想解决的问题是用骨骼模拟一系列顶点的运动。所以我们需要求解骨骼的权重，初始位置和动画位置，找到最佳拟合。
 
@@ -77,7 +82,7 @@ Siggraph 2004的文章 Style-Based Inverse Kinematics
 
 从另一个角度来理解，他就是想给数据做降维，用隐空间表述一个全集。
 
-5. SMPLify-X
+## 1.5. SMPLify-X
 
 这是一个单目人体姿势估计的问题。
 
@@ -91,7 +96,7 @@ StyleIK中也涉及了这个问题，当我们知道人体姿态的分布后，�
 
 SMPLX论文中，则是训练了一个变分自编码器(VAE)，称之为VPoser，学习出动作空间的分布，并用隐变量表示。这就可以用在姿态预测的优化过程中了。
 
-2. Classic IK
+# 2. Classic IK
 
 一个广义的IK定义是，寻找满足约束条件的骨骼pose。以此定义，motion matching，PFNN，skin decoposition, VPoser这几个，都可以认为是IK。
 
@@ -99,7 +104,7 @@ SMPLX论文中，则是训练了一个变分自编码器(VAE)，称之为VPoser�
 
 根据Aristidou的综述，我们可以吧IK问题分成几类：解析式的，数值式的，数据驱动的和混合式的。我们在游戏引擎中见到的基本都是数值式的方法。其中三个经典的：
 
-1. Jacobian Based
+## 2.1. Jacobian Based
 
 最经典的IK方法。Jacobian方法可以直观理解为求解一阶导数，当我们求解出一个运动系统的偏导数后，就可以根据导数方向改变姿态接近目标，这也就是JacobianIK的原理
 
@@ -107,19 +112,19 @@ SMPLX论文中，则是训练了一个变分自编码器(VAE)，称之为VPoser�
 
 这个示意图可以看出，它只是一个一阶导数的近似。不过对于实时运动来说，一般也就够了。
 
-2. CCD
+## 2.2. CCD
 
 ![CCD.png](/images/CCD.jpg)
 
 CCD是一种简单的迭代IK求解器，每次只改变一个关节的旋转逼近目标。
 
-3. FABRIK
+## 2.3. FABRIK
 
 ![fabrik.png](/images/fabrik.jpg)
 
 FABRIK是另一种简洁的IK求解器，不同于CCD，它更新的是节点的坐标，此外多了一份从根节点开始的pass，有正反两个pass更新坐标。
 
-2.4 讨论
+## 2.4 讨论
 
 以上基本就是游戏引擎中常用的IK求解方法了。工业界基本都是这个原理了，比如我们在Unity插件FinalIK中就都有这几种IK的实现。
 
@@ -139,7 +144,7 @@ FABRIK是另一种简洁的IK求解器，不同于CCD，它更新的是节点的
 
     - 大部分情况下可接受，肯定有corner case
 
-3. Data-Driven IK
+# 3. Data-Driven IK
 
 我们再次从机器学习角度考虑狭义的IK这个问题，即，怎么让关节达到目标位置。
 
@@ -151,11 +156,11 @@ StyleIK和VPoser给出的思路是，我们预先训练模型学习出姿势的�
 
 我们将隐空间参数的概率作为loss function的一项，参与到IK梯度下降迭代求解中，就相当于能找到即满足IK要求又合理的姿势了。
 
-4. Implementation
+# 4. Implementation
 
 具体到代码上，我们怎么实现呢？
 
-4.1 Pose表示
+## 4.1 Pose表示
 
 首先数据来源于CMU Mocap Data，我们需要把bvh数据表示为关节旋转数据。
 
@@ -170,28 +175,22 @@ StyleIK和VPoser给出的思路是，我们预先训练模型学习出姿势的�
 前者可以理解为RestPose，而后者是带动画的状态。我们从posebone中使用matrix_basis属性就可以拿到局部坐标系下的旋转数据了。
 
 大概如下：
-
+```
 anim_data = np.zeros((len(keys)-1, len(mapping.keys()),3,3))
-
 for f in range(1, keys[-1]):
-
     sce.frame_set(f)
-
     for pbone in armature.pose.bones:
-
     mat_local = np.array(pbone.matrix_basis)[:3,:3]
-
     pbone_id = mapping[pbone.name]
-
     anim_data[f-1,pbone_id,:,:] = mat_local
-
+```
 当然到此只能处理一个BVH文件，我们要让blender批处理导入到处，用命令行模式就行
 
 注意命令行模式python脚本可以接受到argument的，所以我们可以批量执行
 
 blender --background -P data/bpy_import_bvh_and_convert.py --bvh <path-to-bvh-file>
 
-4.2 Pytorch中骨骼变换
+## 4.2 Pytorch中骨骼变换
 
 参考SMPL-Torch中的写法，不过我们只需要骨骼变换不需要蒙皮等等操作。另外SMPL中不关心单个骨骼的局部坐标系，每根骨骼的坐标系都认为是世界XYZ。我们不能这样简化，因为我们在DCC中需要拿到的是骨骼局部坐标系下的旋转。
 
@@ -211,20 +210,15 @@ parent是一个父子骨骼id表，我们只要保证每一个骨骼的父骨骼
 这里J就是每个骨骼的restLocalTransform
 
 localRot是一个nnParameter，表示骨骼旋转角度，它在pytorch中设为可微的。
-
+```
 root = torch.matmul(J[:,0], localRot[:,0])
-
 results = [root]
-
 for i in range(1, self.kintree_table.shape[1]):
-
     localTransform = torch.matmul(J[:, i], localRot[:,i])
-
     objectTransform = torch.matmul(results[parent[i]],localTransform)
-
     results.append(objectTransform)
-
-### 4.3 训练
+```
+## 4.3 训练
 
 数据只用了CMU Mocap Data的01-09这几个类别，算下来有80k的pose作为训练集，20k测试集，10k验证集。
 
@@ -232,7 +226,7 @@ RTX2070上训练，一个Epoch不到1分钟。初始lr1e-2, 200个Epoch基本效
 
 最后模型大小是2.9M，当然其中可能超过一半的参数都在encoder中，我们预测只需要decoder，也就是说还有很多压缩的空间。
 
-### 4.4 预测阶段
+## 4.4 预测阶段
 
 我们希望Blender拿过来的参数包括目标骨骼ID和目标骨骼位置，预测出每个骨骼的旋转值和根节点位移。
 
@@ -249,7 +243,7 @@ for it in range(0, iteration):
 
 当然，减小lr，提高迭代次数可以让结果变精确，不过当前这套参数表现也差不多，速度CPU上运行一次计算大约1.2s左右。
 
-4.3 Server-Blender 
+## 4.5 Server-Blender 
 
 下一个问题是，blender里怎么用pytorch？
 
@@ -260,28 +254,23 @@ for it in range(0, iteration):
 当然坏处是增加了通信和数据解析的成本，不如blender直接带pytorch这样全是内存数据交换。不过对我们也够用了。
 
 一个10行极简的框架就这样，用全大写表示伪码的部分
-
+```
 app = Flask(__name__)
 
 INITIALIZE_MODEL
 
 @app.route('/predict', methods=['GET'])
-
 def predict():
-
     if request.method == 'GET':
-
         PARSE_REQUEST_DATA
-
         RETURN PREDICTED_DATA
 
 if __name__ == '__main__':
-
     app.run(port=1028)
-
+```
 为什么这里使用Vposer？因为它有源码我们可以借鉴。
 
-5. 讨论
+# 5. 讨论
 
 这种技术的应用场景在哪里？实时的话太慢了，生产的话大部分动画都能动捕，还需要IK做什么呢？
 
@@ -297,7 +286,7 @@ if __name__ == '__main__':
 
 以及，很多情况下，直接让人类艺术家创造出的东西，比机器学习创造的更加可控，更加合理，更加便宜。那用机器学习的意义在何？
 
-6. 参考资料
+# 6. 参考资料
 
 Grochow, Keith, et al. "Style-based inverse kinematics." _ACM SIGGRAPH 2004 Papers_. 2004. 522-531.
 
@@ -318,15 +307,3 @@ Holden, Daniel, Taku Komura, and Jun Saito. "Phase-functioned neural networks fo
 VPoser https://github.com/nghorbani/human_body_prior
 
 SMPL-torch https://github.com/CalciferZh/SMPL
-
-%!(EXTRA markdown.ResourceType=, string=, string=)
-
-%!(EXTRA markdown.ResourceType=, string=, string=)
-
-%!(EXTRA markdown.ResourceType=, string=, string=)
-
-%!(EXTRA markdown.ResourceType=, string=, string=)
-
-%!(EXTRA markdown.ResourceType=, string=, string=)
-
-%!(EXTRA markdown.ResourceType=, string=, string=)

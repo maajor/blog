@@ -19,7 +19,7 @@ date: 2018-08-29 00:00:00
 
 至于实现，前人有很多种方式，比如Parish/Muller使用L-System/ShapeGrammer生成了地块的划分，不过没有细讲。这也是CityEngine中的实现方式。Vanegas提供了比较详细的实现方法，本文也是基于这篇论文的方法重现的。
 
-周边式
+# 周边式
 
 原始街区
 
@@ -51,7 +51,7 @@ date: 2018-08-29 00:00:00
 
 ![abeff27336cf3dafecc2b0b70e598178.png](/images/abeff27336cf3dafecc2b0b70e598178.jpg)
 
-平铺式
+# 平铺式
 
 在4.3节中，是一种按照object-oriented bounding box的中线递归划分的方式，算法相较上一种周边式是简单多和稳定度了，上面那个参数要调很久还有很多bug。。。。
 

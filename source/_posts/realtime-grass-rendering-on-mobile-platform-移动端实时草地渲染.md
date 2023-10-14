@@ -11,7 +11,7 @@ date: 2017-10-15 00:00:00
 
 Unity Store上有一些示例，比如
 
-Rendering Grass in Real Time with Dynamic Lighting
+# Rendering Grass in Real Time with Dynamic Lighting
 
 [http://www.kevinboulanger.net/grass.html](http://www.kevinboulanger.net/grass.html)
 
@@ -54,11 +54,11 @@ Rendering Grass in Real Time with Dynamic Lighting
 - alphatest草，mobile上毕竟太费了
 - 实时投影计算，预先计算的话也太耗了，128*128的occuluder话，单通道一张图ETC5压缩，2kb，10k草就是20mb啊，而且drawcall没法batch
 
+# 2. Rendering Countless Blades of Waving Grass
 第二个是GPU gem上的
 
 [https://developer.nvidia.com/gpugems/GPUGems/gpugems_ch07.html](https://developer.nvidia.com/gpugems/GPUGems/gpugems_ch07.html)
 
-Rendering Countless Blades of Waving Grass
 
 ![81bcfeeba2a11274a7e7113a49371961.jpg](/images/81bcfeeba2a11274a7e7113a49371961.jpg)
 
@@ -74,6 +74,8 @@ Rendering Countless Blades of Waving Grass
 
 主要的意义在于提出草插片。
 
+
+# 3. Rendering Fields of Grass using DirectX11 in GRID Autosport
 第三个是Rendering Fields of Grass using DirectX11 in GRID Autosport (RFGinAutosport)
 
 2014年的游戏，PS3/XBox 360平台。
@@ -116,6 +118,8 @@ Rendering Countless Blades of Waving Grass
 - 没考虑地形起伏，笔者经验是要做高度差值
 - 顶视相机连续移动的话，采样率高于densitymap分辨率，单草还好，如果两个densitymap混合 一个草一个石头 就会抖动
 
+# 4. Adam
+
 第四个是Adam，unity官方demo，asset store有下载
 
 和RFGinAutosports比较相似
@@ -135,6 +139,7 @@ Rendering Countless Blades of Waving Grass
 
 - 没考虑移动端，alpha-test会挂
 
+# 5. 
 第五个是知乎上的文章[https://zhuanlan.zhihu.com/p/29632347](https://zhuanlan.zhihu.com/p/29632347)
 
 1. 三级LOD按面数分，hardcode进geom shader
@@ -161,13 +166,13 @@ Rendering Countless Blades of Waving Grass
 - 没考虑美术流程
 - 位置生成用cpu，比较费
 
-第六 Zelda
+# 6. Zelda
 
 ![30b775dc6554a634b557850707db7547.jpg](/images/30b775dc6554a634b557850707db7547.jpg)
 
 很厉害，没有文章讲他们是怎么做的。。。。
 
-第七 自己的实践
+# 7. 自己的实践
 
 1. terrain系统自带detail数据，这样就可以直接美术刷density，渲染时候再换成其它mesh
 2. 不用terrain的话，可以用replace shader，顶视相机抓mesh地形的顶点色生成control map。需要注意的是，顶视相机估计渲的比较小，可能就256，要考虑采样频率低时的噪声问题
@@ -182,9 +187,3 @@ Rendering Countless Blades of Waving Grass
 在LX7里，不能用compute shader。所以位置信息不能用像素到坐标的方法。好在它用的terrain系统起伏不是很大，而且数据存储频率很低，整个地形才1024的detailmap，所以肯定不会有频率错位问题。用的5.5版本，只能DrawMeshInstanced。CPU根据玩家位置采detailmap，根据密度实时生成草数量，交给shader。位置左右偏移随机和旋转随机均是gpu中完成。其实有一点问题，因为左右偏移只是水平的，不会有高度变化。但由于地形起伏不大，也没啥问题。
 
 知乎里的文章，是用一个mesh顶点，交给shader，用geom shader生成草的形状。渲染用的AlphaToMask。也不用考虑分布密度、美术如何处理、渲染效率、移动平台。其实没啥用。
-
-[GrassSpawner.cs](./file/GrassSpawner.cs)
-
-[GrassInstance.shader](./file/GrassInstance.shader)
-
-[GrassSpawnerPreview.cs](./file/GrassSpawnerPreview.cs)

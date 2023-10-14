@@ -3,7 +3,7 @@ title: Train Post-Processing With GAN | 使用生成对抗网络训练后处理
 date: 2018-12-06 00:00:00
 ---
 
-1 Post-Processing 到 Image to Image Translation 图片翻译
+# 1 Post-Processing 到 Image to Image Translation 图片翻译
 
 这次想做的是如何用神经网络来后处理。后处理是游戏中常见的一种图像效果，核心任务也就是把原始图片通过一些图片处理的手段，转化成另一种更好看的效果，常见的比如Bloom, LUT等等。而深度学习界最近出现的一个很热的话题就是图片翻译，如何从一张图片转化成另一张图片？
 
@@ -25,7 +25,7 @@ date: 2018-12-06 00:00:00
 - 使用这些成对数据训练pix2pix
 - 训练好的模型在Unity中作为后处理实时运算。
 
-2 Image to Image Translation 图片翻译
+# 2 Image to Image Translation 图片翻译
 
 近年来深度学习的一个常见问题，如何从一张图片生成另一张图片？
 
@@ -69,7 +69,7 @@ keijiro把Pix2Pix的sketch2cat模型搬到了Unity，可以实时画猫
 
 可以将图片理解为一个数据概率分布，这就比较好理解NST和GAN的区别。NST目的是寻找两个数据分布之间的中间值，而GAN的目标是实现两个数据分布之间的转化。在NST中，目标数据分布之间的距离是一个人工构造的函数，即激活层的一些方差格拉姆矩阵等运算。而GAN中，数据分布的距离是Discriminator拟合出来的，理论上讲可以到达一些理论距离比如JSDivergence等等。
 
-3 Implementation 如何实现
+# 3 Implementation 如何实现
 
 模型的训练直接使用了KerasGAN中pix2pix的源码，不同的是原始pix2pix的Generator非常复杂，为了提高运行时性能，训练时减少了网络的深度，比如这样一个网络在运行时是基本没问题的，但是效果只能说勉强可以接受。
 
@@ -111,7 +111,7 @@ r (uint p = 0; p < n_Wk; p++) {
 
 也进行了一些改进，keijiro实现中在线程数很少的情况下表现比较差，因为一个warp就32个线程没法再少了，只能多用点cache，多几个texel同时做卷积了。
 
-5 未来如何？
+# 4 未来如何？
 
 当前来看硬件还是不太足以支持任意的实时图像翻译，理想中未来的风格化渲染工作流程完全可以是：
 
@@ -129,6 +129,8 @@ r (uint p = 0; p < n_Wk; p++) {
 这样的话实时渲染的光照模型hack也就一点用没有了，毕竟训练集可以完全离线渲染，只要有神经网络就好了。
 
 但是前提是显卡的计算量极端充裕，因为这相比于后处理可能需要更加复杂的模型。想要实时运行起来就目前来看还很遥远。
+
+# Reference
 
 Gatys L A, Ecker A S, Bethge M. Image style transfer using convolutional neural networks[C]//Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2016: 2414-2423.
 

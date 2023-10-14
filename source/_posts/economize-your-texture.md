@@ -16,9 +16,9 @@ date: 2020-08-25 00:00:00
 - 特征降维
 - 频域分解
 
-**重用**
+# 重用
 
-**连续贴图**
+## 连续贴图
 
 当然这没什么好说的，一般分成
 
@@ -34,7 +34,7 @@ date: 2020-08-25 00:00:00
 
 例，一个Trim Sheet，图片来自 [https://software.intel.com/content/www/us/en/develop/articles/modular-concepts-for-game-and-virtual-reality-assets.html](https://software.intel.com/content/www/us/en/develop/articles/modular-concepts-for-game-and-virtual-reality-assets.html)
 
-**模块化与UV重用**
+## 模块化与UV重用
 
 这不仅仅可以是物件级别的模块化，更细致的可以是UV和贴图级别的模块化
 
@@ -62,7 +62,7 @@ ID与色板
 
 [http://joostdevblog.blogspot.com/2015/11/](http://joostdevblog.blogspot.com/2015/11/)
 
-**GIF与色板**
+## GIF与色板
 
 这种重用的思想同样体现在通用的压缩算法中。比如GIF是一种我们很熟悉的格式，我们可以简单地把它理解成一个字典（查找表）的压缩模式-即重用颜色块。
 
@@ -72,7 +72,7 @@ GIF中会存储一个色板，包含256种不同的颜色。之后图片中每�
 
 [https://en.wikipedia.org/wiki/GIF](https://en.wikipedia.org/wiki/GIF)
 
-**量化**
+## 量化
 
 一般一个Float数值占用32位4个byte，即float32。但如果数据精度要求不高，我们可以用更少的位数表示一个数值。比如用float16，2个bytes表示，比如用8位1个byte表示0-255。
 
@@ -90,7 +90,7 @@ GB1的A通道，甚至自己pack了一下，前5位给MatData用。
 
 ![064f5ffe486a3f5721331f45030c6f07.jpg](/images/064f5ffe486a3f5721331f45030c6f07.jpg)
 
-**特征降维**
+## 特征降维
 
 同样一组数据，如果我们能用5个数字，损失不大地表示10个数字，那么就可以达到2倍的压缩率。这不同于重用或者量化，在于前者一般是bottom-up的，从模块开始拼装。而特征降维是top-down的，对一个精确的结果进行拟合表示。从这个意义上说，GIF的压缩方法更像是在做特征降维。
 
@@ -98,7 +98,7 @@ GB1的A通道，甚至自己pack了一下，前5位给MatData用。
 
 ![57be5abf7610e9ba8c35b33817b3125e.png](/images/57be5abf7610e9ba8c35b33817b3125e.jpg)
 
-**Indexed Material**
+## Indexed Material
 
 [https://80.lv/articles/overview-indexed-material-mapping-tecnique/](https://80.lv/articles/overview-indexed-material-mapping-tecnique/)
 
@@ -118,7 +118,7 @@ GB1的A通道，甚至自己pack了一下，前5位给MatData用。
 
 ![Image.png](/images/Image.jpg)
 
-**Texture PCA**
+## Texture PCA
 
 Bart这里就比较暴力了，直接用PCA分析PBR材质各个通道之间的相关性
 
@@ -148,7 +148,7 @@ Bart这里就比较暴力了，直接用PCA分析PBR材质各个通道之间的�
 
 上面这两个方法都注意到了材质中，各个通道的相关性，以此为基础做特征降维简化。
 
-**BCn格式与硬件贴图压缩**
+## BCn格式与硬件贴图压缩
 
 BCn是Block Compression的缩写，其基本假设是：贴图在邻近像素间的变化不大。这样就可以拟合临近像素。因此它把贴图分成block存储，每个block中做降维和拟合。 
 
@@ -178,7 +178,7 @@ BCn是Block Compression的缩写，其基本假设是：贴图在邻近像素间
 
 后来的各种BC算法基本都是这个思路，对局部颜色进行拟合表示。
 
-**频域分解**
+## 频域分解
 
 频域分解是信号处理中的一个思想，我们可以用FFT分解把信号从时间空间分解到频率空间表示，这样做处理和分解出需要的信息比较方便。低频信息是变化幅度比较缓慢的，而高频信息是变化迅速的。
 
@@ -238,11 +238,11 @@ JPG格式是一个经典的利用频域分解以后，在频域空间做量化�
 
 [https://cgjennings.ca/articles/jpeg-compression/](https://cgjennings.ca/articles/jpeg-compression/)
 
-总结
+# 总结
 
 本文列举了一些常见的优化贴图的技巧，与常见图片格式背后的原理。一般来说，UV，低模，贴图，Shader方面是TA比较好做优化的方面。而涉及到引擎部分，看团队能力，看分工，就不一定了。我们讨论的制作管线中，很大程度是为了节约贴图，节约内存，提高精度，提高丰富度。但也取决于游戏类型，团队经验，并没有非常统一的标准。因笔者比较少见国内TA讨论这方面的内容，故做一总结，欢迎补充，也希望对读者有帮助。
 
-参考资料
+# 参考资料
 
 [https://software.intel.com/content/www/us/en/develop/articles/modular-concepts-for-game-and-virtual-reality-assets.html](https://software.intel.com/content/www/us/en/develop/articles/modular-concepts-for-game-and-virtual-reality-assets.html)
 

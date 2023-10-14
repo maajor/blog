@@ -11,11 +11,11 @@ PyMel的文档在[http://help.autodesk.com/cloudhelp/2017/ENU/Maya-Tech-Docs/PyM
 
 部署环境需要做几件事
 
-1 devkit
+# 1 devkit
 
 2016的devkit需要单独下载 地址在[https://apps.autodesk.com/MAYA/en/Detail/Index?id=5595681162321676385&os=Win64&appLang=en](https://apps.autodesk.com/MAYA/en/Detail/Index?id=5595681162321676385&os=Win64&appLang=en)
 
-2 外部编辑器部署
+# 2 外部编辑器部署
 
 笔者使用的Sublime Text
 
@@ -59,7 +59,7 @@ Jedi在sublime中参数设置需要加一些：
 
 就是python解释器用的maya版本，包用的maya的
 
-3 外部包
+# 3 外部包
 
 maya python之中可以安装PyPI的包的，就像普通python用pip install那样
 
@@ -80,7 +80,7 @@ easy_install.main( ["xlrd"] )
 
 [http://help.autodesk.com/view/MAYAUL/2017/ENU/?guid=__files_GUID_3F96AF53_A47E_4351_A86A_396E7BFD6665_htm](http://help.autodesk.com/view/MAYAUL/2017/ENU/?guid=__files_GUID_3F96AF53_A47E_4351_A86A_396E7BFD6665_htm)
 
-4 PyMel用法
+# 4 PyMel用法
 
 常用的
 

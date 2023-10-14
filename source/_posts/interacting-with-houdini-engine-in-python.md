@@ -3,6 +3,9 @@ title: Interacting with Houdini Engine in Python | 使用Python与Houdini Engine
 date: 2020-01-17 00:00:00
 ---
 
+[Githbub Codebase](https://github.com/maajor/pyhapi)
+[PYPI Package](https://pypi.org/project/pyhapi/)
+
 Houdini Engine是Houdini的一个无图形界面简化版，可以通过houdini engine与houdini内核交互，完成houdini fx中的操作。
 
 官方有For Maya, For Max, For Unity, For Unreal四个插件，可以在这四个host程序中调用houdini engine。这是极好的，意味着开发的HDA资源可以直接应用在host程序中。不过笔者并不满足于此，是否可以不用host环境直接调用houdini engine？当然可以，官方提供了一套C API  [https://www.sidefx.com/docs/hengine/](https://www.sidefx.com/docs/hengine/) . 只不过笔者看着它就头疼，主要两个问题
@@ -25,10 +28,6 @@ pip install pyhapi
 numpy>1.15
 
 Houdini17.5测试没问题，需要commercial license. Houdini18尚未测试
-
-[https://github.com/maajor/pyhapi](https://github.com/maajor/pyhapi)
-
-[https://pypi.org/project/pyhapi/](https://pypi.org/project/pyhapi/)
 
 当然要注意的是，请确保houdini dll路径在PATH中
 

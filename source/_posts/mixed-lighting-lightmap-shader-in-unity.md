@@ -5,7 +5,7 @@ date: 2017-09-02 00:00:00
 
 在MixedLight模式，Lightmap有三个模式：Shadowmask，Bake Indirect和Subtractive
 
-**Bake Indirect**
+## Bake Indirect
 
 不烘焙直接阴影，只烘焙间接光，在Shadow Distance(Project Settings>Quality>Shadows里面设置)之内的阴影都是实时计算的（Shadow Map）。
 
@@ -21,7 +21,7 @@ date: 2017-09-02 00:00:00
 
 对shader来说，阴影就直接用TRANSFER_SHADOW啊，SHADOW_ATTENUATION出来的就行了。采样Lightmap就多了点间接光。
 
-**Subtractive**
+## Subtractive
 
 这个模式呢是唯一一种把阴影烘焙进贴图的模式，
 
@@ -37,7 +37,7 @@ date: 2017-09-02 00:00:00
 
 缺点是不支持实时直接光，所以静态物体没有高光；light prob阴影比较差；动态静态阴影混合会有问题。
 
-**Shadowmask**
+## Shadowmask
 
 这个把阴影信息存到一张贴图里了，这个贴图里可以存四个灯光阴影（RGBA四个通道）
 

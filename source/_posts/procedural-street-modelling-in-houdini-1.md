@@ -16,7 +16,7 @@ date: 2018-08-17 00:00:00
 
 它可以有两个互相垂直的本征向量，这个特性很好，很多路网交叉口是垂直的。
 
-1 张量场生成
+# 1 张量场生成
 
 可以有多种，比如格网的，轴向的。延海岸线和河流线可以有顺应边缘的张量场，沿高度图也可以有顺应梯度的张量场。
 
@@ -38,7 +38,7 @@ date: 2018-08-17 00:00:00
 
 ![b2369f1e516ae887eeb9ac366fa13294.png](/images/b2369f1e516ae887eeb9ac366fa13294.jpg)
 
-2 主干路生成
+# 2 主干路生成
 
 从一些随机点开始沿主本征向量方向走，隔一段距离布一个种子点，直到走不下去；按一定规则选一个种子点开始按次本征向量方向移动，布种子点直到走不动；继续选种子点，换方向，布种子点。
 
@@ -228,16 +228,4 @@ CityEngine L-system
 
 [bidarra-3AMIGAS-RS.pdf](./file/bidarra-3AMIGAS-RS.pdf)
 
-%!(EXTRA markdown.ResourceType=, string=, string=)
-
-%!(EXTRA markdown.ResourceType=, string=, string=)
-
-%!(EXTRA markdown.ResourceType=, string=, string=)
-
-%!(EXTRA markdown.ResourceType=, string=, string=)
-
 [http://martindevans.me/game-development/2015/12/27/Procedural-Generation-For-Dummies-Lots/](http://martindevans.me/game-development/2015/12/27/Procedural-Generation-For-Dummies-Lots/)
-
-%!(EXTRA markdown.ResourceType=, string=, string=)
-
-%!(EXTRA markdown.ResourceType=, string=, string=)

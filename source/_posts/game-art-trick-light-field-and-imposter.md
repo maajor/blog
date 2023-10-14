@@ -3,6 +3,7 @@ title: Game Art Trick – Light Field and Imposter | 游戏美术技巧 – 光�
 date: 2020-12-27 00:00:00
 ---
 
+[Github Codebase](https://github.com/maajor/lightfield-imposter)
 ![gif_animation_008.gif](/images/gif_animation_008.gif)
 
 鸽了两个月回归。笔者了解基于图像的方法时，初听感觉没有什么特别，但细细想来忽然感觉其实以前遇到的不少美术技巧都是和这个原理相关的。当时不知道这些技巧如何被人想到，如今才发现与图形学有其相通之处。因此这里整理成文。毕竟理论水平还要学习一个，大概只能给读者一个定性的认识了。
@@ -29,7 +30,7 @@ date: 2020-12-27 00:00:00
 
 序列帧的例子太简单了，笔者这里就不再赘述。不过Motion Vector Flipbook倒是个蛮有意思的方法，读者有兴趣请自行研究。[http://www.klemenlozar.com/frame-blending-with-motion-vectors/](http://www.klemenlozar.com/frame-blending-with-motion-vectors/)
 
-**1 从六向光照图讲起**
+# 1 从六向光照图讲起
 
 笔者第一次见是在realtimevfx论坛上，skullnbone的特效TD讲了这样一种做烟的特效的方法。
 
@@ -79,7 +80,7 @@ date: 2020-12-27 00:00:00
 
 这里不再具体描述。
 
-**2 球谐光照公告板**
+# 2 球谐光照公告板
 
 上文讲到从Ambient Cube到SH的例子，其原因当然是球谐能保存信息的信噪比更低，很自然的一个提示是，六向光照图能不能改造成球谐光照公告板？
 
@@ -89,7 +90,7 @@ date: 2020-12-27 00:00:00
 2. 将光照压缩成球谐参数，存成贴图
 3. 在引擎中还原球谐效果
 
-2.1 构造云
+## 2.1 构造云
 
 没太多复杂的，在ZB里随便拉个体块，然后放进Houdini变成云，多光线角度渲染一下就行了
 
@@ -97,7 +98,7 @@ date: 2020-12-27 00:00:00
 
 笔者这里渲染了540张512x512的不同光照角度的图。
 
-2.2 压缩球谐
+## 2.2 压缩球谐
 
 有关球谐的基础知识这里暂且略过，笔者也没推导出来，仅仅直观理解就好了，核心会有一个shEvaluate函数
 
@@ -158,7 +159,7 @@ color = dot(coeffs_dir, coeffs_total)
 
 ![loss.png](/images/loss.jpg)
 
-3 引擎重建
+## 2.3 引擎重建
 
 上文讲到笔者重建了2阶球谐存了512x512x9个系数。这样正好存成三张贴图，当然要之前做一次归一化。
 
@@ -192,7 +193,7 @@ color = dot(coeffs_dir, coeffs_total)
 
 [https://mynameismjp.wordpress.com/2016/10/09/sg-series-part-6-step-into-the-baking-lab/](https://mynameismjp.wordpress.com/2016/10/09/sg-series-part-6-step-into-the-baking-lab/)
 
-3 八面体公告板
+# 3 八面体公告板
 
 [https://www.shaderbits.com/blog/octahedral-impostors](https://www.shaderbits.com/blog/octahedral-impostors)
 
@@ -226,7 +227,7 @@ color = dot(coeffs_dir, coeffs_total)
 
 此外，笔者还试了下结合八面体公告板和六向光照图，至于效果嘛，并没法看。同样大小贴图可能还不如体素贴图。
 
-4 3D公告板压缩
+# 4 3D公告板压缩
 
 笔者对这个方法的主要诟病是，需要的内存太大了，一个最远LOD的公告板贴图用2K，有点夸张。
 
@@ -296,11 +297,11 @@ self.fc_out = nn.Linear(W, 4)
 
 虽然这个实验不太成功，但是至少是不是可以启发将来有可能神经网络可以整合进渲染管线？比如一个不好渲染的物体，用神经网络光场方法拟合，然后和传统光栅化/光线追踪管线一起使用？
 
-总结
+# 总结
 
 笔者介绍并延伸了两种经典的公告板方法：六向光照图和八面体公告板，指出了其与光场方法思想的联系。对于前者，改进了一种更好的方法。对于后者，指出了其将来可能的应用场景。给读者一个不同于基于物理方法的思路，希望对读者有帮助，并提前祝新年快乐！
 
-参考
+# 参考
 
 [https://www.youtube.com/watch?v=Rd0nBO6--bM&feature=youtu.be&t=1992&ab_channel=IntelISL](https://www.youtube.com/watch?v=Rd0nBO6--bM&feature=youtu.be&t=1992&ab_channel=IntelISL)
 

@@ -3,6 +3,8 @@ title: Making of a alien base with L-System | 使用L-system建模外星基地
 date: 2018-09-26 00:00:00
 ---
 
+![](/images/main-1600x902.jpg)
+
 Procedural建模中有一套比较特殊的基于规则的方法，一般都是衍生自L-system。最早是匈牙利植物学家lindenmayer提出的，L-system也就是Lindenmayer-System的简称。自然界的植被(Speedtree)，建成环境(CityEngine)基本都是基于L-Systemd的。Houdini里直接有现成的节点提供。
 
 不过问题是这种L-System不支持与环境交互或者与自己的交互，对local constraint和global goal没有知识。

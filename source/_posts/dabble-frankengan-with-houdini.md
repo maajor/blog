@@ -2,7 +2,6 @@
 title: Dabble FrankenGAN with Houdini | Houdini中测试FrankenGAN
 date: 2019-01-18 00:00:00
 ---
-# 20190117 FrankenGan with Houdini
 
 本文尝试在Houdini中测试和实现FrankenGan的（部分）功能
 
@@ -82,46 +81,37 @@ Opencv-python 3.2   ->4.0会导致houdini闪退
 
 安装就不再赘述，请见上一篇
 
-1. 后端改造
+# 1. 后端改造
 
 把原作的bikegan封装为houdini可用的函数。
 
 原作的test_interactive.py是主入口，做的事情是部署了多个监控进程，每个GAN如果有输入的话，就立即执行那个GAN。
 
 我们要找的是
-
+```
 Interactive("facade labels", "empty2windows_f009v2_400",
-
             dataset_mode='multi', fit_boxes=(blank_classes, fit_blank_labels),
-
             empty_condition=True, metrics_condition=True, imgpos_condition=True,
-
             metrics_mask_color=[0, 0, 255])
-
+```
 这个进程。
 
 看一下代码，初始化载入模型，然后开一个进程等待输入，有输入了就运行模型，执行RunG这个函数
 
 facade2label会监测input/facade labels/val这个文件夹，会不会出现一个叫“go"的文件，有了就执行。
-
+```
             go = os.path.abspath(os.path.join (event.src_path, os.pardir, "go"))
-
             if not os.path.isfile(go):
-
                 return
-
+```
 运行模型的函数很简单，可以简化成
-
+```
             data_loader = CreateDataLoader(self.opt)
-
             dataset = data_loader.load_data()
-
             for i, data in enumerate(dataset):
-
                 self.model.set_input(data)
-
                 _, real_A, fake_B, real_B, _ = self.model.test_simple(z, encode_real_B=False)
-
+```
 从目录文件夹载入图片，然后逐一喂给模型。
 
 这就很简单了，我们知道Houdini Chop可以把图片转化为numpy的ndarray，那我们只需封装一下facade2label，让它输入一个ndarray，也输出ndarray。
@@ -129,38 +119,28 @@ facade2label会监测input/facade labels/val这个文件夹，会不会出现一
 择一下原作的代码稍加改动就行。
 
 需要注意的是，原作data.compute_metrics中有一个compute_metrics函数，计算上文提到的里面距离信息。它会输入一个尺度参数，原作代码中通过文件名的@后面的数据读出，详见multi_dataset.py
-
+```
 if '@' in os.path.basename(os.path.splitext(self.AB_paths[index])[0]):
-
-                unit_size = float(os.path.basename(os.path.splitext(self.AB_paths[index])[0]).split('@')[1].split('_')[0]) # in fraction of the image height
-
-                unit_size *= metrics_mask.shape[0] # in pixels
-
+    unit_size = float(os.path.basename(os.path.splitext(self.AB_paths[index])[0]).split('@')[1].split('_')[0]) # in fraction of the image height
+    unit_size *= metrics_mask.shape[0] # in pixels
 else:
-
-                unit_size = metrics_mask.shape[0]
-
+    unit_size = metrics_mask.shape[0]
+```
 这个参数我们是需要的，让houdini提供给pytorch后端
 
 最后我们把它封装成facade2label函数，测试代码
-
+```
 if __name__ == '__main__':
-
-AB = Image.open("facade0.png").convert('RGB')
-
-AB = AB.resize((256,256), Image.BICUBIC)
-
-imgarray = np.array(AB, dtype=np.float32)
-
-imgarray /= 255.0
-
-result = facade2label(imgarray, 0.2)
-
-save_image(result, "output.png")
-
+    AB = Image.open("facade0.png").convert('RGB')
+    AB = AB.resize((256,256), Image.BICUBIC)
+    imgarray = np.array(AB, dtype=np.float32)
+    imgarray /= 255.0
+    result = facade2label(imgarray, 0.2)
+    save_image(result, "output.png")
+```
 terminal运行能生成结果就是完成了。
 
-2. CHOP编写
+# 2. CHOP编写
 
 首先，要从上文写好的facade2label.py路径启动houdini，这样好导入这个库。
 
@@ -169,37 +149,23 @@ terminal运行能生成结果就是完成了。
 ![5987914522b531bbd82c9d2407b0400e.png](/images/5987914522b531bbd82c9d2407b0400e.jpg)
 
 代码里只需要重写一些Cook函数就行
-
+```
 from facade2label import facade2label
 
-    
-
 def cook(cop_node, plane, resolution):
-
         input_cop = cop_node.inputs()[0]
-
         pixels = np.array(input_cop.allPixels("C"),dtype=np.float32)
-
         result = np.reshape(pixels, (256,256,3))
-
-        
-
+       
         input_geo_node = hou.node("../input_geo")
-
         inputgeo = hou.node(input_cop.parm("soppath").eval())
-
         maxsize = inputgeo.geometry().findGlobalAttrib("maxaxis").defaultValue()
 
-        
-
         result = facade2label(result, 3 / maxsize)
-
         arraypxs = array.array("f", result.flatten())
 
-        
-
         cop_node.setPixelsOfCookingPlane(arraypxs)
-
+```
 这里因为chop的上一个节点是Geometry节点，所以直接去找输入的一个参数就能找到那个sop
 
 ![b69fd6aa2fd7b4ef17e3bb2eb6798085.png](/images/b69fd6aa2fd7b4ef17e3bb2eb6798085.jpg)

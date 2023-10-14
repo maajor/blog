@@ -2,13 +2,17 @@
 title: Skin Decomposition | 蒙皮分解
 date: 2019-02-14 00:00:00
 ---
-# 20190214 Skin Decomposition | 蒙皮分解
+
+[Github Codebase](https://github.com/maajor/Dancer-Skin-Decomposition)
+<video width="640" height="360" controls>
+  <source src="/images/ssdr.mp4" type="video/mp4">
+</video>
 
 想解决的问题是：已知一连串顶点运动的动画，能不能用骨骼动画把它表示出来？
 
 比如，一个动补的脸部动画？一个离线模拟的布料？
 
-1. Intro
+# 1. Intro
 
 一个直觉的想法是，这不就是降维嘛。顶点运动的很多数据是相关的，比如相近两点的运动会比较接近。所以应该有办法压缩它们，就像PCA主成分分析一样，找到影响顶点最重要的维度就行了。
 
@@ -36,7 +40,7 @@ Houdini Skinning Converter
 
 目测类似于SMA的方法，直接指定骨骼初始位置然后计算一次权重和骨骼每帧位置，笔者和SSDR做了对比，可以说Houdini这个确实比较差。
 
-1. Smooth Skinning Decomposition with Rigid Bones
+## 1.1. Smooth Skinning Decomposition with Rigid Bones
 
 2012年的这篇论文可以说是Skin Decomposition的经典文章了
 
@@ -94,7 +98,7 @@ Kabsch算法方便的是通过一个SVD分解就能比较容易地计算出。
 
 纵观这个论文，目标其实很简单，然后分而治之，迭代对每一部分优化求解，求解过程各种神奇算法。笔者想，但是没有实践，为什么不用梯度下降求解？？
 
-1. Implementation
+# 2. Implementation
 
 笔者当然没有自己写代码实现。有现成的源码
 
@@ -108,7 +112,7 @@ Kabsch算法方便的是通过一个SVD分解就能比较容易地计算出。
 
 C++的实现，比上面python那个快很多，而且效果准确。
 
-1. Practice
+# 3. Practice
 
 自然是用布料了!
 

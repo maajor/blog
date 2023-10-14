@@ -38,7 +38,7 @@ date: 2020-07-11 00:00:00
 
 以下首先介绍一些我们会使用到的工具
 
-1. CI工具与Jenkins
+# 1. CI工具与Jenkins
 
 CI的一个典型pipeline是：
 
@@ -98,7 +98,7 @@ Jenkinsfile会被翻译成jvm虚拟机的groovy语言执行。在其中可以做
 
 不过，既然有jenkins这个轮子为何不用。BlueOcean插件的可视化确实做的不错哦。
 
-1. Docker和容器化
+# 2. Docker和容器化
 
 "Docker 是一个开源的应用容器引擎"，一般第一句介绍是这样的。
 
@@ -140,7 +140,7 @@ docker run -it --rm -v ${pwd}:/media/ nytimes/blender
 blender --background -p test.py
 ```
 
-1. Blender中减面和面数统计
+# 3. Blender中减面和面数统计
 
 笔者这里使用blender命令行模式生成LOD，具体来说是给模型添加一个Decimate修改器减面。
 
@@ -175,7 +175,7 @@ def get_polycount(obj):
     return len(obj.data.polygons.items())
 ```
 
-1. 用decorator和反射机制和简化和复用blender代码
+# 4. 用decorator和反射机制和简化和复用blender代码
 
 这里抽象的一个问题是
 
@@ -263,7 +263,7 @@ spec.loader.exec_module(bpy_script)
 bpy_script.main()
 ```
 
-5 组装起来
+# 5 组装起来
 
 这个简易的pipeline分成四步，
 
@@ -360,7 +360,7 @@ foreach ($t in $tests.name)
 
 ![aae78ed30c6260a6fb5b3270f575287f.png](/images/aae78ed30c6260a6fb5b3270f575287f.jpg)
 
-1. 讨论，什么是pipeline？
+# 6. 讨论，什么是pipeline？
 
 在Jenkins中，pipeline就是系列步骤，可能在做测试，做build等等。
 

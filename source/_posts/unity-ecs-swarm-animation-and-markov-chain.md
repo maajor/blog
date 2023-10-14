@@ -2,7 +2,6 @@
 title: Unity ECS, Swarm Animation and Markov Chain| ECS集群动画与马尔可夫链
 date: 2018-11-24 00:00:00
 ---
-# 20181124 ECS, 集群动画和马尔可夫链
 
 ![gif_animation_007.gif](image/gif_animation_007.gif)
 
@@ -34,7 +33,7 @@ UnityAustinTechnicalPresentation提供了一个ECS的集群动画案例，虽然
 
 当然缺点就是近距离观察效果不好，动画没有gameplay逻辑了，因此只适用于背景性的大规模集群动画。
 
-顶点动画制作
+# 顶点动画制作
 
 动画数据直接就用Houdini自带的MocapBiped了，只是要做一下减面。减面稍微有点trick是原始模型上下半身和头是分开的mesh，需要先fuse再polyreduce。之后烘焙顶点动画用GameDevelopmentTool很容易，笔者这里将四个动画烘焙在一张贴图上。256个顶点512帧，正好256\*512的贴图。
 
@@ -42,7 +41,7 @@ UnityAustinTechnicalPresentation提供了一个ECS的集群动画案例，虽然
 
 ![bandicam_2018-11-24_00-20-37-016.gif](image/bandicam_2018-11-24_00-20-37-016.gif)
 
-动画状态转换
+# 动画状态转换
 
 马尔可夫链就是一个状态转移的随机过程，这和我们随机动画的性质很相似，可以让下一个动画出现的概率只跟上一个动画相关，用一个转移矩阵表示。
 
@@ -119,7 +118,7 @@ UnityAustinTechnicalPresentation提供了一个ECS的集群动画案例，虽然
         }
 ```
 
-渲染调用
+# 渲染调用
 
 最近的ECS更新中，虽然有了MeshInstanceRenderer这个组件，但问题是没法设置instancing的参数数组，因此就必须自己写一套Instancing System来传递这个参数数组。
 

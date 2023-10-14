@@ -1,17 +1,17 @@
 ---
-title: Memo of Analysing Game Rendering 2 | 分析游戏渲染的姿势备忘之二
-date: 2018-03-04 00:00:00
+title: Some Methods to Occlusion Culling | 遮挡剔除的几种方式
+date: 2018-02-21 00:00:00
 ---
 
 目前主流的OC有这几种方式：预计算的原始的PVS，主要CPU端的umbra的dPVS。和主要GPU端的GPU-Driven。像RealTimeRendering中提到的Hierarchical Z-Buffering和HOM，大多比较底层，集成在其它实现方案里，比如dPVS用了HOM的技术。
 
-1. 简单PVS
+# 1. 简单PVS
 
 直接离线计算每个位置上的可见物体集。位置用cell描述，几米一个。给每个物体一个ID，存一个bitarray记录可见性，内存占用也很小。实时运行很快，只是离线计算比较慢，在手游上很容易实现。有几个要点：1. Cell划分，最简单的就是平均切分了，更细致的考虑还有按密度自适应cell大小（比如四叉树），高度上可能有多层需要支持等等。2. 可视性计算，从Cell到被判断的物体，采集哪些射线求交并且速度快就有学问了。最简单的是直接格子和被判断物体的AABB间连线，这是非常保守的了。3. Streaming，开放世界做streaming的话，物体ID就得按chunk给了，可见性bitarray同样。
 
 不过PVS似乎在Asset Store上没有现成的做法。但是自己写一个也是很快，而且效果不错。唯一问题就是听起来技术比较low。据笔者所知，盘古和互娱的手游都有开发自己的PVS系统。内部资料就不分享了。
 
-1. dPVS
+# 2. dPVS
 
 Unity自己的Occulusion Culling用的是Umbra的中间件，也就是dPVS的技术。是Timo Aila提出的，当时是他在赫尔辛基大学的硕士毕业论文。后来他成立了Umbra，07年加入了NVIDIA Research. dPVS虽然叫PVS，但是和纯离线的原理有很大区别。它离线不计算所有可见性，而只是生成一个空间数据结构，一个BSP描述的节点信息，用于之后的空间位置查询。因此离线计算的速度快很多。但是在线会多计算不少东西，包括跟踪可见物体的标记点，提取轮廓生成HOM等。
 
@@ -33,7 +33,7 @@ dPVS的提出在2000年，借鉴了hierarchical occlusion maps的技术。创新
 
 看上去很酷炫，烘焙速度很快，unity自带。唯一的问题是在手游上CPU的性能开销还是可观的，一帧1-2ms不成问题，比原始PVS高一个数量级。另外不支持streaming，这样大场景的内存占用是不太能接受的。
 
-1. GPU Driven
+# 3. GPU Driven
 
 这种就比较叼了，全部用compute shader做遮挡剔除，然后用compute shader来合并index/vertex buffer。结合Virtual Texturing和DrawInstanceIndirect，简直可以一两个drawcall画出所有的场景。
 

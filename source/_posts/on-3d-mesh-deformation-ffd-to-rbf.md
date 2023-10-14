@@ -2,9 +2,8 @@
 title: On 3D Mesh Deformation, FFD to RBF | 模型变形从FFD到RBF
 date: 2019-08-07 00:00:00
 ---
-# 20190804 3D Mesh Deformation
 
-1. 模型变形的方法
+# 1. 模型变形的方法
 
 在游戏开发中有多种常用技术可以使得一个模型（mesh）变形。比如Blendshape/Morphtarget，可以运行时对顶点插值得到中间状态的模型。比如Linear Blend Skinning，也就是最常见的骨骼蒙皮方法，可以让角色模型变形显示动画。这些技术的目的大多是为了“表现”，将预计算的结果显示出来。而本文涉及的技术，更偏向于“编辑”，也就是预计算的部分。
 
@@ -12,7 +11,7 @@ date: 2019-08-07 00:00:00
 
 本文涉及的算法基本都来自于Polygon Mesh Processing一书9.5，9.6节。读者如果想扩展阅读，直接去看这本书就好了。这本书可以说是几何处理的圣经了，作者都是该领域顶级学者。虽然是十年前出版的，但内容一点都不过时。
 
-1. 算法回顾-Lattice FFD到Cage FFD
+## 2.1. 算法回顾-Lattice FFD到Cage FFD
 
 Lattice FFD[Sederberg and Parry 86] 是最经典也是应用最广泛的FFD了，3dsmax和maya都内置了这个功能。它的数学表述为
 
@@ -56,7 +55,7 @@ FFD存在的一个问题是如果给定某点位移作为限制条件，其结�
 
 如果我们回忆一下Linear Blend Skinning即骨骼蒙皮的做法，其变形原理也是对控制点（如果认为骨骼是控制点）的加权移动。区别在于骨骼蒙皮的权重是稀疏的，一般只有4-8个权重不为0。而且骨骼蒙皮的权重是可以自由定义的，即用户可以刷权重，而不是被数学公式定义的。
 
-1. RBF变形
+## 2.2. RBF变形
 
 RBF的表述为下式
 
@@ -97,7 +96,7 @@ alpha是待求的向量权重，beta是待求的多项式系数，Rc是控制点
 
 ![3d5041b9f605dc354f2bb3d7cc8a92e2.png](/images/3d5041b9f605dc354f2bb3d7cc8a92e2.jpg)
 
-1. Houdini中的实现
+# 2. Houdini中的实现
 
 由于需要解一个线性方程，可以用numpy.linalg来做，这里写了一个python节点，其实也只需要一个python节点
 
@@ -172,7 +171,7 @@ deform_pts +=  np.matmul(M,x)
 geo.setPointFloatAttribValues("P", deform_pts.reshape(3*deform_npts));
 ```
 
-1. 应用
+# 3. 应用
 
 第一个例子对一个怪兽头部做了变形
 
@@ -195,6 +194,8 @@ geo.setPointFloatAttribValues("P", deform_pts.reshape(3*deform_npts));
 节点也很简单
 
 ![deform_person_node.PNG](/images/deform_person_node.jpg)
+
+# Reference
 
 Free-Form Deformation of Solid Geometric Models
 

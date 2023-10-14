@@ -4,11 +4,12 @@ date: 2019-03-31 00:00:00
 ---
 # 20190331 Hair Modelling and Rendering
 
+[Github Codebase](https://github.com/maajor/Marschner-Hair-Unity)
 ![Hair2_2.png](/images/Hair2_2.jpg)
 
-1 渲染
+# 1 渲染
 
-1.1 Kajiya-Kay
+## 1.1 Kajiya-Kay
 
 最早研究毛发渲染的便是Kajiya和Kay，他们在1989年提出了Kajiya-Kay模型。这也成为了实时图形学的标准方法，甚至在30年后的今天，大量游戏的头发还是使用的这个模型。Jim Kajiya应该是个日裔，他在Utah大学完成的博士学位，目前还在微软研究院工作。他因为对毛发渲染做出的突出贡献，获得了1997年的奥斯卡技术贡献奖。
 
@@ -26,7 +27,7 @@ PPT中还讲到了排序的问题，提出了多个pass，先alpha-test写入z�
 
 移动平台上还是用的相近的方法，不过在主机上大多流行TAA+dither了。
 
-1.2 Marschner
+## 1.2 Marschner
 
 Thorsten Scheuermann的文章中提到了Marschner的论文，不过只是唯象提到了两层高光的效果，并没有参考Marschner的光照模型。真正用到Marschner应该还是从离线渲染开始的。在2016年才由Epic公开了实时的做法。
 
@@ -68,11 +69,11 @@ N项解了一个方程....还挺复杂的
 
 [https://github.com/maajor/Marschner-Hair-Unity](https://github.com/maajor/Marschner-Hair-Unity)
 
-1.3 d'Eon
+## 1.3 d'Eon
 
 Weta对Marchner的改进，主要侧重于能量守恒。
 
-1.4 Epic的实现
+## 1.4 Epic的实现
 
 Epic在实现的时候首先参考了d'Eon的实现，这个是Weta的做法，相比于Marschner的改进是考虑了能量守恒。
 
@@ -98,7 +99,7 @@ Epic在实现的时候首先参考了d'Eon的实现，这个是Weta的做法，�
 
 UE大部分的代码都实现了，唯独没有实现eccentricity，这在Marchner论文里讲到了。这部分笔者实现了一下。
 
-1.4 Fur 
+## 1.4 Fur 
 
 短毛上也可以啊！不过有点差别
 
@@ -110,13 +111,13 @@ UE大部分的代码都实现了，唯独没有实现eccentricity，这在Marchn
 
 Disney在Hyperion里做了点改进，就是N项不用复杂积分了，直接pathtracing完事。所以变快了。
 
-2 制作
+# 2 制作
 
-2.0 模型
+## 2.0 模型
 
 很多手游里头发还是模型体的做法，而不用插片。贴图也是用一个径向模糊的图jitter tangent，使用kajiya-kay模型，这里便不再赘述。
 
-2.1 插片
+## 2.1 插片
 
 实时中使用的话，主机上常见的做法还是插片，有很多的插件可以做了，比如Ornatrix, Hairfarm, Maya XGen等等。笔者这里试用了一下Ornatrix。
 
@@ -138,7 +139,7 @@ Disney在Hyperion里做了点改进，就是N项不用复杂积分了，直接pa
 
 ![4177fb2acf53459737768e0234cbf119.png](/images/4177fb2acf53459737768e0234cbf119.jpg)
 
-2.2 贴图
+## 2.2 贴图
 
 在游戏里的传统做法还是做头发的贴图Atlas，预先做集中strand，然后把guide烘出来的头发uv映射上去，每一个组对应一块uv
 
@@ -154,11 +155,11 @@ Ornatrix可以直接导出时候用tangent作为法线，所以比较好烘。
 
 ![Hair2_Property.jpg](/images/Hair2_Property.jpg)
 
-2.4 TressFX/HairWorks
+## 2.4 TressFX/HairWorks
 
 这个就比较非传统了，不用做插片，都是guide就行。这里就不详述了。
 
-2.5 Deep Learning + 
+## 2.5 Deep Learning + 
 
 最近几年一直有人在研究用计算机视觉建模头发，这两年深度学习重新带火了这个领域，比如去年的3D hair synthesis using volumetric variational autoencoders
 

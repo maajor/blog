@@ -36,7 +36,7 @@ Houdini PDG是17.5版本新增的一个任务管理模式，方便最终结果�
 
 一些Houdini Engine的注意：
 
-1. Workitem与Input
+# 1. Workitem与Input
 
 一个HDA可能有1~9999个input
 
@@ -89,13 +89,13 @@ for value in node_map.values():
 
 总之相当的绕
 
-1. Cache与Dirty，粒度选择
+# 2. Cache与Dirty，粒度选择
 
 每个HDA Processor会自动cache文件的。一般来讲，如果上游的文件dirt了或者重新生成了，下游的应该重新生成的。但是有时候，下游的直接去读cache了。。。。这样上游的修改就没进来。只能强行一个一个dirty and recook。有一个Workitem Generation的模式选择，感觉static就是只能手动重新生成，dynamic是每次下游一cook都自动cook一遍，笔者也并没太绕清楚。。。。
 
 因为有可能有会有dirty不到的问题，笔者建议PDG中的HDA越少越好，粒度要达到一组输入一个HDA，不要为了重用做太多HDA。如果太多的话哪个一没dirty后面就全坏了，笔者最后才意识到这个问题然而为时已晚。
 
-1. HEngineData
+# 3. HEngineData
 
 这个好像只跟HEU有关，可以看HEU_PDGObjects.cs中的TOPNodeTags定义。
 
@@ -110,7 +110,7 @@ for value in node_map.values():
 
 至于有关项目的一些原理：
 
-道路
+## 道路
 
 主要是这篇文章使用的技术，用tensorfield创建道路。
 
@@ -124,7 +124,7 @@ for value in node_map.values():
 
 ![road.png](/images/road.jpg)
 
-地块：
+## 地块：
 
 主要是这篇的技术
 
@@ -132,7 +132,7 @@ for value in node_map.values():
 
 ![urban.PNG](/images/urban.jpg)
 
-小别墅
+## 小别墅
 
 这里用了L-sys生成基底
 
@@ -140,6 +140,6 @@ for value in node_map.values():
 
 ![house.PNG](/images/house.jpg)
 
-Disclaimer:
+# Disclaimer:
 
 - 供个人学习，限于Houdini Engine没有non-commercial版本，所有资源并不开源，如需文件请联系笔者，如果喜欢请打个赏:)

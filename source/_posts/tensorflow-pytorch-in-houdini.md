@@ -37,7 +37,7 @@ cuDNN 7.05 ->用cpu计算就不需要
 
 基本思路是：在Virtualenv下安装深度学习库，然后用virtualenv启动Houdini，这时houdini的python就是系统的python了，可以使用当前virtualenv下的package
 
-1.Houdini 安装
+# 1.Houdini 安装
 
 视频下面有网盘
 
@@ -63,25 +63,21 @@ houdini-16.5.634-linux_x86_64_gcc4.8.tar.gz
 
 如果在windows的话大概是2.7.5
 
-2. Virtualenv
+# 2. Virtualenv
 
 首先建议装virtualenv和virtualenvwrapper
-
+```
 sudo pip install virtualenv
-
 sudo pip install virtualenvwrapper
-
+```
 然后分别建两个virtualenv
-
+```
 mkvirtualenv tf-houdini --python==2.7
-
 deactivate
-
 mkvirtualenv torch-houdini --python==2.7
-
 deactivate
-
-3. GPU库
+```
+# 3. GPU库
 
 先是CUDA9.0，为什么这个版本，因为它和tf1.5匹配。。。
 
@@ -117,7 +113,7 @@ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
 
 sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
 
-4. 安装tensorflow
+# 4. 安装tensorflow
 
 切到tf-houdini
 
@@ -140,32 +136,24 @@ pip install tensorflow-gpu==1.5.0
 houdini
 
 打开python source editor，试一下
-
+```
 import tensorflow as tf
 
 hello = tf.constant('Hello, TensorFlow!')
-
 sess = tf.Session()
-
 print (sess.run(hello))
-
 with tf.device('/device:GPU:0'):
-
     a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3], name='a')
-
     b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2], name='b')
-
     c = tf.matmul(a, b)
-
 sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
-
 print(sess.run(c))
-
+```
 然后terminal就会打出log了！
 
 ![83fd03565177409fad8345935d1614c4.png](/images/83fd03565177409fad8345935d1614c4.jpg)
 
-5. 安装pytorch
+# 5. 安装pytorch
 
 不太好用conda，还是得手动
 
@@ -188,19 +176,15 @@ pip install torch-0.4.0-cp27-cp27mu-linux_x86_64.whl
 等待安装好，命令行打开houdini
 
 打开python source editor，试一下
-
+```
 import torch
-
 x = torch.Tensor([1.0])
-
 xx = x.cuda()
-
 print(xx)
 
 from torch.backends import cudnn
-
 print(cudnn.is_acceptable(xx))
-
+```
 ![9078a724a6e6efa2ad5f82e1e669549a.png](/images/9078a724a6e6efa2ad5f82e1e669549a.jpg)
 
 terminal返回结果！成功！

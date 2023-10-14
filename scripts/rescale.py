@@ -23,6 +23,7 @@ def resize_and_convert(img_path, output_dir):
             # Determine output path
             basename = os.path.basename(img_path)
             filename, _ = os.path.splitext(basename)
+            filename = filename.replace(" ", "_")
             output_path = os.path.join(output_dir, f'{filename}.jpg')
             
             # Save the image in JPEG format
