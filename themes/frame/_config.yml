@@ -3,7 +3,7 @@
 language: en
 
 # header
-site_brand_name: Frame.
+site_brand_name: 码工图形
 
 logo_image:
   enable: false
@@ -11,7 +11,7 @@ logo_image:
 
 menu:
   Home: /
-  Archive: /archives/
+  Blog: /archives/
   Gallery: /categories/gallery/
 
 # stylesheets loaded in the <head>
