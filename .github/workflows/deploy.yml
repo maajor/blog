@@ -30,11 +30,9 @@ jobs:
       run: |
         npm install
         npm run build
-        zip -r public.zip public/
         mkdir upload
-        mv public.zip upload/
-        cd upload
-        touch refresh_cdn
+        cd public
+        zip -r ../upload/public.zip *
 
     - name: Upload to Tencent COS
       uses: TencentCloud/cos-action@v1
@@ -45,4 +43,4 @@ jobs:
         cos_region: ${{ secrets.COS_REGION }}
         local_path: upload
         remote_path: /
-        clean: false
+        clean: true
