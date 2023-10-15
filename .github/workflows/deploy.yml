@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: true
+
 jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
@@ -18,10 +22,10 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Build Website
-    - uses: actions/setup-node@v3
+      uses: actions/setup-node@v3
       with:
         node-version: 18
-    - run: npm build
+      run: npm build
 
     - name: Upload to Tencent COS
     - uses: TencentCloud/cos-action@v1
