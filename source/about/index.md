@@ -25,7 +25,7 @@ Call me 马工
 ## Social Media | 社交媒体
 
 - Finding this blog interesting? Adding me on Wechat@major0120 let’s chat.
-如果你觉得这个博客有意思，可以加微信@major0120聊聊
+提供需要各类技术咨询服务，可以加微信@major0120聊聊
 - Github ID [maajor](https://github.com/maajor)
 - 我最近的博客也发布在微信公众号上 ![码工图形](/images/qrcode_for_gh_d3dd28fa887d_258.jpg)
 
