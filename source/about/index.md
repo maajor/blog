@@ -12,8 +12,9 @@ Call me 马工
 技能包括：Web前端后端开发，3D美术资产管线与shader开发，游戏引擎编程，DCC工具开发。对以下内容也有一些了解：运维，嵌入式，机器学习，机械臂，CAD/BIM，木工
 
 ## Professional Experience | 职业经历
-- 2021.07 ~ Present: Staff Software Engineer @ [Taichi Graphics](https://taichi.graphics/)
-    - Building online editor and developing in-house art pipeline on [Taitopia Render](https://taitopia.design)
+- 2024.04 ~ Now: Self Employed
+- 2021.07 ~ 2024.03: Staff Software Engineer @ [Taichi Graphics](https://taichi.graphics/)
+    - From 0 to 1 build online editor and develope in-house art pipeline on [Taitopia Render](https://taitopia.design)
     - React webapp, blender python dev, team management, documentation
 - 2018.10 ~ 2021.06: Associate Art Technical Director @ [Ubisoft Shanghai](https://www.ubisoft.com/en-us/company/careers/locations/shanghai)
     - Support art team on Farcry 6, Farcry DLC, Assasins' Creed Valhalla etc.
@@ -44,3 +45,5 @@ GameDev/Graphic Related Chinese Blog | 一些游戏/图形相关的有意思的�
 - [qiankanglai的个人博客，网易引擎程序](http://qiankanglai.me/)
 - [Virgil的个人博客：行尸走肉油笔记，游戏老兵，独立游戏开发者](http://walkingfat.com/)
 - [智伤帝的个人博客，腾讯TA](https://blog.l0v0.com/)
+- [Raybobo](https://raybobo.github.io/)
+- [Rex Wang](https://rexwang.cc/about)
