@@ -17,6 +17,26 @@ TLDR: 使用 Unity 开发 Vision Pro 应用时，由于 Vision OS 接管了大�
 
 那可以自己实现阴影了。但自己实现了一个 Shadowmap 以后，果然机器上看不到效果。果然不是这么简单！
 
+## RealityKit
+作为背景介绍绕不过去苹果 的 Realitykit。这是 Swift 的一个包，专门给空间计算使用。使用 Realitykit 可以控制场景 usd 中的 entity，一个典型的例子是这样
+
+```swift
+struct SomeView: View {
+    var body: some View {
+            RealityView { content in
+                if let model = try? await Entity(named: "Model", in: realityKitContentBundle){
+                    content.add(model)
+                }
+            } update: { content in
+                let entity = content.entities[0]
+		            entity.transform.rotation += simd_quatf(angle: radians, axis: SIMD3<Float>(1,0,0))
+            }
+        }
+}
+```
+
+Vision OS 暴露的是这个层级的 API，但没有暴露控制更底层渲染机制的方式。
+
 # 社区资料
 
 Unity Polyspatial 文档并不会告诉大家这个框架如何实现的，甚至还遮遮掩掩。首先是必须企业版本才能使用到，其次它所有实现都提供的动态链接库，并不像其它模块一样提供源代码。所以，怎么实现完全靠猜和 Profile。
@@ -139,13 +159,14 @@ ShaderGraph中把世界坐标变换到阴影空间采样，就是 Shadowmap 阴�
 
 回到 Unity 的问题，可以理解成目前 Unity 基本上是把 RealityKit 当成图形 API 使用，但可玩的渲染花样比较少，而且性能堪忧。所以为什么还要用 Unity 而不是 RealityComposerPro + XCode 呢？
 
-笔者认为有三个优点弥补了它的劣势：
+笔者认为有几个优点弥补了它的劣势：
 
 1. 迭代速度。Unity PlayToDevice 所见即所得，相当接近 Quest Link 的开发体验，修改后在头显中立刻可以看到效果。而 Xcode？想进真机就要 build，虽然大部分时候 simulator 能解决 2D 迭代的问题，但游戏是另一个故事了。
 2. 当下工具链成熟程度。Unity 的编辑器还是比 RealityComposerPro 好多了，无论是交互/功能丰富程度还是bug。RealityComposerPro 的材质节点编辑响应慢的离谱，导入格式支持单一，视口操作反人类。美术体验简直是负分。
 3. 生态和插件。尤其是美术资产，美术编辑工具，动画和物理。
+4. 跨平台
 
-所以，也不是为了这盘醋包的这顿饺子，主要还是看应用场景的需求，某些情况下现在还真就得用 Unity。
+所以，主要还是看应用场景的需求，某些情况下现在还真就得用 Unity。
 
 很快 Unity 应该就会出支持 Vision OS 2.0 的 Polyspatial 版本，也期待一下。
 
