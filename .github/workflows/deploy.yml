@@ -30,9 +30,7 @@ jobs:
       run: |
         npm install
         npm run build
-        mkdir upload
         cd public
-        zip -r ../upload/public.zip *
 
     - name: Upload to Tencent COS
       uses: TencentCloud/cos-action@v1
