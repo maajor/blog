@@ -49,6 +49,7 @@ Unity 早在 2005 年就已经集成了 PhysX。在 2015 年 Unity 5 发布时�
 
 - 在 PhysX 体系中，多数情况下不存在缩放参数。为使 Unity 场景树中的物体能够达成与 PhysX 等效的行为模式，开发者必须自行进行所有缩放相关的计算，包括几何体的尺寸、关节锚点等参数的缩放处理。鉴于缩放功能在游戏开发进程中具有极为关键的地位，此步骤不可或缺。
 - PhysX 未构建场景树结构，其所有场景物体处于平级状态。因而，在诸多情形下，相关的相对位姿信息需要在 Unity 环境中预先完成精确计算，其中以 PxD6Joint（对应 Unity 的 ConfigurableJoint）的计算过程最为复杂繁琐。由于场景树结构在游戏开发实践里意义重大，这一操作成为必然。
+- PhysX 中碰撞 Layer 只有按 Actor 级别的，而 Unity 中是以 Collider （PxShape）级别的。甚至对 Collider 和可以有附加的 Include/Exclude Layer，区分更为精细。这对于游戏开发很重要。
 - 在 OnCollisionXXX 事件中，Collision 参数会提供一个 relativeVelocity 参数。需注意的是，该速度并非碰撞解算后的最终速度，而是对应于 PhysX 中的 ePreSolverVelocity，且需手动添加特定 flag 才会在默认情况下呈现。此行为大概率是基于游戏开发需求所设定，其目的在于将该参数作为衡量碰撞力度的一个维度。毕竟，impulse 仅仅是通过几何方式求解得出的结果。
 - PxRevolutionJoint（对应 Unity 的 HingeJoint）竟然未配备 targetPosition 功能，推测这是 Unity 自行改造后实现的特性。从游戏开发需求的角度来看，ConfigrableJoint 具备 targetPosition 功能，而 HingeJoint 却缺失，这一差异值得关注。
 - 对于 Unity 的 Raycast 功能，若射线检测起始于基本几何体内部，Unity 不会将该基本几何体视作碰撞结果，然而 PhysX 的默认设置则会将其纳入。这种差异可能是基于游戏开发特定需求而产生，尽管从纯粹物理原理角度审视，它或许并不完全符合物理规律。
