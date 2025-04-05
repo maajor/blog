@@ -1,49 +1,34 @@
 ---
 title: Hi, I am Ma Yidong.
 ---
-Call me 马工
+我是马工
 
-## Interests and Skills | 兴趣和技能
+## 兴趣和技能
 
-- My main interest is in learning procedural, rendering, design, AI, and new things. This blog records some of my new ideas, experiment projects, learning notes etc. It only expresses my personal interest and represents nothing of my employer.
-我的大部分热情是关于程序化，渲染，设计，AI等等新玩意儿的，这个博客主要记录的我的新点子，实验项目，学习笔记等等。仅仅代表我的个人兴趣，而与我的雇主无关。
+- 在游戏/可交互项目中探索新技术的应用。包括但不限于：物理引擎/图形技术/机器学习/程序化生成等。
+- 技能包括：
+    - Unity 游戏客户端与引擎开发：物理/渲染/工具/优化
+    - DCC 工具插件，如 Blender, Maya, Houdini, Rhinp, Grasshopper
+    - Web 前后端全栈开发
+- 熟悉的编程语言：C#/C++/Python/TypeScript
 
-- Skillset include: 3d art production pipeline and shader development, programming in game engine, plugin development for DCC tools. Also have some knowledge on front-end, back-end, devops, linux, arduino/rasperrypi, machine learning, robotic-arm, CAD/BIM, carpentry
-技能包括：Web前端后端开发，3D美术资产管线与shader开发，游戏引擎编程，DCC工具开发。对以下内容也有一些了解：运维，嵌入式，机器学习，机械臂，CAD/BIM，木工
+## 职业经历
+- 2024.04 ~ 现在: 独立开发者/自由职业
+    - 参与多个项目的开发、外包和咨询工作
+    - 主要涉及游戏引擎开发，工具开发，AI算法等
+- 2021.07 ~ 2024.03: 资深软件工程师(Staff Software Engineer) @ [太极图形](https://taichi.graphics/)
+    - 从零到一搭建在线编辑器，并开发内部美术工作流程 [Taitopia Render](https://taitopia.design)
+    - React 网页应用开发、Blender Python 开发、团队管理以及文档编写工作。
+- 2018.10 ~ 2021.06: 副美术技术总监(Associate Art Technical Director) @ [育碧上海](https://www.ubisoft.com/en-us/company/careers/locations/shanghai)
+    - 为《孤岛惊魂 6》《孤岛惊魂》资料片、《刺客信条：英灵殿》等项目的美术团队提供支持。
+    - 3ds Max 脚本、Python、C# 开发以及团队管理工作。
+    - [MobyGames](https://www.mobygames.com/person/980549/ma-yi-dong/) 上的 Credits 记录
+- 2017.07 ~ 2018.09: 技术美术 @ [网易雷火工作室](https://leihuo.163.com/index.html)
+    - 在 [风云岛行动](https://baike.baidu.com/item/%E9%A3%8E%E4%BA%91%E5%B2%9B%E8%A1%8C%E5%8A%A8) 项目中开发场景创作工具并进行渲染相关工作。
+    - Unity3D C# 开发以及着色器开发工作
 
-## Professional Experience | 职业经历
-- 2024.04 ~ Now: Self Employed
-- 2021.07 ~ 2024.03: Staff Software Engineer @ [Taichi Graphics](https://taichi.graphics/)
-    - From 0 to 1 build online editor and develope in-house art pipeline on [Taitopia Render](https://taitopia.design)
-    - React webapp, blender python dev, team management, documentation
-- 2018.10 ~ 2021.06: Associate Art Technical Director @ [Ubisoft Shanghai](https://www.ubisoft.com/en-us/company/careers/locations/shanghai)
-    - Support art team on Farcry 6, Farcry DLC, Assasins' Creed Valhalla etc.
-    - Maxscript, python, C# dev, team management
-- 2017.07 ~ 2018.09: Technical Artist @ [Netease Game Thunderfire Studio](https://leihuo.163.com/index.html)
-    - Develop world authoring tools and rendering on [风云岛行动](https://baike.baidu.com/item/%E9%A3%8E%E4%BA%91%E5%B2%9B%E8%A1%8C%E5%8A%A8)
-    - Unity3D C# dev, shader dev
+## 社交媒体
 
-## Social Media | 社交媒体
-
-- Finding this blog interesting? Adding me on Wechat@major0120 let’s chat.
-提供需要各类技术咨询服务，可以加微信@major0120聊聊
+- 提供需要各类技术咨询服务，可以加微信@major0120聊聊
 - Github ID [maajor](https://github.com/maajor)
 - 我最近的博客也发布在微信公众号上 ![码工图形](/images/qrcode_for_gh_d3dd28fa887d_258.jpg)
-
-## Friendly Links | 友情链接
-GameDev/Graphic Related Chinese Blog | 一些游戏/图形相关的有意思的博客
-- [iiif果哥知乎专栏：程序猿玩 Houdini，网易/阿里/腾讯引擎程序](https://zhuanlan.zhihu.com/letshoudini)
-- [洛城知乎专栏：Life of a Pixel，腾讯引擎程序](https://www.zhihu.com/column/pixelife)
-- [BenzzZX的知乎专栏：Pseudo Game Tech](https://zhuanlan.zhihu.com/pseudo-game)
-- [Maxwell的知乎专栏：Unity Graphics](https://www.zhihu.com/column/UnityGraphics)
-- [老王的知乎专栏：他是老王，游走于北美各大厂的动画TA](https://www.zhihu.com/column/c_188971088)
-- [toughbro的CSDN博客，天刀技术总监](https://blog.csdn.net/toughbro/)
-- [AsherZhu个人博客，EpicTA](http://asherzhu.com/)
-- [Candycat1992的个人博客，乐乐姐，米厂引擎程序](http://candycat1992.github.io/)
-- [Neil3d个人博客：游戏程序员的自我修养，阿里引擎专家](https://neil3d.gitee.io/)
-- [CheneyShen的个人博客，腾讯引擎程序](https://cheneyshen.com/)
-- [qiankanglai的个人博客，网易引擎程序](http://qiankanglai.me/)
-- [Virgil的个人博客：行尸走肉油笔记，游戏老兵，独立游戏开发者](http://walkingfat.com/)
-- [智伤帝的个人博客，腾讯TA](https://blog.l0v0.com/)
-- [Raybobo](https://raybobo.github.io/)
-- [Rex Wang](https://rexwang.cc/about)

@@ -1,5 +1,5 @@
 ---
-title: 如何在移动端使用 GPU Driven “负”优化 | How to Achieve "Negative" Optimization with GPU Driven in Mobile Devices
+title: How to Achieve "Negative" Optimization with GPU Driven in Mobile Devices | 如何在移动端使用 GPU Driven “负”优化
 date: 2025-04-05 00:00:00
 ---
 # GPU Driven 的分级与定义
