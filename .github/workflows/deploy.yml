@@ -36,6 +36,8 @@ jobs:
       run: |
         # Store current commit hash
         CURRENT_COMMIT=$(git rev-parse HEAD)
+        # Clean up node_modules and package-lock.json
+        rm -rf node_modules package-lock.json
         # Checkout base commit
         git checkout ${{ env.BASE_COMMIT }}
         # Build base version
@@ -43,6 +45,8 @@ jobs:
         npm run build
         # Save base build
         mv public base_build
+        # Clean up again before switching back
+        rm -rf node_modules package-lock.json
         # Return to current commit
         git checkout $CURRENT_COMMIT
 
