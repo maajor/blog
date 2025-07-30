@@ -1,6 +1,12 @@
 ---
 title: Starting from implementing shadows on Unity Vision Pro | 从 Unity Vision Pro 上实现阴影说起
 date: 2024-06-28 00:00:00
+tags:
+    - Graphics
+    - Rendering
+    - Technical
+    - Game Development
+    - Virtual Reality
 ---
 
 TLDR: 使用 Unity 开发 Vision Pro 应用时，由于 Vision OS 接管了大部分渲染功能，因此实现如 Shadowmap 等自定义 Feature 需要绕个弯子。由此可以一探统一空间渲染的诸多限制条件。

@@ -1,6 +1,12 @@
 ---
 title: Mixed Lighting Lightmap & Shader in Unity | Unity中混合光照Lightmap研究
 date: 2017-09-02 00:00:00
+tags:
+  - Unity
+  - Graphics
+  - Rendering
+  - Technical
+  - Game Development
 ---
 
 在MixedLight模式，Lightmap有三个模式：Shadowmask，Bake Indirect和Subtractive

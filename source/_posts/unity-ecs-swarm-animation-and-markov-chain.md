@@ -1,6 +1,12 @@
 ---
 title: Unity ECS, Swarm Animation and Markov Chain| ECS集群动画与马尔可夫链
 date: 2018-11-24 00:00:00
+tags:
+    - Unity
+    - Technical
+    - Game Development
+    - Animation
+    - ECS
 ---
 
 [Github Codebase](https://github.com/maajor/OSMTrafficSim)

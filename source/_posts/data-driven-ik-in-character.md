@@ -1,6 +1,13 @@
 ---
 title: Data-Driven IK in Character| 角色中的数据驱动反向动力学
 date: 2020-05-24 00:00:00
+tags:
+  - Animation
+  - Technical
+  - Game Development
+  - Machine Learning
+  - Research
+  - Character Animation
 ---
 
 [Github Codebase](https://github.com/maajor/latent-pose)

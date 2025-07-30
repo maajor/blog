@@ -1,6 +1,13 @@
 ---
 title: Skin Decomposition | 蒙皮分解
 date: 2019-02-14 00:00:00
+tags:
+  - Graphics
+  - Animation
+  - Technical
+  - Game Development
+  - Rigging
+  - Optimization
 ---
 
 [Github Codebase](https://github.com/maajor/Dancer-Skin-Decomposition)

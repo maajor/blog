@@ -1,6 +1,12 @@
 ---
 title: BxDF Truth to Realtime with Mitsuba. A case study of Fur BSSRDF | BxDF从真实到实时，以毛发为例
 date: 2020-05-09 00:00:00
+tags:
+  - Graphics
+  - Rendering
+  - Technical
+  - Game Development
+  - Research
 ---
 
 ![image_0003.jpg](/images/image_0003.jpg)

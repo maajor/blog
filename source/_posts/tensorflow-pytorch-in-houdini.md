@@ -1,6 +1,11 @@
 ---
 title: Tensorflow/Pytorch in Houdini | Houdini中使用Tensorflow/Pytorch
 date: 2019-01-26 00:00:00
+tags:
+    - Houdini
+    - Machine Learning
+    - Technical
+    - Python
 ---
 
 Houdini作为最好的程序化建模软件，又正好深度学习框架大部分在Python中，那么进行一些建模/图形的深度学习任务时，怎么能少得了在Houdini？然而有几乎没有文章讲如何在Houdini中使用Tensorflow或者Pytorch，本文聊一聊这个。

@@ -1,6 +1,13 @@
 ---
 title: On Mesh Cloud Rendering – Reimplement Sea of Thieves’ cloud | 模型云渲染-重现盗贼之海的云
 date: 2019-06-30 00:00:00
+tags:
+  - Graphics
+  - Rendering
+  - Technical
+  - Game Development
+  - VFX
+  - Research
 ---
 
 [Github Codebase](https://github.com/maajor/Mesh-Cloud-Rendering)

@@ -1,6 +1,11 @@
 ---
 title: Blocking Out City With Houdini PDG | 使用Houdini PDG生成城市白模
 date: 2019-06-16 00:00:00
+tags:
+  - Game Development
+  - Technical
+  - Houdini
+  - Procedural Generation
 ---
 
 Houdini PDG是17.5版本新增的一个任务管理模式，方便最终结果的分步生成。

@@ -1,6 +1,12 @@
 ---
 title: Procedural Street Modelling In Houdini 1 | Houdini中程序式街道生成 I
 date: 2018-08-17 00:00:00
+tags:
+  - Houdini
+  - Technical
+  - Procedural Generation
+  - Game Development
+  - Modelling
 ---
 
 路网的程序式生成前人曾经提出过多种方式，比如用模板，用L-System，用代理(Agent-Based)，用张量场(Tensor Field)。其中比较实用的是L系统和张量场，前者也就是CityEngine中使用的方式。[Parish and Muller, 2001]这里的L系统不是传统的字符串替换的L系统，虽然思想一致，用递归替换的方式衍生，但在Extended L系统中，可替换的可以是复杂的带变量的函数，而不仅仅是简单的Turtle移动了。这我们后面再说，这里主要讲张量场的实现[Chen, 2008]

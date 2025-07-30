@@ -1,6 +1,9 @@
 ---
 title: Some Random Thought on PhysX | PhysX 的一些随想
 date: 2024-11-24 00:00:00
+tags:
+  - Physics
+  - Tech Review
 ---
 
 # 1. 物理引擎的现状

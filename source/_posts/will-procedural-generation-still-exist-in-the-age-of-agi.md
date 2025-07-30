@@ -1,6 +1,12 @@
 ---
 title: Will procedural generation still exist in the age of AGI? | AI时代程序化生成还会存在吗？
 date: 2023-05-13 00:00:00
+tags:
+  - Procedural Generation
+  - AI
+  - Game Development
+  - Technical
+  - Tech Review
 ---
 
 # 1. 背景

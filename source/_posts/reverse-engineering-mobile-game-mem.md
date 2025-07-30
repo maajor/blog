@@ -1,6 +1,14 @@
 ---
 title: Memo of Analysing Game Rendering 1 | 分析游戏渲染的姿势备忘之一
 date: 2018-02-20 00:00:00
+tags:
+  - Graphics
+  - Rendering
+  - Technical
+  - Game Development
+  - Mobile
+  - Analysis
+  - Performance
 ---
 
 [http://gad.qq.com/article/detail/39208](http://gad.qq.com/article/detail/39208)

@@ -1,6 +1,12 @@
 ---
 title: Terrain Cliff Problem | 地形峭壁问题
 date: 2018-05-12 00:00:00
+tags:
+    - Terrain
+    - Technical
+    - Game Development
+    - Procedural Generation
+    - Optimization
 ---
 
 

@@ -1,6 +1,12 @@
 ---
 title: Dabble FrankenGAN with Houdini | Houdini中测试FrankenGAN
 date: 2019-01-18 00:00:00
+tags:
+  - Houdini
+  - Machine Learning
+  - Technical
+  - Procedural Generation
+  - Research
 ---
 
 本文尝试在Houdini中测试和实现FrankenGan的（部分）功能

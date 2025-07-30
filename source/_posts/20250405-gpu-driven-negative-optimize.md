@@ -1,6 +1,13 @@
 ---
 title: How to Achieve "Negative" Optimization with GPU Driven in Mobile Devices | 如何在移动端使用 GPU Driven “负”优化
 date: 2025-04-05 00:00:00
+tags:
+  - Graphics
+  - Performance
+  - Mobile
+  - Game Development
+  - Technical
+  - Optimization
 ---
 # GPU Driven 的分级与定义
 

@@ -1,6 +1,13 @@
 ---
 title: Economize Your Texture | 如何节约贴图
 date: 2020-08-25 00:00:00
+tags:
+  - Graphics
+  - Game Development
+  - Technical
+  - Optimization
+  - Textures
+  - Performance
 ---
 
 我们的硬件资源不是无限的，而其中内存（显存）又是很容易紧缺的一个环节，而其中贴图又占了大头。

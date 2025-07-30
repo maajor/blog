@@ -1,6 +1,13 @@
 ---
 title: Construct BVH with Unity Job System | 用Unity JobSystem构造BVH
 date: 2018-11-20 00:00:00
+tags:
+  - Unity
+  - Technical
+  - Programming
+  - Performance
+  - Game Development
+  - Optimization
 ---
 
 BVH [https://en.wikipedia.org/wiki/Bounding_volume_hierarchy](https://en.wikipedia.org/wiki/Bounding_volume_hierarchy) 是一种空间存储数据结构，便于空间查找。类似的空间查找方法还有BSP，OcTree等等。

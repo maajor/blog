@@ -1,6 +1,13 @@
 ---
 title: Maya Python Workflow | Maya Python工作流程
 date: 2017-08-31 00:00:00
+tags:
+  - Maya
+  - Python
+  - Technical
+  - Pipeline
+  - Automation
+  - Game Development
 ---
 
 PyMel是一个Mel的python wrapper，简直比MEL友好太多

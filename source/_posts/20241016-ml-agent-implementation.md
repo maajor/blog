@@ -1,6 +1,11 @@
 ---
 title: Unity ML Agent Implementation | Unity ML Agent 的实现
 date: 2024-10-16 00:00:00
+tags:
+  - AI
+  - Unity
+  - Machine Learning
+  - Technical
 ---
 
 # 背景

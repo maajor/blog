@@ -4,9 +4,9 @@
 
 # Site
 title: 码工图形
-subtitle: ''
-description: ''
-keywords: blog
+subtitle: 'Technical Blog on Graphics, Gaming and AI'
+description: 'A comprehensive resource for computer graphics, game development, and artificial intelligence, featuring in-depth technical articles and practical implementations.'
+keywords: computer graphics, game development, AI, technical blog, graphics programming, game engine, Unity, Unreal Engine, machine learning
 author: maajor
 language: en
 timezone: ''
@@ -107,6 +107,10 @@ deploy:
 ## sitemap
 sitemap:
   path: sitemap.xml
+  rel: true
+  tags: true
+  categories: true
+
 baidusitemap:
   path: baidusitemap.xml
 
@@ -127,3 +131,35 @@ feed:
   icon: icon.png
   autodiscovery: true
   template:
+
+search:
+  path: search.xml
+  field: post
+  content: true
+  template: ./search.xml
+
+# SEO Settings
+seo:
+  enable: true
+  structured_data: true
+  canonical_url: true
+
+# JSON Content
+jsonContent:
+  meta: true
+  pages: true
+  posts:
+    title: true
+    date: true
+    path: true
+    text: true
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true

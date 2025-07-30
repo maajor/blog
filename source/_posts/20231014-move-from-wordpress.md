@@ -1,6 +1,9 @@
 ---
 title: Migrate Blog's Tech Stack | 迁移博客技术方案，WordPress -> Hexo
 date: 2023-10-14 00:00:00
+tags:
+  - Technical
+  - Web
 ---
 
 博客最早写于2016年。当时对web技术还不是很熟悉，又想有自己的域名，于是选择了wordpress的解决方案。

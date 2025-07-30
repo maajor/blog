@@ -1,6 +1,13 @@
 ---
 title: Build a Blender Geometry CI Pipeline |搭建一个Blender模型CI(持续集成)框架
 date: 2020-07-11 00:00:00
+tags:
+  - Pipeline
+  - Technical
+  - CI/CD
+  - Blender
+  - Automation
+  - Game Development
 ---
 
 这里想验证的一个想法是，能否做美术资源的持续集成(CI)。 当然业界是有这样实践的，这里想自己搭遍框架。

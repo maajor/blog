@@ -1,6 +1,12 @@
 ---
 title: Rig a Hand | 绑定一只手
 date: 2020-09-20 00:00:00
+tags:
+  - Animation
+  - Technical
+  - Game Development
+  - Rigging
+  - Character Animation
 ---
 
 怎么绑定一个手？也并不是那么简单，这里笔者简单记录下自己的实验的关键步骤和注意，以及整理了一些学术论文。

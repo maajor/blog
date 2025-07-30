@@ -1,6 +1,11 @@
 ---
 title: Vertex Shader Animation Revisit | 顶点动画再议
 date: 2018-07-15 00:00:00
+tags:
+    - Graphics
+    - Technical
+    - Game Development
+    - Animation
 ---
 
 

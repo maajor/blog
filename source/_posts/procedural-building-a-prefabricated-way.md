@@ -1,6 +1,12 @@
 ---
 title: Procedural Building, A Prefabricated Way | 程序式建筑生成-预制方法
 date: 2018-10-21 00:00:00
+tags:
+  - Houdini
+  - Technical
+  - Procedural Generation
+  - Game Development
+  - Modelling
 ---
 
 虚拟环境中程序式生成建筑的建模逻辑应当在一定程度上参考现实世界中建筑的建构逻辑。虚拟环境的建模固然比现实世界轻松很多。一堵混凝土墙，虚拟环境中建一个低模分UV然后程序式生成贴图就可以了，现实世界中还要支模打钢筋灌浆。比如建造一座雅典城，可能需要几万人几十年的时间，而刺客系列可以一千人两年铺完。诚然如此，对提高建模效率的追求永无止境。这自然也需要参考现实世界的建构逻辑。

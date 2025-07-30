@@ -1,6 +1,11 @@
 ---
 title: A Short History of Parallax Occlusion Mapping/Relief Mapping | 视差贴图，一个简短的历史
 date: 2019-06-22 00:00:00
+tags:
+  - Graphics
+  - Rendering
+  - Technical
+  - Game Development
 ---
 
 我们常用法线贴图模拟表面的细节凹凸，不过法线贴图的一个问题是在视角很低(Gazing Angle)时会出现失真

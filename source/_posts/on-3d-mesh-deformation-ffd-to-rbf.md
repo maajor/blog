@@ -1,6 +1,10 @@
 ---
 title: On 3D Mesh Deformation, FFD to RBF | 模型变形从FFD到RBF
 date: 2019-08-07 00:00:00
+tags:
+  - Technical
+  - Game Development
+  - Modelling
 ---
 
 # 1. 模型变形的方法

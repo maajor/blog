@@ -1,6 +1,12 @@
 ---
 title: Houdini Terrain 2 | Houdini地形生成之二
 date: 2017-12-03 00:00:00
+tags:
+  - Houdini
+  - Technical
+  - Procedural Generation
+  - Game Development
+  - Terrain
 ---
 
 Houdini制作地形基本可以代替WorldMachine，而且可以更方便地控制。

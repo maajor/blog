@@ -1,6 +1,12 @@
 ---
 title: Memo of Analysing Game Rendering 2 | 分析游戏渲染的姿势备忘之二
 date: 2018-03-04 00:00:00
+tags:
+  - Graphics
+  - Rendering
+  - Technical
+  - Game Development
+  - Analysis
 ---
 
 Nsight，NV的Graphic Debugger

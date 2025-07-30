@@ -1,6 +1,11 @@
 ---
 title: Train Post-Processing With GAN | 使用生成对抗网络训练后处理
 date: 2018-12-06 00:00:00
+tags:
+    - Machine Learning
+    - Technical
+    - Game Development
+    - Research
 ---
 
 # 1 Post-Processing 到 Image to Image Translation 图片翻译

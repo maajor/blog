@@ -1,6 +1,13 @@
 ---
 title: Houdini Rigging for Game, A Brief Research | Houdini游戏绑定，入门踩坑
 date: 2019-12-01 00:00:00
+tags:
+  - Houdini
+  - Technical
+  - Animation
+  - Rigging
+  - Game Development
+  - Research
 ---
 
 # 1 Why? 可行吗？

@@ -1,6 +1,13 @@
 ---
 title: Porting a URP post-processing in XR | XR中移植一个URP后处理
 date: 2024-08-24 00:00:00
+tags:
+  - Graphics
+  - Rendering
+  - Unity
+  - Technical
+  - Game Development
+  - Virtual Reality
 ---
 
 # 1. 背景：混乱的 API

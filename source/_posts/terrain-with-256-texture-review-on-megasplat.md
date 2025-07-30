@@ -1,6 +1,11 @@
 ---
 title: Splat with 256 Texture – Review on MegaSplat | 256套贴图混合地形-MegaSplat回顾
 date: 2018-09-03 00:00:00
+tags:
+    - Terrain
+    - Graphics
+    - Technical
+    - Game Development
 ---
 
 自动编译shader-组装片段

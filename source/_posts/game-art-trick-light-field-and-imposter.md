@@ -1,6 +1,13 @@
 ---
 title: Game Art Trick – Light Field and Imposter | 游戏美术技巧 – 光场与公告板
 date: 2020-12-27 00:00:00
+tags:
+  - Graphics
+  - Technical
+  - Rendering
+  - Optimization
+  - Game Development
+  - VFX
 ---
 
 [Github Codebase](https://github.com/maajor/lightfield-imposter)

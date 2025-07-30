@@ -1,6 +1,12 @@
 ---
 title: Procedural Parcel Modelling In Houdini | Houdini中程序式生成街区地块
 date: 2018-08-29 00:00:00
+tags:
+  - Houdini
+  - Technical
+  - Procedural Generation
+  - Game Development
+  - Modelling
 ---
 
 上文讲到了如何程序式生成街道，那么下一步就是将街区划分为地块。实际中的街区形态多种多样，又以三种最为典型。一种是地块平铺在街区中，自发形成内部道路，姑且称为平铺式。另一种是地块面向街区外侧，成环状，姑且成为周边式。第三种，整个街区并没有划分地块的产权，而是整体开发了，姑且称为独立式。

@@ -1,6 +1,12 @@
 ---
 title: Interacting with Houdini Engine in Python | 使用Python与Houdini Engine交互
 date: 2020-01-17 00:00:00
+tags:
+  - Houdini
+  - Technical
+  - Pipeline
+  - Game Development
+  - Automation
 ---
 
 [Githbub Codebase](https://github.com/maajor/pyhapi)

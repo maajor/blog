@@ -1,6 +1,10 @@
 ---
 title: Text To 3D Gaming's Challenge | Text To 3D 目前在游戏行业的困境
 date: 2024-02-16 00:00:00
+tags:
+  - AI
+  - Game Development
+  - Tech Review
 ---
 
 TLDR;

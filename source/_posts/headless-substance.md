@@ -1,6 +1,12 @@
 ---
 title: Headless Substance | 无头Substance材质生成
 date: 2021-03-31 00:00:00
+tags:
+  - Pipeline
+  - Technical
+  - Automation
+  - Substance
+  - Game Development
 ---
 
 ![screenshot001.png](/images/screenshot001.jpg)

@@ -1,6 +1,12 @@
 ---
 title: Making of a alien base with L-System | 使用L-system建模外星基地
 date: 2018-09-26 00:00:00
+tags:
+  - Houdini
+  - Technical
+  - Procedural Generation
+  - Game Development
+  - Modelling
 ---
 
 ![](/images/main-1600x902.jpg)

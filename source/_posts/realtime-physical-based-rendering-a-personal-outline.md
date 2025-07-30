@@ -1,6 +1,11 @@
 ---
 title: Realtime Physical Based Rendering, a Personal Outline | 实时基于物理的渲染-个人的大纲
 date: 2020-08-09 00:00:00
+tags:
+  - Graphics
+  - Rendering
+  - Game Development
+  - Technical
 ---
 
 什么是Physical Based Rendering? PBR到底包含什么？

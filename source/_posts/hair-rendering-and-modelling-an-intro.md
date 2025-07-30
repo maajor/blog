@@ -1,7 +1,14 @@
 ---
 title: Hair Rendering and Modelling – An Intro | 头发渲染与建模 – 简介
 date: 2019-03-31 00:00:00
+tags:
+  - Graphics
+  - Rendering
+  - Game Development
+  - Technical
+  - Modelling
 ---
+
 # 20190331 Hair Modelling and Rendering
 
 [Github Codebase](https://github.com/maajor/Marschner-Hair-Unity)

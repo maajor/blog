@@ -1,6 +1,11 @@
 ---
 title: Crowded Plaza, a game with Bevy/Rust| 拥挤广场：使用Bevy/Rust开发小游戏
 date: 2022-07-26 00:00:00
+tags:
+  - Rust
+  - Game Development
+  - Technical
+  - ECS
 ---
 
 ![](/images/screenshot-1600x911.jpg)

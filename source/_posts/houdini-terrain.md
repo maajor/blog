@@ -1,6 +1,12 @@
 ---
 title: Houdini Terrain | Houdini 地形生成
 date: 2017-01-25 00:00:00
+tags:
+  - Houdini
+  - Technical
+  - Procedural Generation
+  - Game Development
+  - Terrain
 ---
 
 讲道理呢，World Machine的地形用Houdini都是可以做出来的。不过还是有些局限，尝试了一下。

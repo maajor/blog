@@ -1,6 +1,12 @@
 ---
 title: Neural Network Lightmap | 神经网络光照贴图
 date: 2023-02-26 00:00:00
+tags:
+  - Graphics
+  - Machine Learning
+  - Technical
+  - Research
+  - Game Development
 ---
 
 [在线访问](http://nnlm.ma-yidong.com/)

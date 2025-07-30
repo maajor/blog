@@ -1,6 +1,12 @@
 ---
 title: Post Processing with Fast Neural Style Transfer in Unity | Unity中快速神经风格迁移后处理
 date: 2018-12-17 00:00:00
+tags:
+  - Unity
+  - Graphics
+  - Technical
+  - Machine Learning
+  - Game Development
 ---
 
 [Github Codebase](https://github.com/maajor/NeuralNetworkPostProcessing)

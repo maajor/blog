@@ -1,6 +1,10 @@
 ---
 title: The Girl With a Voxel Earring，Behind the Scene | 幕后
 date: 2022-04-24 00:00:00
+tags:
+    - Technical
+    - Procedural Generation
+    - Personal
 ---
 
 [Github Codebase](https://github.com/maajor/maajor-voxel-challenge)

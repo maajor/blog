@@ -1,6 +1,13 @@
 ---
 title: Realtime Grass Rendering on Mobile Platform| 移动端实时草地渲染
 date: 2017-10-15 00:00:00
+tags:
+  - Graphics
+  - Rendering
+  - Technical
+  - Game Development
+  - Mobile
+  - Performance
 ---
 
 有很多种不同的技术。相关参考一个是 Rendering Fields of Grass using DirectX11 in GRID Autosport (RFGinAutosport)

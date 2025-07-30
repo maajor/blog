@@ -1,6 +1,12 @@
 ---
 title: Some Methods to Occlusion Culling | 遮挡剔除的几种方式
 date: 2018-02-21 00:00:00
+tags:
+    - Graphics
+    - Rendering
+    - Technical
+    - Game Development
+    - Optimization
 ---
 
 目前主流的OC有这几种方式：预计算的原始的PVS，主要CPU端的umbra的dPVS。和主要GPU端的GPU-Driven。像RealTimeRendering中提到的Hierarchical Z-Buffering和HOM，大多比较底层，集成在其它实现方案里，比如dPVS用了HOM的技术。
