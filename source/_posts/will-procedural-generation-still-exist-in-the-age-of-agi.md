@@ -7,6 +7,7 @@ tags:
   - Game Development
   - Technical
   - Tech Review
+  - Research
 ---
 
 # 1. 背景

@@ -8,6 +8,7 @@ tags:
   - Optimization
   - Game Development
   - VFX
+  - Research
 ---
 
 [Github Codebase](https://github.com/maajor/lightfield-imposter)
