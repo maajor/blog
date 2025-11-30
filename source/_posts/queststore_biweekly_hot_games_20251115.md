@@ -11,8 +11,6 @@ tags:
 
 # 🎮 本周最热门的Quest游戏
 
-本周从QuestStore数据库中发现了6款热门游戏
-
 ## 1. [Scan or Scam - Cashier Job Simulator](https://queststoredb.com/game/scan-or-scam-cashier-job-simulator-24525939670323355/)
 
 | 评分 | 评分人数 | 价格 | 评测数 | 上线日期 | 类型 |
