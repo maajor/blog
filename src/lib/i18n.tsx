@@ -4,7 +4,6 @@ import {
   createContext,
   useContext,
   useState,
-  useEffect,
   type ReactNode,
 } from "react";
 
@@ -126,15 +125,15 @@ function detectLanguage(): Lang {
   return navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
 }
 
-export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en");
+function getInitialLang(): Lang {
+  if (typeof window === "undefined") return "en";
+  const saved = localStorage.getItem("lang") as Lang | null;
+  if (saved === "en" || saved === "zh") return saved;
+  return detectLanguage();
+}
 
-  useEffect(() => {
-    const saved = localStorage.getItem("lang") as Lang | null;
-    setLangState(
-      saved === "en" || saved === "zh" ? saved : detectLanguage()
-    );
-  }, []);
+export function I18nProvider({ children }: { children: ReactNode }) {
+  const [lang, setLangState] = useState<Lang>(getInitialLang);
 
   const setLang = (newLang: Lang) => {
     setLangState(newLang);

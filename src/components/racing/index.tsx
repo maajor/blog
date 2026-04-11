@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useEffect, useState, useCallback, memo } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
+import Link from "next/link";
 import { Canvas } from "@react-three/fiber";
 import type { GameState } from "./types";
 import { GameScene } from "./GameScene";
@@ -52,12 +53,12 @@ export default function RacingGame() {
         <p className="text-[var(--text-secondary)] mb-6">
           {t("game.mobileMsg")}
         </p>
-        <a
+        <Link
           href="/blog"
           className="px-6 py-3 bg-[var(--accent)]/10 border border-[var(--accent)] text-[var(--accent)] rounded-md hover:bg-[var(--accent)]/15 transition-colors duration-150"
         >
           {t("game.goBlog")}
-        </a>
+        </Link>
       </div>
     );
   }
