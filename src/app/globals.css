@@ -1,0 +1,218 @@
+@import "tailwindcss";
+
+:root {
+  --accent: #b8612a;
+  --accent-hover: #a55523;
+  --secondary: #8a9a7b;
+  --bg: #faf9f6;
+  --bg-elevated: #ffffff;
+  --bg-card: #f2f0ec;
+  --bg-card-hover: #eae8e3;
+  --text: #1a1918;
+  --text-secondary: #6b6862;
+  --text-tertiary: #9c9a95;
+  --border: #d4d2cd;
+  --border-light: #e8e6e1;
+  --success: #5a7a5a;
+  --warning: #b8922a;
+  --error: #a63d2f;
+  --info: #4a6a8a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+::selection {
+  background: rgba(184, 97, 42, 0.2);
+  color: var(--text);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+pre {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  position: relative;
+}
+
+pre > code {
+  display: grid;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.85em;
+  line-height: 1.6;
+}
+
+/* Line numbers */
+pre > code > [data-line-numbers] {
+  counter-reset: line;
+}
+
+pre > code > [data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 2em;
+  margin-right: 1.2em;
+  text-align: right;
+  color: #4a4a4a;
+  font-size: 0.85em;
+}
+
+/* Highlighted lines */
+pre > code > [data-highlighted-line] {
+  background: rgba(184, 97, 42, 0.08);
+  border-left: 3px solid var(--accent);
+  margin-left: -1rem;
+  padding-left: calc(1rem - 3px);
+}
+
+/* Line numbers + highlighted line offset fix */
+pre > code > [data-line-numbers] > [data-highlighted-line]::before {
+  margin-right: calc(1.2em - 3px);
+}
+
+/* Code title / filename */
+pre [data-rehype-pretty-code-title] {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 0.8em;
+  color: var(--text-tertiary);
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+  margin: -1rem -1rem 0.75rem;
+}
+
+code {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+
+:not(pre) > code {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 3px;
+  padding: 0.15em 0.4em;
+  font-size: 0.875em;
+  color: var(--accent);
+}
+
+.prose {
+  line-height: 1.8;
+  max-width: 640px;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  color: var(--text);
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 600;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+.prose h1 {
+  font-size: 2.25rem;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.prose h3 {
+  font-size: 1.125rem;
+}
+
+.prose p {
+  margin-bottom: 1.25em;
+  color: var(--text);
+}
+
+.prose a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 150ms ease-out;
+}
+
+.prose a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.prose ul, .prose ol {
+  margin-bottom: 1.25em;
+  padding-left: 1.5em;
+  color: var(--text);
+}
+
+.prose li {
+  margin-bottom: 0.5em;
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1em;
+  margin: 1.5em 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.prose img {
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  margin: 1.5em 0;
+}
+
+.prose hr {
+  border-color: var(--border-light);
+  margin: 2em 0;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+}
+
+.prose th, .prose td {
+  border: 1px solid var(--border);
+  padding: 0.5em 1em;
+  text-align: left;
+}
+
+.prose th {
+  background: var(--bg-card);
+  font-family: "JetBrains Mono", monospace;
+  font-variant-numeric: tabular-nums;
+}
