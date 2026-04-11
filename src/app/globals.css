@@ -58,12 +58,58 @@ body {
 }
 
 pre {
-  background: #1a1918 !important;
+  background: var(--bg-card) !important;
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 1rem;
   overflow-x: auto;
-  color: #e8e6e1;
+  position: relative;
+}
+
+pre > code {
+  display: grid;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.85em;
+  line-height: 1.6;
+}
+
+/* Line numbers */
+pre > code > [data-line-numbers] {
+  counter-reset: line;
+}
+
+pre > code > [data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 2em;
+  margin-right: 1.2em;
+  text-align: right;
+  color: #4a4a4a;
+  font-size: 0.85em;
+}
+
+/* Highlighted lines */
+pre > code > [data-highlighted-line] {
+  background: rgba(184, 97, 42, 0.08);
+  border-left: 3px solid var(--accent);
+  margin-left: -1rem;
+  padding-left: calc(1rem - 3px);
+}
+
+/* Line numbers + highlighted line offset fix */
+pre > code > [data-line-numbers] > [data-highlighted-line]::before {
+  margin-right: calc(1.2em - 3px);
+}
+
+/* Code title / filename */
+pre [data-rehype-pretty-code-title] {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 0.8em;
+  color: var(--text-tertiary);
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+  margin: -1rem -1rem 0.75rem;
 }
 
 code {
