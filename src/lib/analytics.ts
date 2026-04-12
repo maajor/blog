@@ -5,7 +5,7 @@ declare global {
   }
 }
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const GA_ID = "G-XW33SKC70C";
 
 function gtag(...args: unknown[]) {
   if (typeof window !== "undefined" && window.gtag) {

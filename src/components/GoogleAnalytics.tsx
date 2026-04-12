@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
 import { trackPageView } from "@/lib/analytics";
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const GA_ID = "G-XW33SKC70C";
 
 function PageViewTracker() {
   const pathname = usePathname();
