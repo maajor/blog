@@ -13,15 +13,20 @@ import { ChaseCamera } from "./ChaseCamera";
 import { GameLogic } from "./GameLogic";
 import { TrackWalls } from "./TrackWalls";
 import { RAPIER_UPDATE_PRIORITY } from "./constants";
+import type { Controls } from "./use-controls";
 
 export const GameScene = memo(function GameScene({
   vehicleRef,
   onStateChange,
   resetSignal,
+  controls,
+  respawnSignal,
 }: {
   vehicleRef: React.RefObject<VehicleRef | null>;
   onStateChange: (s: GameState) => void;
   resetSignal: number;
+  controls: React.RefObject<Controls>;
+  respawnSignal: number;
 }) {
   return (
     <Physics
@@ -49,6 +54,8 @@ export const GameScene = memo(function GameScene({
         vehicleRef={vehicleRef}
         onStateChange={onStateChange}
         resetSignal={resetSignal}
+        controls={controls}
+        respawnSignal={respawnSignal}
       />
     </Physics>
   );

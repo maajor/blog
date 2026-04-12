@@ -16,7 +16,7 @@ import {
 import { createTrackCurve } from "./trackCurve";
 import type { GameState, LapTime } from "./types";
 import type { VehicleRef } from "./Car";
-import { useControls } from "./use-controls";
+import { useKeyboardControls, type Controls } from "./use-controls";
 import {
   trackGameStart,
   trackLapComplete,
@@ -28,12 +28,16 @@ export function GameLogic({
   vehicleRef,
   onStateChange,
   resetSignal,
+  controls,
+  respawnSignal,
 }: {
   vehicleRef: React.RefObject<VehicleRef | null>;
   onStateChange: (s: GameState) => void;
   resetSignal: number;
+  controls: React.RefObject<Controls>;
+  respawnSignal: number;
 }) {
-  const controls = useControls();
+  useKeyboardControls(controls);
   const curve = useRef<THREE.CatmullRomCurve3 | null>(null);
   const samples = useRef<THREE.Vector3[]>([]);
   const laps = useRef(0);
@@ -66,6 +70,12 @@ export function GameLogic({
     if (resetSignal === 0) return;
     resetRequested.current = true;
   }, [resetSignal]);
+
+  // handle external respawn (from touch button)
+  useEffect(() => {
+    if (respawnSignal === 0) return;
+    respawnRequested.current = true;
+  }, [respawnSignal]);
 
   // R key = respawn at nearest track point, Enter = full race restart
   useEffect(() => {

@@ -1,11 +1,13 @@
 "use client";
 
-import { useRef, useEffect, useState, useCallback } from "react";
-import Link from "next/link";
+import { useRef, useState, useCallback } from "react";
 import { Canvas } from "@react-three/fiber";
+import type { WebGLRenderer } from "three";
 import type { GameState } from "./types";
 import { GameScene } from "./GameScene";
 import { HUD } from "./HUD";
+import { TouchControls } from "./TouchControls";
+import type { Controls } from "./use-controls";
 import type { VehicleRef } from "./Car";
 import { useI18n } from "@/lib/i18n";
 
@@ -25,62 +27,90 @@ const INITIAL_STATE: GameState = {
 };
 
 export default function RacingGame() {
-  const [isDesktop, setIsDesktop] = useState(true);
   const [gs, setGs] = useState<GameState>(INITIAL_STATE);
   const vehicleRef = useRef<VehicleRef>(null);
+  const controls = useRef<Controls>({
+    forward: false,
+    left: false,
+    right: false,
+    brake: false,
+  });
   const [resetSignal, setResetSignal] = useState(0);
+  const [respawnSignal, setRespawnSignal] = useState(0);
+  const [contextLost, setContextLost] = useState(false);
   const onStateChange = useCallback((s: GameState) => setGs(s), []);
   const { t } = useI18n();
 
-  useEffect(() => {
-    const check = () => setIsDesktop(window.innerWidth >= 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
+  const handleCreated = useCallback(
+    ({ gl }: { gl: WebGLRenderer }) => {
+      const canvas = gl.domElement;
+      canvas.addEventListener(
+        "webglcontextlost",
+        () => {
+          setContextLost(true);
+        },
+        { once: true }
+      );
+      canvas.addEventListener("webglcontextrestored", () => {
+        setContextLost(false);
+      });
+    },
+    []
+  );
 
   const handleRestart = useCallback(() => {
     setResetSignal((prev) => prev + 1);
     setGs(INITIAL_STATE);
   }, []);
 
-  if (!isDesktop) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
-        <h2 className="text-2xl text-[var(--text)] mb-4" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>
-          {t("game.title")}
-        </h2>
-        <p className="text-[var(--text-secondary)] mb-6">
-          {t("game.mobileMsg")}
-        </p>
-        <Link
-          href="/blog"
-          className="px-6 py-3 bg-[var(--accent)]/10 border border-[var(--accent)] text-[var(--accent)] rounded-md hover:bg-[var(--accent)]/15 transition-colors duration-150"
-        >
-          {t("game.goBlog")}
-        </Link>
-      </div>
-    );
-  }
+  const handleRespawn = useCallback(() => {
+    setRespawnSignal((prev) => prev + 1);
+  }, []);
 
   return (
-    <div className="relative w-full h-[calc(100vh-3.5rem)]">
+    <div className="relative w-full h-[calc(100vh-3.5rem)] touch-none">
       <Canvas
         camera={{ fov: 65, near: 0.1, far: 2000, position: [0, 4, -10] }}
         gl={{
           antialias: true,
           alpha: false,
+          powerPreference: "high-performance",
         }}
+        onCreated={handleCreated}
         style={{ background: "#c8bfad" }}
       >
         <GameScene
           vehicleRef={vehicleRef}
           onStateChange={onStateChange}
           resetSignal={resetSignal}
+          controls={controls}
+          respawnSignal={respawnSignal}
         />
       </Canvas>
+      {contextLost && (
+        <div className="absolute inset-0 flex items-center justify-center bg-[rgba(17,17,16,0.7)]">
+          <div className="text-center">
+            <div
+              className="text-xl text-[#e8e6e1] mb-3"
+              style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
+            >
+              WebGL Context Lost
+            </div>
+            <button
+              onClick={() => {
+                setContextLost(false);
+                setResetSignal((prev) => prev + 1);
+              }}
+              className="px-6 py-2 bg-[rgba(184,97,42,0.1)] border border-[#b8612a] text-[#c87340] rounded-md cursor-pointer"
+            >
+              Reload
+            </button>
+          </div>
+        </div>
+      )}
       <HUD {...gs} onRestart={handleRestart} />
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 text-xs text-[rgba(26,25,24,0.5)] font-mono tracking-wide">
+      <TouchControls controls={controls} onRespawn={handleRespawn} />
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 text-xs text-[rgba(26,25,24,0.5)] font-mono tracking-wide hidden md:block">
         {t("game.controls")}
       </div>
     </div>

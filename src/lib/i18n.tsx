@@ -3,6 +3,7 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useState,
   type ReactNode,
 } from "react";
@@ -41,8 +42,6 @@ const translations: Record<Lang, Translations> = {
     "game.raceAgain": "Race Again",
     "game.enterBlog": "Enter Blog",
     "game.title": "Racing Game",
-    "game.mobileMsg": "The racing game requires a desktop browser with keyboard input.",
-    "game.goBlog": "Go to Blog",
     "game.controls": "WASD / Arrows to drive · R respawn · Enter restart",
   },
   zh: {
@@ -74,8 +73,6 @@ const translations: Record<Lang, Translations> = {
     "game.raceAgain": "再来一局",
     "game.enterBlog": "进入博客",
     "game.title": "赛车游戏",
-    "game.mobileMsg": "赛车游戏需要桌面浏览器和键盘操作。",
-    "game.goBlog": "进入博客",
     "game.controls": "WASD / 方向键驾驶 · R 回到赛道 · Enter 重新开始",
   },
 };
@@ -126,14 +123,20 @@ function detectLanguage(): Lang {
 }
 
 function getInitialLang(): Lang {
-  if (typeof window === "undefined") return "en";
-  const saved = localStorage.getItem("lang") as Lang | null;
-  if (saved === "en" || saved === "zh") return saved;
-  return detectLanguage();
+  return "en";
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(getInitialLang);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("lang") as Lang | null;
+    if (saved === "en" || saved === "zh") {
+      setLangState(saved);
+    } else {
+      setLangState(detectLanguage());
+    }
+  }, []);
 
   const setLang = (newLang: Lang) => {
     setLangState(newLang);
