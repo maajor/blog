@@ -2,9 +2,9 @@
 
 import {
   createContext,
+  useCallback,
   useContext,
-  useEffect,
-  useState,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 
@@ -122,26 +122,47 @@ function detectLanguage(): Lang {
   return navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
 }
 
-function getInitialLang(): Lang {
+// External store for language preference
+let langStore: Lang = "en";
+const langListeners = new Set<() => void>();
+
+function subscribeLang(callback: () => void) {
+  langListeners.add(callback);
+  return () => {
+    langListeners.delete(callback);
+  };
+}
+
+function getLangSnapshot(): Lang {
+  return langStore;
+}
+
+function getLangServerSnapshot(): Lang {
   return "en";
 }
 
+// Initialize from localStorage on client
+if (typeof window !== "undefined") {
+  const saved = localStorage.getItem("lang") as Lang | null;
+  if (saved === "en" || saved === "zh") {
+    langStore = saved;
+  } else {
+    langStore = detectLanguage();
+  }
+}
+
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(getInitialLang);
+  const lang = useSyncExternalStore(
+    subscribeLang,
+    getLangSnapshot,
+    getLangServerSnapshot,
+  );
 
-  useEffect(() => {
-    const saved = localStorage.getItem("lang") as Lang | null;
-    if (saved === "en" || saved === "zh") {
-      setLangState(saved);
-    } else {
-      setLangState(detectLanguage());
-    }
-  }, []);
-
-  const setLang = (newLang: Lang) => {
-    setLangState(newLang);
+  const setLang = useCallback((newLang: Lang) => {
+    langStore = newLang;
     localStorage.setItem("lang", newLang);
-  };
+    langListeners.forEach((l) => l());
+  }, []);
 
   const t = (key: string): string => translations[lang][key] ?? key;
   const tTag = (tag: string): string => translateTag(tag, lang);
