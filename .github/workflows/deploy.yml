@@ -36,16 +36,24 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Install coscmd
-        run: pip install coscmd
+      - name: Setup coscli
+        run: |
+          wget -q https://cosbrowser.cloud.tencent.com/software/coscli/coscli-linux-amd64 -O coscli
+          chmod +x coscli
 
-      - name: Configure coscmd
-        run: >
-          coscmd config
-          -a ${{ secrets.TENCENT_CLOUD_SECRET_ID }}
-          -s ${{ secrets.TENCENT_CLOUD_SECRET_KEY }}
-          -b ${{ secrets.COS_BUCKET }}
-          -r ${{ secrets.COS_REGION }}
+      - name: Configure coscli
+        run: |
+          cat > ~/.cos.yaml <<EOF
+          cos:
+            base:
+              secretid: ${{ secrets.TENCENT_CLOUD_SECRET_ID }}
+              secretkey: ${{ secrets.TENCENT_CLOUD_SECRET_KEY }}
+              sessiontoken: ""
+            buckets:
+              - name: ${{ secrets.COS_BUCKET }}
+                alias: blog
+                region: ${{ secrets.COS_REGION }}
+          EOF
 
-      - name: Upload to COS (incremental)
-        run: coscmd upload -rs --delete out/ /
+      - name: Sync to COS (incremental)
+        run: ./coscli sync out/ cos://blog/ --delete
