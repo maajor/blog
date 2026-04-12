@@ -2,7 +2,7 @@
 
 import { CuboidCollider, type RapierRigidBody, RigidBody, useRapier } from "@react-three/rapier";
 import { type RefObject, forwardRef, useEffect, useImperativeHandle, useMemo, useRef } from "react";
-import { BoxGeometry, type Group, Object3D, type Vector3Tuple, Vector3 } from "three";
+import { BoxGeometry, type Group, Object3D, Vector3 } from "three";
 import {
   CAR_WIDTH,
   CAR_LENGTH,
@@ -117,7 +117,7 @@ export const Car = forwardRef<VehicleRef>((_props, ref) => {
         },
       },
     ],
-    [commonWheelOptions],
+    [commonWheelOptions, vehicleBack, vehicleFront, vehicleWidth],
   );
 
   useImperativeHandle(ref, () => ({

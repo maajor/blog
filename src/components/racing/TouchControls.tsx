@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useSyncExternalStore, useRef } from "react";
 import type { Controls } from "./use-controls";
 
 interface TouchControlsProps {
@@ -17,7 +17,7 @@ function SteerSlider({
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const pointerId = useRef<number | null>(null);
-  const [knobX, setKnobX] = useState(0);
+  const knobXRef = useRef(0);
   const trackWidth = 160;
   const knobWidth = 44;
   const maxDist = (trackWidth - knobWidth) / 2;
@@ -30,7 +30,7 @@ function SteerSlider({
       const cx = rect.left + rect.width / 2;
       let dx = clientX - cx;
       dx = Math.max(-maxDist, Math.min(maxDist, dx));
-      setKnobX(dx);
+      knobXRef.current = dx;
       const n = dx / maxDist;
       controls.current.left = n < -DEAD_ZONE;
       controls.current.right = n > DEAD_ZONE;
@@ -40,7 +40,7 @@ function SteerSlider({
 
   const release = useCallback(() => {
     pointerId.current = null;
-    setKnobX(0);
+    knobXRef.current = 0;
     controls.current.left = false;
     controls.current.right = false;
   }, [controls]);
@@ -71,6 +71,8 @@ function SteerSlider({
     [release],
   );
 
+  const knobXValue = knobXRef.current;
+
   return (
     <div
       ref={trackRef}
@@ -90,7 +92,7 @@ function SteerSlider({
         style={{
           width: knobWidth,
           height: knobWidth,
-          left: trackWidth / 2 - knobWidth / 2 + knobX,
+          left: trackWidth / 2 - knobWidth / 2 + knobXValue,
           willChange: "transform",
         }}
       />
@@ -129,12 +131,20 @@ function ActionButton({
   );
 }
 
-export function TouchControls({ controls, onRespawn }: TouchControlsProps) {
-  const [show, setShow] = useState(false);
+function useHasTouch() {
+  return useSyncExternalStore(
+    (onStoreChange) => {
+      const mql = matchMedia("(pointer: coarse)");
+      mql.addEventListener("change", onStoreChange);
+      return () => mql.removeEventListener("change", onStoreChange);
+    },
+    () => "ontouchstart" in window || navigator.maxTouchPoints > 0,
+    () => false,
+  );
+}
 
-  useEffect(() => {
-    setShow("ontouchstart" in window || navigator.maxTouchPoints > 0);
-  }, []);
+export function TouchControls({ controls, onRespawn }: TouchControlsProps) {
+  const show = useHasTouch();
 
   if (!show) return null;
 
