@@ -56,4 +56,4 @@ jobs:
           EOF
 
       - name: Sync to COS (incremental)
-        run: ./coscli sync out/ cos://blog/ --delete
+        run: ./coscli sync out/ cos://blog/ -r --delete --force
