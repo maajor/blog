@@ -47,5 +47,5 @@ jobs:
           -b ${{ secrets.COS_BUCKET }}
           -r ${{ secrets.COS_REGION }}
 
-      - name: Sync to COS (incremental)
-        run: coscmd sync -r out/ / --delete
+      - name: Upload to COS (incremental)
+        run: coscmd upload -rs --delete out/ /
