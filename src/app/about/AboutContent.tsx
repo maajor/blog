@@ -201,6 +201,38 @@ export default function AboutContent({ posts }: AboutContentProps) {
         </div>
       )}
 
+      {/* Contact */}
+      <div className="mt-12 border-t border-[var(--border-light)] pt-8">
+        <h2
+          className="text-xl font-semibold text-[var(--text)] mb-4"
+          style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
+        >
+          {t("about.contact")}
+        </h2>
+        <div className="space-y-3 text-[var(--text-secondary)]">
+          <p>{t("about.contact.wechat")}</p>
+          <p>
+            Email{" "}
+            <a
+              href="mailto:info@ma-yidong.com"
+              className="text-[var(--accent)] hover:underline"
+            >
+              info@ma-yidong.com
+            </a>
+          </p>
+          <p>
+            <a
+              href="https://www.linkedin.com/in/mayidong/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--accent)] hover:underline"
+            >
+              LinkedIn
+            </a>
+          </p>
+        </div>
+      </div>
+
       {/* Footer links */}
       <div className="mt-12 border-t border-[var(--border-light)] pt-6">
         <p className="text-sm text-[var(--text-tertiary)]">
