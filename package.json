@@ -32,7 +32,7 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "rss": "^1.2.2",
-    "three": "^0.183.2",
+    "three": "^0.184.0",
     "unified": "^11.0.5"
   },
   "devDependencies": {
@@ -41,7 +41,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/rss": "^0.0.32",
-    "@types/three": "^0.183.1",
+    "@types/three": "^0.184.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
     "tailwindcss": "^4",
