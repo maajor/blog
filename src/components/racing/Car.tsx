@@ -34,11 +34,33 @@ export type VehicleRef = {
   wheels: RaycastVehicleWheel[];
 };
 
+// All colors from DESIGN.md "Game Visual Direction" — flat warm palette, no emissive
+const PALETTE = {
+  body: "#b8612a", // burnt sienna — the personality carrier
+  cabin: "#9c5020", // darker sienna
+  stripe: "#e8d9c0", // warm cream
+  glass: "#4a4038", // warm dark brown-gray
+  trim: "#5f5648", // warm gray (bumpers, skirts, grille)
+  headlight: "#f2e8d5",
+  taillight: "#a63d2f",
+  tire: "#2a2520",
+  hub: "#9c9180", // building warm gray
+  edge: "#3a3025",
+} as const;
+
 const WheelMesh = () => (
-  <mesh rotation={[0, 0, Math.PI / 2]}>
-    <cylinderGeometry args={[WHEEL_RADIUS, WHEEL_RADIUS, 0.2, 8]} />
-    <meshStandardMaterial color="#2a2520" roughness={0.8} />
-  </mesh>
+  <group rotation={[0, 0, Math.PI / 2]}>
+    {/* tire */}
+    <mesh>
+      <cylinderGeometry args={[WHEEL_RADIUS, WHEEL_RADIUS, 0.24, 12]} />
+      <meshStandardMaterial color={PALETTE.tire} roughness={0.9} />
+    </mesh>
+    {/* hub, slightly recessed so the sidewall reads */}
+    <mesh>
+      <cylinderGeometry args={[WHEEL_RADIUS * 0.48, WHEEL_RADIUS * 0.48, 0.18, 8]} />
+      <meshStandardMaterial color={PALETTE.hub} roughness={0.6} />
+    </mesh>
+  </group>
 );
 
 export const Car = forwardRef<VehicleRef>((_props, ref) => {
@@ -59,6 +81,11 @@ export const Car = forwardRef<VehicleRef>((_props, ref) => {
   const vehicleFront = CAR_LENGTH / 2 - 0.6;
   const vehicleBack = -CAR_LENGTH / 2 + 0.6;
   const vehicleHeight = 0;
+
+  const hullGeometry = useMemo(
+    () => new BoxGeometry(CAR_WIDTH, 0.42, CAR_LENGTH),
+    [],
+  );
 
   const commonWheelOptions = useMemo(
     () => ({
@@ -153,41 +180,119 @@ export const Car = forwardRef<VehicleRef>((_props, ref) => {
         {/* Heavy ballast low to the ground */}
         <CuboidCollider args={[CAR_WIDTH / 2 - 0.1, 0.08, CAR_LENGTH / 2 - 0.3]} position={[0, -0.5, 0]} density={8} />
 
-        {/* body */}
-        <mesh position={[0, 0.3, 0]}>
-          <boxGeometry args={[CAR_WIDTH, 0.5, CAR_LENGTH]} />
-          <meshStandardMaterial color="#b8612a" roughness={0.6} />
+        {/* —— main hull —— */}
+        <mesh position={[0, 0.33, 0]} geometry={hullGeometry}>
+          <meshStandardMaterial color={PALETTE.body} roughness={0.6} />
         </mesh>
-        {/* cabin */}
-        <mesh position={[0, 0.6, -0.3]}>
-          <boxGeometry args={[CAR_WIDTH * 0.8, 0.4, CAR_LENGTH * 0.4]} />
-          <meshStandardMaterial color="#9c5020" roughness={0.5} />
-        </mesh>
-        {/* clean edge lines — dark gray, no neon */}
-        <lineSegments position={[0, 0.3, 0]}>
-          <edgesGeometry args={[new BoxGeometry(CAR_WIDTH, 0.5, CAR_LENGTH)]} />
-          <lineBasicMaterial color="#3a3025" />
+        {/* subtle dark edge on the hull only, echoing the track edge lines */}
+        <lineSegments position={[0, 0.33, 0]}>
+          <edgesGeometry args={[hullGeometry]} />
+          <lineBasicMaterial color={PALETTE.edge} />
         </lineSegments>
-        {/* headlights — warm white */}
-        <pointLight
-          position={[0, 0.5, CAR_LENGTH / 2]}
-          color="#f5e6d0"
-          intensity={3}
-          distance={40}
-        />
-        {/* tail lights — subtle red */}
-        <pointLight
-          position={[-0.5, 0.5, -CAR_LENGTH / 2]}
-          color="#a63d2f"
-          intensity={1}
-          distance={10}
-        />
-        <pointLight
-          position={[0.5, 0.5, -CAR_LENGTH / 2]}
-          color="#a63d2f"
-          intensity={1}
-          distance={10}
-        />
+
+        {/* —— stepped volumes: hood deck / rear deck —— */}
+        <mesh position={[0, 0.6, 1.45]}>
+          <boxGeometry args={[2.0, 0.14, 1.3]} />
+          <meshStandardMaterial color={PALETTE.body} roughness={0.6} />
+        </mesh>
+        <mesh position={[0, 0.6, -1.75]}>
+          <boxGeometry args={[2.0, 0.14, 0.8]} />
+          <meshStandardMaterial color={PALETTE.body} roughness={0.6} />
+        </mesh>
+
+        {/* —— cabin —— */}
+        <mesh position={[0, 0.75, -0.2]}>
+          <boxGeometry args={[1.7, 0.42, 1.8]} />
+          <meshStandardMaterial color={PALETTE.cabin} roughness={0.55} />
+        </mesh>
+        {/* raked windshield */}
+        <mesh position={[0, 0.78, 0.78]} rotation={[-0.45, 0, 0]}>
+          <boxGeometry args={[1.6, 0.5, 0.06]} />
+          <meshStandardMaterial color={PALETTE.glass} roughness={0.4} />
+        </mesh>
+        {/* raked rear window */}
+        <mesh position={[0, 0.78, -1.18]} rotation={[0.5, 0, 0]}>
+          <boxGeometry args={[1.6, 0.44, 0.06]} />
+          <meshStandardMaterial color={PALETTE.glass} roughness={0.4} />
+        </mesh>
+        {/* side windows */}
+        <mesh position={[-0.86, 0.76, -0.2]}>
+          <boxGeometry args={[0.05, 0.26, 1.4]} />
+          <meshStandardMaterial color={PALETTE.glass} roughness={0.4} />
+        </mesh>
+        <mesh position={[0.86, 0.76, -0.2]}>
+          <boxGeometry args={[0.05, 0.26, 1.4]} />
+          <meshStandardMaterial color={PALETTE.glass} roughness={0.4} />
+        </mesh>
+        {/* roof cap returns the body color — color blocking */}
+        <mesh position={[0, 1.0, -0.2]}>
+          <boxGeometry args={[1.78, 0.09, 1.9]} />
+          <meshStandardMaterial color={PALETTE.body} roughness={0.6} />
+        </mesh>
+
+        {/* —— racing stripe: hood → roof → deck —— */}
+        <mesh position={[0, 0.68, 1.45]}>
+          <boxGeometry args={[0.4, 0.02, 1.28]} />
+          <meshStandardMaterial color={PALETTE.stripe} roughness={0.6} />
+        </mesh>
+        <mesh position={[0, 1.05, -0.2]}>
+          <boxGeometry args={[0.4, 0.02, 1.88]} />
+          <meshStandardMaterial color={PALETTE.stripe} roughness={0.6} />
+        </mesh>
+        <mesh position={[0, 0.68, -1.75]}>
+          <boxGeometry args={[0.4, 0.02, 0.78]} />
+          <meshStandardMaterial color={PALETTE.stripe} roughness={0.6} />
+        </mesh>
+
+        {/* —— ground-hugging trim band + bumpers —— */}
+        <mesh position={[0, 0.14, 0]}>
+          <boxGeometry args={[2.26, 0.1, 3.7]} />
+          <meshStandardMaterial color={PALETTE.trim} roughness={0.7} />
+        </mesh>
+        <mesh position={[0, 0.3, 2.3]}>
+          <boxGeometry args={[2.26, 0.2, 0.22]} />
+          <meshStandardMaterial color={PALETTE.trim} roughness={0.7} />
+        </mesh>
+        <mesh position={[0, 0.3, -2.3]}>
+          <boxGeometry args={[2.26, 0.2, 0.22]} />
+          <meshStandardMaterial color={PALETTE.trim} roughness={0.7} />
+        </mesh>
+
+        {/* —— lights as flat geometry (DESIGN.md: no colored point lights) —— */}
+        <mesh position={[-0.62, 0.45, 2.26]}>
+          <boxGeometry args={[0.34, 0.12, 0.05]} />
+          <meshStandardMaterial color={PALETTE.headlight} roughness={0.4} />
+        </mesh>
+        <mesh position={[0.62, 0.45, 2.26]}>
+          <boxGeometry args={[0.34, 0.12, 0.05]} />
+          <meshStandardMaterial color={PALETTE.headlight} roughness={0.4} />
+        </mesh>
+        <mesh position={[0, 0.45, 2.26]}>
+          <boxGeometry args={[0.7, 0.1, 0.05]} />
+          <meshStandardMaterial color={PALETTE.trim} roughness={0.7} />
+        </mesh>
+        <mesh position={[-0.62, 0.45, -2.26]}>
+          <boxGeometry args={[0.34, 0.12, 0.05]} />
+          <meshStandardMaterial color={PALETTE.taillight} roughness={0.5} />
+        </mesh>
+        <mesh position={[0.62, 0.45, -2.26]}>
+          <boxGeometry args={[0.34, 0.12, 0.05]} />
+          <meshStandardMaterial color={PALETTE.taillight} roughness={0.5} />
+        </mesh>
+
+        {/* —— side mirrors + exhaust —— */}
+        <mesh position={[-0.95, 0.85, 0.55]}>
+          <boxGeometry args={[0.16, 0.1, 0.05]} />
+          <meshStandardMaterial color={PALETTE.cabin} roughness={0.55} />
+        </mesh>
+        <mesh position={[0.95, 0.85, 0.55]}>
+          <boxGeometry args={[0.16, 0.1, 0.05]} />
+          <meshStandardMaterial color={PALETTE.cabin} roughness={0.55} />
+        </mesh>
+        <mesh position={[0.6, 0.2, -2.42]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.05, 0.05, 0.12, 8]} />
+          <meshStandardMaterial color={PALETTE.trim} roughness={0.7} />
+        </mesh>
       </RigidBody>
 
       {/* Wheels — positioned by raycast vehicle physics */}
