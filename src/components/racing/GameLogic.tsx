@@ -7,8 +7,10 @@ import * as THREE from "three";
 import {
   TOTAL_LAPS,
   MAX_ENGINE_FORCE,
+  MAX_REVERSE_ENGINE_FORCE,
   MAX_STEER_VALUE,
   MAX_BRAKE_FORCE,
+  REVERSE_TRIGGER_SPEED,
   OFFTRACK_HALF_WIDTH,
   OFFTRACK_DRAG,
   OFFTRACK_ENGINE_MULT,
@@ -55,6 +57,9 @@ export function GameLogic({
   const nextCheckpoint = useRef(0);
 
   const CHECKPOINTS = [0.25, 0.5, 0.75];
+
+// scratch vector, reused each physics step
+const _forward = new THREE.Vector3();
 
   // init curve
   useEffect(() => {
@@ -205,6 +210,7 @@ export function GameLogic({
     // Apply engine/steering/brake from controls
     let engineForce = 0;
     let steering = 0;
+    let brakeForce = 0;
 
     if (controls.current.forward) engineForce = MAX_ENGINE_FORCE;
     if (isOffTrack) engineForce *= OFFTRACK_ENGINE_MULT;
@@ -214,14 +220,24 @@ export function GameLogic({
     // Reduce steering authority while braking to prevent overly sharp turns
     if (controls.current.brake) steering *= 0.1;
 
-    const brakeForce = controls.current.brake ? MAX_BRAKE_FORCE : 0;
+    // S = brake while rolling forward, reverse gear when (nearly) stopped.
+    // Signed speed along the car's nose direction.
+    if (controls.current.brake) {
+      const chassisRot = chassis.rotation() as THREE.Quaternion;
+      const fwd = _forward.set(0, 0, 1).applyQuaternion(chassisRot);
+      const vel = chassis.linvel() as THREE.Vector3;
+      const forwardSpeed = fwd.x * vel.x + fwd.z * vel.z;
+      if (forwardSpeed > REVERSE_TRIGGER_SPEED) {
+        brakeForce = MAX_BRAKE_FORCE;
+      } else if (!controls.current.forward) {
+        engineForce = -MAX_REVERSE_ENGINE_FORCE;
+      }
+    }
 
     // brake all wheels
-    // for (let i = 0; i < vehicle.wheels.length; i++) {
-      // vehicle.setBrakeValue(brakeForce, i);
-    // }
-    vehicle.setBrakeValue(brakeForce, 3);
-    vehicle.setBrakeValue(brakeForce, 2);
+    for (let i = 0; i < vehicle.wheels.length; i++) {
+      vehicle.setBrakeValue(brakeForce, i);
+    }
 
     // steer front wheels (0, 1)
     vehicle.setSteeringValue(steering, 0);

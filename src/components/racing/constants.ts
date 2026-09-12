@@ -41,8 +41,12 @@ export const OFFTRACK_ENGINE_MULT = 0.6; // reduce engine force to 60% on runoff
 // Vehicle physics (raycast vehicle)
 export const VEHICLE_MASS = 300;
 export const MAX_ENGINE_FORCE = 300;
+export const MAX_REVERSE_ENGINE_FORCE = 150;
 export const MAX_STEER_VALUE = 0.4;
-export const MAX_BRAKE_FORCE = 4;
+// Strong enough to out-clamp the per-step engine impulse (~5/wheel)
+export const MAX_BRAKE_FORCE = 45;
+// Below this forward speed (m/s) the brake key becomes reverse gear
+export const REVERSE_TRIGGER_SPEED = 0.5;
 
 // Wheel configuration
 export const WHEEL_RADIUS = 0.35;
