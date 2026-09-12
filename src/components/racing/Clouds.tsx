@@ -60,6 +60,35 @@ export function Clouds() {
       hazeGroup.position.set(cx, cy, cz);
       g.add(hazeGroup);
     }
+
+    // Proper low-poly cumulus clouds — cream white, drifting overhead
+    const cloudMat = new THREE.MeshStandardMaterial({
+      color: "#ece5d8",
+      roughness: 1,
+    });
+
+    for (let i = 0; i < 16; i++) {
+      const cx = -350 + rand() * 1300;
+      const cz = -450 + rand() * 1500;
+      const cy = 45 + rand() * 55;
+
+      const cloudGroup = new THREE.Group();
+      const numPuffs = 4 + Math.floor(rand() * 4);
+      for (let j = 0; j < numPuffs; j++) {
+        const r = 8 + rand() * 9;
+        const puff = new THREE.Mesh(new THREE.SphereGeometry(r, 8, 6), cloudMat);
+        puff.position.set(
+          (rand() - 0.5) * 22,
+          (rand() - 0.5) * 3,
+          (rand() - 0.5) * 12,
+        );
+        puff.scale.y = 0.55;
+        cloudGroup.add(puff);
+      }
+
+      cloudGroup.position.set(cx, cy, cz);
+      g.add(cloudGroup);
+    }
   }, []);
 
   return <group ref={groupRef} />;

@@ -67,6 +67,32 @@ export function SkyBackground() {
     ctx.closePath();
     ctx.fill();
 
+    // Near hills — deepest tone, gentlest waves
+    ctx.globalAlpha = 0.55;
+    ctx.fillStyle = "#aca189";
+    ctx.beginPath();
+    const nearBase = H * 0.525;
+    ctx.moveTo(0, nearBase);
+    for (let x = 0; x <= W; x++) {
+      const t = x / W;
+      const y =
+        nearBase -
+        Math.sin(t * Math.PI * 2 + 2.1) * 10 -
+        Math.sin(t * Math.PI * 3 + 0.4) * 6;
+      ctx.lineTo(x, y);
+    }
+    ctx.lineTo(W, H * 0.58);
+    ctx.lineTo(0, H * 0.58);
+    ctx.closePath();
+    ctx.fill();
+
+    // Flat pale sun disc — a quiet focal point, no glow
+    ctx.globalAlpha = 0.6;
+    ctx.fillStyle = "#f2e8d5";
+    ctx.beginPath();
+    ctx.arc(W * 0.64, H * 0.33, 66, 0, Math.PI * 2);
+    ctx.fill();
+
     // Ground-level atmospheric haze
     ctx.globalAlpha = 0.12;
     ctx.fillStyle = "#b8ad9a";

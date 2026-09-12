@@ -36,16 +36,43 @@ export function Buildings() {
       const h = 8 + rand() * 35;
       const d = 3 + rand() * 8;
 
-      const geom = new THREE.BoxGeometry(w, h, d);
       // Warm gray forms, no emissive
       const brightness = 0.55 + rand() * 0.15;
+      const tone = new THREE.Color(
+        brightness * 0.95,
+        brightness * 0.9,
+        brightness * 0.85,
+      );
       const mat = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(brightness * 0.95, brightness * 0.9, brightness * 0.85),
+        color: tone,
         roughness: 0.85,
       });
-      const mesh = new THREE.Mesh(geom, mat);
-      mesh.position.set(pos.x, h / 2, pos.z);
-      g.add(mesh);
+
+      // Stepped tiers — a quiet Monument Valley silhouette
+      const tiers = 1 + Math.floor(rand() * 3); // 1..3
+      let y = 0;
+      for (let tier = 0; tier < tiers; tier++) {
+        const shrink = Math.pow(0.72, tier);
+        const tierH = h * (tiers === 1 ? 1 : tier === 0 ? 0.55 : tier === 1 ? 0.3 : 0.15);
+        const geom = new THREE.BoxGeometry(w * shrink, tierH, d * shrink);
+        const mesh = new THREE.Mesh(geom, mat);
+        mesh.position.set(pos.x, y + tierH / 2, pos.z);
+        g.add(mesh);
+        y += tierH;
+      }
+
+      // Occasional terracotta cap echoes the accent color
+      if (tiers > 1 && rand() < 0.35) {
+        const cap = new THREE.Mesh(
+          new THREE.BoxGeometry(w * Math.pow(0.72, tiers - 1) * 0.7, 0.6, d * Math.pow(0.72, tiers - 1) * 0.7),
+          new THREE.MeshStandardMaterial({
+            color: "#b8612a",
+            roughness: 0.7,
+          }),
+        );
+        cap.position.set(pos.x, y + 0.3, pos.z);
+        g.add(cap);
+      }
     }
   }, []);
 
