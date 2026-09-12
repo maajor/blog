@@ -223,7 +223,9 @@ export const Car = forwardRef<VehicleRef>((_props, ref) => {
   const vehicleWidth = CAR_WIDTH / 2 + 0.1;
   const vehicleFront = CAR_LENGTH / 2 - 0.6;
   const vehicleBack = -CAR_LENGTH / 2 + 0.6;
-  const vehicleHeight = 0;
+  // Connection points sit above the chassis origin: the suspension carries
+  // the body 0.3 lower, putting the wheel tops just inside the arches.
+  const vehicleHeight = 0.3;
 
   const commonWheelOptions = useMemo(
     () => ({
@@ -315,11 +317,15 @@ export const Car = forwardRef<VehicleRef>((_props, ref) => {
         angularDamping={1}
       >
         <CuboidCollider args={[CAR_WIDTH / 2, 0.35, CAR_LENGTH / 2]} position={[0, 0.2, 0]} />
-        {/* Heavy ballast low to the ground */}
-        <CuboidCollider args={[CAR_WIDTH / 2 - 0.1, 0.08, CAR_LENGTH / 2 - 0.3]} position={[0, -0.5, 0]} density={8} />
+        {/* Heavy ballast low to the ground (kept clear of the tarmac at the
+            lowered ride height) */}
+        <CuboidCollider args={[CAR_WIDTH / 2 - 0.1, 0.08, CAR_LENGTH / 2 - 0.3]} position={[0, -0.17, 0]} density={8} />
 
-        {/* visual body — shared with dev previews */}
-        <CarBody />
+        {/* visual body — dropped 0.23 below the chassis origin so the
+            under-tray sits ~0.15 off the ground */}
+        <group position={[0, -0.23, 0]}>
+          <CarBody />
+        </group>
       </RigidBody>
 
       {/* Wheels — positioned by raycast vehicle physics */}
