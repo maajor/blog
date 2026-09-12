@@ -33,6 +33,24 @@ export function distanceToTrack(x: number, z: number): number {
   return min;
 }
 
+// Keep-out check for an elongated footprint (grandstands, hedgerows): samples
+// five points along the long axis, each requiring `halfWidth + clearance`.
+export function canPlaceExtent(
+  x: number,
+  z: number,
+  angleY: number,
+  halfLength: number,
+  halfWidth: number,
+  clearance: number,
+): boolean {
+  for (const f of [-1, -0.5, 0, 0.5, 1]) {
+    const px = x + Math.sin(angleY) * halfLength * f;
+    const pz = z + Math.cos(angleY) * halfLength * f;
+    if (distanceToTrack(px, pz) < halfWidth + clearance) return false;
+  }
+  return true;
+}
+
 export type ScatterPlacement = { x: number; z: number; rotationY: number };
 
 // Find a spot with at least `footprint + clearance` beyond the walls of every
