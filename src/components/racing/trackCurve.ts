@@ -8,6 +8,7 @@ import * as THREE from "three";
 
 const TRACK_POINTS: [number, number, number][] = [
   // ===== START/FINISH — Hamilton Straight =====
+  // pretier-ignore: named after real Silverstone corners
   [137, 0, 382],
   // Club/Vale — heading NW from Hamilton Straight
   [79, 0, 297],
@@ -70,4 +71,23 @@ export function createTrackCurve(): THREE.CatmullRomCurve3 {
     "catmullrom",
     0.5,
   );
+}
+
+// Track-parameter t of the curve point nearest to (x, z) — lets scenery
+// modules anchor zones at named corners. Coarse nearest-sample search.
+export function tForPoint(x: number, z: number): number {
+  const curve = createTrackCurve();
+  const N = 1200;
+  let bestT = 0;
+  let bestD = Infinity;
+  for (let i = 0; i < N; i++) {
+    const t = i / N;
+    const p = curve.getPointAt(t);
+    const d = (p.x - x) * (p.x - x) + (p.z - z) * (p.z - z);
+    if (d < bestD) {
+      bestD = d;
+      bestT = t;
+    }
+  }
+  return bestT;
 }

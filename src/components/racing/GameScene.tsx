@@ -12,6 +12,7 @@ import { SkyBackground } from "./SkyBackground";
 import { ChaseCamera } from "./ChaseCamera";
 import { GameLogic } from "./GameLogic";
 import { TrackWalls } from "./TrackWalls";
+import { TracksideStructures } from "./structures";
 import { RAPIER_UPDATE_PRIORITY } from "./constants";
 import type { Controls } from "./use-controls";
 
@@ -49,6 +50,7 @@ export const GameScene = memo(function GameScene({
       <Ground />
       <Buildings />
       <Trees />
+      <TracksideStructures />
       <ChaseCamera vehicleRef={vehicleRef} />
       <GameLogic
         vehicleRef={vehicleRef}

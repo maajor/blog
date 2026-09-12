@@ -2,10 +2,92 @@
 
 import { useRef, useEffect } from "react";
 import * as THREE from "three";
-import { createTrackCurve } from "./trackCurve";
-import { getWallDistance } from "./constants";
+import { createScatterRng, distanceToTrack, sampleOffTrack } from "./scatter";
 
+// Silverstone sits on open farmland: trees grow in small copses between
+// fields, with the odd lone oak. Broadleaf blobs dominate; few conifers.
 const TREE_GREENS = ["#7a8b6a", "#8a9a7b", "#6d7d5d"];
+
+export type TreePlan = {
+  x: number;
+  z: number;
+  kind: "broadleaf" | "conifer";
+  trunkH: number;
+  blobR: number;
+  coneR: number;
+  coneH: number;
+  green: string;
+};
+
+function makeTree(
+  x: number,
+  z: number,
+  rand: () => number,
+  scale = 1,
+): TreePlan {
+  const conifer = rand() < 0.28;
+  const green = TREE_GREENS[Math.floor(rand() * TREE_GREENS.length)];
+  if (conifer) {
+    return {
+      x,
+      z,
+      kind: "conifer",
+      trunkH: (3 + rand() * 2) * scale,
+      blobR: 0,
+      coneR: (2.6 + rand() * 1.2) * scale,
+      coneH: (6 + rand() * 2) * scale,
+      green,
+    };
+  }
+  return {
+    x,
+    z,
+    kind: "broadleaf",
+    trunkH: (5 + rand() * 3) * scale,
+    blobR: (3.2 + rand() * 1.4) * scale,
+    coneR: 0,
+    coneH: 0,
+    green,
+  };
+}
+
+// Pure placement planning — no THREE objects, so scripts can verify geometry
+export function planTrees(
+  clusterCount = 20,
+  singleCount = 14,
+  seed = 123,
+): TreePlan[] {
+  const rand = createScatterRng(seed);
+  const trees: TreePlan[] = [];
+
+  // Copses — clusters of 3-6 trees sharing a field corner
+  for (let c = 0; c < clusterCount; c++) {
+    const center = sampleOffTrack(rand, 9, 2, 70);
+    if (!center) continue;
+    const n = 3 + Math.floor(rand() * 4);
+    for (let i = 0; i < n; i++) {
+      const x = center.x + (rand() - 0.5) * 16;
+      const z = center.z + (rand() - 0.5) * 16;
+      if (distanceToTrack(x, z) < 2.5) continue;
+      trees.push(makeTree(x, z, rand));
+    }
+  }
+
+  // Lone field trees
+  for (let s = 0; s < singleCount; s++) {
+    const spot = sampleOffTrack(rand, 3, 2, 90);
+    if (!spot) continue;
+    trees.push(makeTree(spot.x, spot.z, rand, 1.15));
+  }
+
+  return trees;
+}
+
+export function verifyTrees(): string[] {
+  return planTrees()
+    .filter((t) => distanceToTrack(t.x, t.z) < 2.5)
+    .map((t) => `tree at (${t.x.toFixed(0)}, ${t.z.toFixed(0)})`);
+}
 
 export function Trees() {
   const groupRef = useRef<THREE.Group>(null);
@@ -15,48 +97,82 @@ export function Trees() {
     const g = groupRef.current;
     while (g.children.length > 0) g.remove(g.children[0]);
 
-    let seed = 123;
-    const rand = () => {
-      seed = (seed * 16807 + 0) % 2147483647;
-      return seed / 2147483647;
-    };
+    const trunkMat = new THREE.MeshStandardMaterial({
+      color: "#6b5a48",
+      roughness: 0.9,
+    });
 
-    const curve = createTrackCurve();
-    for (let i = 0; i < 80; i++) {
-      const t = rand();
-      const side = rand() > 0.5 ? 1 : -1;
-      const p = curve.getPointAt(t);
-      const tan = curve.getTangentAt(t);
-      const n = new THREE.Vector3()
-        .crossVectors(new THREE.Vector3(0, 1, 0), tan)
-        .normalize();
-
-      const dist = getWallDistance(t) + 3 + rand() * 30;
-      const pos = p.clone().add(n.clone().multiplyScalar(side * dist));
-
-      // Trunk
-      const trunkH = 2 + rand() * 2;
-      const trunkGeom = new THREE.CylinderGeometry(0.2, 0.3, trunkH, 6);
-      const trunkMat = new THREE.MeshStandardMaterial({
-        color: "#6b5a48",
-        roughness: 0.9,
-      });
-      const trunk = new THREE.Mesh(trunkGeom, trunkMat);
-      trunk.position.set(pos.x, trunkH / 2, pos.z);
-      g.add(trunk);
-
-      // Canopy — low-poly cone in muted sage/olive greens
-      const canopyH = 3 + rand() * 3;
-      const canopyR = 1.5 + rand() * 2;
-      const canopyGeom = new THREE.ConeGeometry(canopyR, canopyH, 6);
-      const greenShade = TREE_GREENS[Math.floor(rand() * TREE_GREENS.length)];
+    for (const tree of planTrees()) {
       const canopyMat = new THREE.MeshStandardMaterial({
-        color: greenShade,
+        color: tree.green,
         roughness: 0.8,
+        flatShading: true,
       });
-      const canopy = new THREE.Mesh(canopyGeom, canopyMat);
-      canopy.position.set(pos.x, trunkH + canopyH / 2 - 0.5, pos.z);
-      g.add(canopy);
+
+      if (tree.kind === "broadleaf") {
+        const trunk = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.35, 0.5, tree.trunkH, 6),
+          trunkMat,
+        );
+        trunk.position.set(tree.x, tree.trunkH / 2, tree.z);
+        g.add(trunk);
+
+        // Two stacked blob tiers — a rounded oak crown
+        const lower = new THREE.Mesh(
+          new THREE.IcosahedronGeometry(tree.blobR, 0),
+          canopyMat,
+        );
+        lower.position.set(tree.x, tree.trunkH + tree.blobR * 0.55, tree.z);
+        lower.rotation.set(0.3, tree.x % 1, 0.2);
+        lower.scale.y = 0.85;
+        g.add(lower);
+
+        const upper = new THREE.Mesh(
+          new THREE.IcosahedronGeometry(tree.blobR * 0.72, 0),
+          canopyMat,
+        );
+        upper.position.set(
+          tree.x + tree.blobR * 0.18,
+          tree.trunkH + tree.blobR * 1.15,
+          tree.z - tree.blobR * 0.12,
+        );
+        upper.rotation.set(0.5, tree.z % 1, 0.4);
+        g.add(upper);
+      } else {
+        const trunk = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.25, 0.4, tree.trunkH, 6),
+          trunkMat,
+        );
+        trunk.position.set(tree.x, tree.trunkH / 2, tree.z);
+        g.add(trunk);
+
+        const lower = new THREE.Mesh(
+          new THREE.ConeGeometry(tree.coneR, tree.coneH, 6),
+          canopyMat,
+        );
+        lower.position.set(tree.x, tree.trunkH + tree.coneH * 0.38, tree.z);
+        lower.rotation.y = tree.x;
+        g.add(lower);
+
+        const upper = new THREE.Mesh(
+          new THREE.ConeGeometry(tree.coneR * 0.6, tree.coneH * 0.65, 6),
+          new THREE.MeshStandardMaterial({
+            color: new THREE.Color(tree.green).lerp(
+              new THREE.Color("#a8b89a"),
+              0.25,
+            ),
+            roughness: 0.8,
+            flatShading: true,
+          }),
+        );
+        upper.position.set(
+          tree.x,
+          tree.trunkH + tree.coneH * 0.85,
+          tree.z,
+        );
+        upper.rotation.y = tree.z;
+        g.add(upper);
+      }
     }
   }, []);
 
