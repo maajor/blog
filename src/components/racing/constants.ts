@@ -44,7 +44,7 @@ export const MAX_ENGINE_FORCE = 300;
 export const MAX_REVERSE_ENGINE_FORCE = 150;
 export const MAX_STEER_VALUE = 0.4;
 // Strong enough to out-clamp the per-step engine impulse (~5/wheel)
-export const MAX_BRAKE_FORCE = 45;
+export const MAX_BRAKE_FORCE = 4;
 // Below this forward speed (m/s) the brake key becomes reverse gear
 export const REVERSE_TRIGGER_SPEED = 0.5;
 
