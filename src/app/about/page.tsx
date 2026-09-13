@@ -4,17 +4,17 @@ import AboutContent from "./AboutContent";
 export const metadata = {
   title: "About",
   description:
-    "Eight years building real-time graphics and game technology. Now exploring what makes engineers irreplaceable when AI writes the code.",
+    "Deep tech is a cost in mass markets — years in big game studios taught me that. Now running the opposite experiment: a one-person studio making things where depth is the product.",
   openGraph: {
     title: "About | 码工图形",
     description:
-      "Eight years building real-time graphics and game technology. Now exploring what makes engineers irreplaceable when AI writes the code.",
+      "Deep tech is a cost in mass markets — years in big game studios taught me that. Now running the opposite experiment: a one-person studio making things where depth is the product.",
   },
   twitter: {
     card: "summary" as const,
     title: "About | 码工图形",
     description:
-      "Eight years building real-time graphics and game technology. Now exploring what makes engineers irreplaceable when AI writes the code.",
+      "Deep tech is a cost in mass markets — years in big game studios taught me that. Now running the opposite experiment: a one-person studio making things where depth is the product.",
   },
 };
 
