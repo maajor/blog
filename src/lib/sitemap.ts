@@ -17,15 +17,15 @@ export function generateSitemap() {
   // Static pages
   entries.push(
     { loc: siteUrl, changefreq: "monthly", priority: 1.0 },
-    { loc: `${siteUrl}/blog`, changefreq: "weekly", priority: 0.9 },
-    { loc: `${siteUrl}/about`, changefreq: "monthly", priority: 0.7 }
+    { loc: `${siteUrl}/blog/`, changefreq: "weekly", priority: 0.9 },
+    { loc: `${siteUrl}/about/`, changefreq: "monthly", priority: 0.7 }
   );
 
   // Blog posts
   const posts = getAllPosts();
   posts.forEach((post) => {
     entries.push({
-      loc: `${siteUrl}/blog/${post.slug}`,
+      loc: `${siteUrl}/blog/${post.slug}/`,
       lastmod: post.date ? new Date(post.date).toISOString().split("T")[0] : undefined,
       changefreq: "monthly",
       priority: 0.8,

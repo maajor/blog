@@ -22,7 +22,7 @@ export async function generateMetadata({
   const { slug } = await params;
   return {
     title: "Redirecting...",
-    refresh: { httpEquiv: "refresh", content: `0;url=/blog/${slug}` },
+    refresh: { httpEquiv: "refresh", content: `0;url=/blog/${slug}/` },
   };
 }
 
@@ -32,5 +32,5 @@ export default async function LegacyPostRedirect({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  redirect(`/blog/${slug}`);
+  redirect(`/blog/${slug}/`);
 }

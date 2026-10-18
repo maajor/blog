@@ -80,7 +80,7 @@ export function BlogPostJsonLd({
           "@type": "BlogPosting",
           headline: title,
           description: description,
-          url: `${siteUrl}/blog/${slug}`,
+          url: `${siteUrl}/blog/${slug}/`,
           datePublished: date,
           author: {
             "@type": "Person",
@@ -93,7 +93,7 @@ export function BlogPostJsonLd({
           },
           mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": `${siteUrl}/blog/${slug}`,
+            "@id": `${siteUrl}/blog/${slug}/`,
           },
           inLanguage: "en",
         }}
@@ -113,13 +113,13 @@ export function BlogPostJsonLd({
               "@type": "ListItem",
               position: 2,
               name: "Blog",
-              item: `${siteUrl}/blog`,
+              item: `${siteUrl}/blog/`,
             },
             {
               "@type": "ListItem",
               position: 3,
               name: title,
-              item: `${siteUrl}/blog/${slug}`,
+              item: `${siteUrl}/blog/${slug}/`,
             },
           ],
         }}

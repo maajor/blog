@@ -19,7 +19,7 @@ export async function generateRSS() {
     feed.item({
       title: post.title,
       description: post.abstract,
-      url: `${siteUrl}/blog/${post.slug}`,
+      url: `${siteUrl}/blog/${post.slug}/`,
       date: post.date,
     });
   });
